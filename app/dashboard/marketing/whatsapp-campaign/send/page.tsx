@@ -103,8 +103,8 @@ function SendCampaignPage() {
   const [isTestSending, setIsTestSending] = useState(false);
   const [testResults, setTestResults] = useState<SendResult[]>([]);
 
-  // Cost
-  const COST_PER_MESSAGE = 50; // FCFA
+  // Cost — fetched dynamically from merchant config
+  const [costPerMessage, setCostPerMessage] = useState(50);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -113,6 +113,15 @@ function SendCampaignPage() {
         router.push('/auth/login');
         return;
       }
+
+      // Fetch message price
+      try {
+        const priceRes = await fetch(`/api/whatsapp/campaign/send?merchantId=${user.id}`);
+        if (priceRes.ok) {
+          const priceData = await priceRes.json();
+          setCostPerMessage(priceData.price || 50);
+        }
+      } catch { /* use default */ }
 
       // Fetch merchant
       const { data: merchantData } = await supabase
@@ -438,7 +447,7 @@ function SendCampaignPage() {
   const failureCount = sendResults.filter(r => !r.success).length;
 
   // Cost estimate
-  const estimatedCost = selectedCustomers.size * COST_PER_MESSAGE;
+  const estimatedCost = selectedCustomers.size * costPerMessage;
 
   // Test send functions
   const addTestNumber = () => {
@@ -824,7 +833,7 @@ function SendCampaignPage() {
                 <div>
                   <p className="text-sm font-semibold text-emerald-900">Estimation du cout</p>
                   <p className="text-xs text-emerald-700">
-                    {selectedCustomers.size} destinataire{selectedCustomers.size > 1 ? 's' : ''} x {COST_PER_MESSAGE} FCFA = <span className="font-bold">{estimatedCost.toLocaleString()} FCFA</span>
+                    {selectedCustomers.size} destinataire{selectedCustomers.size > 1 ? 's' : ''} x {costPerMessage} FCFA = <span className="font-bold">{estimatedCost.toLocaleString()} FCFA</span>
                   </p>
                 </div>
               </div>
@@ -892,7 +901,7 @@ function SendCampaignPage() {
             {isTemplateMode && (
               <div className="p-3 bg-gray-50 rounded-lg mb-4">
                 <p className="text-xs text-gray-600">
-                  Cout total : <span className="font-bold text-gray-900">{(successCount * COST_PER_MESSAGE).toLocaleString()} FCFA</span>
+                  Cout total : <span className="font-bold text-gray-900">{(successCount * costPerMessage).toLocaleString()} FCFA</span>
                 </p>
               </div>
             )}

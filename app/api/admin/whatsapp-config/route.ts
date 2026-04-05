@@ -44,7 +44,7 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { merchantId, provider, wabaId, phoneNumberId, accessToken, displayPhone, whapiApiKey, action } = body;
+    const { merchantId, provider, wabaId, phoneNumberId, accessToken, displayPhone, whapiApiKey, messagePriceFcfa, action } = body;
 
     if (!merchantId) {
       return NextResponse.json({ error: 'merchantId requis' }, { status: 400 });
@@ -89,7 +89,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Upsert config
-    const configData = {
+    const configData: any = {
       merchant_id: merchantId,
       provider: provider || 'meta',
       waba_id: wabaId || null,
@@ -98,6 +98,7 @@ export async function POST(request: NextRequest) {
       display_phone: displayPhone || null,
       whapi_api_key: whapiApiKey || null,
       is_verified: false,
+      message_price_fcfa: messagePriceFcfa || 50,
     };
 
     const { data, error } = await supabaseAdmin

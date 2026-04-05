@@ -3,13 +3,36 @@ import { createClient } from '@supabase/supabase-js';
 import { getWhatsAppConfig } from '@/lib/whatsapp/config';
 import { sendTemplateMessage } from '@/lib/whatsapp/client';
 
-const COST_PER_MESSAGE = 50; // FCFA
+const DEFAULT_COST_PER_MESSAGE = 50; // FCFA
 
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 );
 
+// GET — Return message price for a merchant (used by send page for cost preview)
+export async function GET(request: NextRequest) {
+  try {
+    const merchantId = request.nextUrl.searchParams.get('merchantId');
+    if (!merchantId) {
+      return NextResponse.json({ price: DEFAULT_COST_PER_MESSAGE });
+    }
+
+    const { data } = await supabaseAdmin
+      .from('merchant_whatsapp_config')
+      .select('message_price_fcfa')
+      .eq('merchant_id', merchantId)
+      .single();
+
+    return NextResponse.json({
+      price: data?.message_price_fcfa || DEFAULT_COST_PER_MESSAGE,
+    });
+  } catch {
+    return NextResponse.json({ price: DEFAULT_COST_PER_MESSAGE });
+  }
+}
+
+// POST — Send campaign
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -19,11 +42,19 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'merchantId, templateId et recipients requis' }, { status: 400 });
     }
 
-    // 1. Get merchant config
+    // 1. Get merchant WhatsApp config + price
     const config = await getWhatsAppConfig(merchantId);
     if (config.provider !== 'meta' || !config.accessToken) {
       return NextResponse.json({ error: 'Configuration Meta WhatsApp requise' }, { status: 400 });
     }
+
+    const { data: waConfig } = await supabaseAdmin
+      .from('merchant_whatsapp_config')
+      .select('message_price_fcfa')
+      .eq('merchant_id', merchantId)
+      .single();
+
+    const costPerMessage = waConfig?.message_price_fcfa || DEFAULT_COST_PER_MESSAGE;
 
     // 2. Verify template is APPROVED
     const { data: template } = await supabaseAdmin
@@ -38,7 +69,7 @@ export async function POST(request: NextRequest) {
     }
 
     // 3. Calculate cost
-    const estimatedCost = recipients.length * COST_PER_MESSAGE;
+    const estimatedCost = recipients.length * costPerMessage;
 
     // 4. Create or update campaign record
     let actualCampaignId = campaignId;
@@ -79,7 +110,7 @@ export async function POST(request: NextRequest) {
       recipient_phone: r.phone,
       recipient_name: r.name || null,
       status: 'queued',
-      cost_fcfa: COST_PER_MESSAGE,
+      cost_fcfa: costPerMessage,
     }));
 
     await supabaseAdmin.from('whatsapp_campaign_messages').insert(messageRows);
@@ -89,7 +120,6 @@ export async function POST(request: NextRequest) {
     let failed = 0;
     let totalCost = 0;
 
-    // Build template components from variables
     const templateComponents = variables?.components || [];
 
     for (const recipient of recipients) {
@@ -108,7 +138,7 @@ export async function POST(request: NextRequest) {
         updateData.sent_at = new Date().toISOString();
         updateData.meta_message_id = result.messageId;
         sent++;
-        totalCost += COST_PER_MESSAGE;
+        totalCost += costPerMessage;
       } else {
         updateData.status = 'failed';
         updateData.failed_at = new Date().toISOString();
@@ -144,6 +174,7 @@ export async function POST(request: NextRequest) {
       failed,
       totalCost,
       estimatedCost,
+      costPerMessage,
     });
   } catch (error: any) {
     console.error('[CAMPAIGN SEND] Error:', error);

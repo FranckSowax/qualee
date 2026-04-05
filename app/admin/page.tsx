@@ -217,6 +217,7 @@ export default function AdminDashboard() {
     display_phone?: string;
     api_key?: string;
     is_verified?: boolean;
+    message_price_fcfa?: number;
     created_at?: string;
   }
   interface WhatsAppMerchant {
@@ -235,7 +236,8 @@ export default function AdminDashboard() {
     access_token: string;
     display_phone: string;
     api_key: string;
-  }>({ provider: 'meta', waba_id: '', phone_number_id: '', access_token: '', display_phone: '', api_key: '' });
+    message_price_fcfa: number;
+  }>({ provider: 'meta', waba_id: '', phone_number_id: '', access_token: '', display_phone: '', api_key: '', message_price_fcfa: 50 });
   const [waSaving, setWaSaving] = useState(false);
 
   const handleRefresh = async () => {
@@ -381,6 +383,7 @@ export default function AdminDashboard() {
       access_token: c?.access_token || '',
       display_phone: c?.display_phone || '',
       api_key: c?.api_key || '',
+      message_price_fcfa: c?.message_price_fcfa || 50,
     });
   };
 
@@ -2054,6 +2057,20 @@ export default function AdminDashboard() {
                         />
                       </div>
                     )}
+
+                    {/* Prix par message */}
+                    <div className="mt-4 p-4 bg-slate-700/30 rounded-xl border border-slate-600/50">
+                      <label className="block text-sm font-semibold text-white/90 mb-1.5">Prix par message (FCFA)</label>
+                      <p className="text-xs text-white/40 mb-2">Ce prix sera facturé au merchant pour chaque message de campagne envoyé.</p>
+                      <input
+                        type="number"
+                        min={1}
+                        value={waForm.message_price_fcfa}
+                        onChange={(e) => setWaForm({ ...waForm, message_price_fcfa: parseInt(e.target.value) || 50 })}
+                        placeholder="50"
+                        className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white text-sm placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-teal-500/50"
+                      />
+                    </div>
                   </div>
 
                   <div className="px-6 py-4 border-t border-slate-700/50 flex items-center justify-between">
