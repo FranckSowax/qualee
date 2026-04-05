@@ -32,7 +32,11 @@ import {
   Award,
   CreditCard,
   Coins,
-  ShoppingBag
+  ShoppingBag,
+  MessageCircle,
+  Phone,
+  Shield,
+  Settings2
 } from 'lucide-react';
 import QRCode from 'qrcode';
 import {
@@ -172,7 +176,7 @@ export default function AdminDashboard() {
 
   const [selectedMerchant, setSelectedMerchant] = useState<string | null>(null);
   const [merchantStats, setMerchantStats] = useState<Record<string, MerchantStats>>({});
-  const [activeSection, setActiveSection] = useState<'dashboard' | 'merchants' | 'messages' | 'loyalty'>('dashboard');
+  const [activeSection, setActiveSection] = useState<'dashboard' | 'merchants' | 'messages' | 'loyalty' | 'whatsapp'>('dashboard');
   const [timeRange, setTimeRange] = useState<'day' | 'week' | 'month'>('week');
   const [statusFilter, setStatusFilter] = useState<'all' | 'active' | 'inactive'>('all');
   const [tierFilter, setTierFilter] = useState<'all' | 'starter' | 'premium'>('all');
@@ -202,6 +206,38 @@ export default function AdminDashboard() {
   const [loyaltySearch, setLoyaltySearch] = useState('');
   const [loyaltyStatusFilter, setLoyaltyStatusFilter] = useState<'all' | 'active' | 'suspended' | 'expired'>('all');
 
+  // WhatsApp state
+  interface WhatsAppConfig {
+    id?: string;
+    merchant_id: string;
+    provider: 'meta' | 'whapi';
+    waba_id?: string;
+    phone_number_id?: string;
+    access_token?: string;
+    display_phone?: string;
+    api_key?: string;
+    is_verified?: boolean;
+    created_at?: string;
+  }
+  interface WhatsAppMerchant {
+    id: string;
+    business_name: string;
+    email: string;
+    config: WhatsAppConfig | null;
+  }
+  const [waConfigs, setWaConfigs] = useState<WhatsAppMerchant[]>([]);
+  const [waLoading, setWaLoading] = useState(false);
+  const [waEditMerchant, setWaEditMerchant] = useState<WhatsAppMerchant | null>(null);
+  const [waForm, setWaForm] = useState<{
+    provider: 'meta' | 'whapi';
+    waba_id: string;
+    phone_number_id: string;
+    access_token: string;
+    display_phone: string;
+    api_key: string;
+  }>({ provider: 'meta', waba_id: '', phone_number_id: '', access_token: '', display_phone: '', api_key: '' });
+  const [waSaving, setWaSaving] = useState(false);
+
   const handleRefresh = async () => {
     setIsRefreshing(true);
     setError(null);
@@ -209,6 +245,8 @@ export default function AdminDashboard() {
       await loadMessages();
     } else if (activeSection === 'loyalty') {
       await loadLoyaltyData();
+    } else if (activeSection === 'whatsapp') {
+      await loadWhatsAppConfigs();
     } else {
       await loadMerchants();
     }
@@ -305,6 +343,123 @@ export default function AdminDashboard() {
     }
   };
 
+  // Load WhatsApp configs
+  const loadWhatsAppConfigs = async () => {
+    setWaLoading(true);
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) return;
+      const response = await fetch('/api/admin/whatsapp-config', {
+        headers: { 'Authorization': `Bearer ${session.access_token}` },
+      });
+      if (response.ok) {
+        const data = await response.json();
+        const configMap: Record<string, WhatsAppConfig> = {};
+        (data.configs || []).forEach((c: WhatsAppConfig) => { configMap[c.merchant_id] = c; });
+        const merged: WhatsAppMerchant[] = (data.merchants || []).map((m: { id: string; business_name: string; email: string }) => ({
+          id: m.id,
+          business_name: m.business_name,
+          email: m.email,
+          config: configMap[m.id] || null,
+        }));
+        setWaConfigs(merged);
+      }
+    } catch (err) {
+      console.error('Error loading WhatsApp configs:', err);
+    } finally {
+      setWaLoading(false);
+    }
+  };
+
+  const openWaConfig = (merchant: WhatsAppMerchant) => {
+    setWaEditMerchant(merchant);
+    const c = merchant.config;
+    setWaForm({
+      provider: c?.provider || 'meta',
+      waba_id: c?.waba_id || '',
+      phone_number_id: c?.phone_number_id || '',
+      access_token: c?.access_token || '',
+      display_phone: c?.display_phone || '',
+      api_key: c?.api_key || '',
+    });
+  };
+
+  const saveWaConfig = async () => {
+    if (!waEditMerchant) return;
+    setWaSaving(true);
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) return;
+      const response = await fetch('/api/admin/whatsapp-config', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session.access_token}` },
+        body: JSON.stringify({ merchantId: waEditMerchant.id, ...waForm }),
+      });
+      if (response.ok) {
+        await loadWhatsAppConfigs();
+        setWaEditMerchant(null);
+      } else {
+        const err = await response.json().catch(() => ({}));
+        alert(err.error || 'Erreur lors de la sauvegarde');
+      }
+    } catch (err) {
+      console.error('Error saving WhatsApp config:', err);
+    } finally {
+      setWaSaving(false);
+    }
+  };
+
+  const verifyWaConfig = async () => {
+    if (!waEditMerchant) return;
+    setWaSaving(true);
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) return;
+      const response = await fetch('/api/admin/whatsapp-config', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session.access_token}` },
+        body: JSON.stringify({ merchantId: waEditMerchant.id, action: 'verify', ...waForm }),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        alert('Configuration vérifiée avec succès !');
+        await loadWhatsAppConfigs();
+        setWaEditMerchant(null);
+      } else {
+        alert(data.error || 'Échec de la vérification');
+      }
+    } catch (err) {
+      console.error('Error verifying WhatsApp config:', err);
+    } finally {
+      setWaSaving(false);
+    }
+  };
+
+  const deleteWaConfig = async () => {
+    if (!waEditMerchant) return;
+    if (!confirm('Supprimer la configuration WhatsApp de ce marchand ?')) return;
+    setWaSaving(true);
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) return;
+      const response = await fetch(`/api/admin/whatsapp-config?merchantId=${waEditMerchant.id}`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${session.access_token}` },
+      });
+      if (response.ok) {
+        await loadWhatsAppConfigs();
+        setWaEditMerchant(null);
+      } else {
+        const err = await response.json().catch(() => ({}));
+        alert(err.error || 'Erreur lors de la suppression');
+      }
+    } catch (err) {
+      console.error('Error deleting WhatsApp config:', err);
+    } finally {
+      setWaSaving(false);
+    }
+  };
+
   // Track if data has been loaded to prevent duplicate calls
   const [dataLoaded, setDataLoaded] = useState(false);
 
@@ -340,6 +495,13 @@ export default function AdminDashboard() {
       loadLoyaltyData();
     }
   }, [activeSection, loyaltyStatusFilter, loyaltySearch, user]);
+
+  // Load WhatsApp configs when switching to whatsapp section
+  useEffect(() => {
+    if (activeSection === 'whatsapp' && user) {
+      loadWhatsAppConfigs();
+    }
+  }, [activeSection, user]);
 
   useEffect(() => {
     let filtered = merchants;
@@ -642,6 +804,18 @@ export default function AdminDashboard() {
               </span>
             )}
           </button>
+
+          <button
+            onClick={() => setActiveSection('whatsapp')}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
+              activeSection === 'whatsapp'
+                ? 'bg-purple-500/20 text-white border border-purple-500/30'
+                : 'text-white hover:bg-slate-800/50'
+            }`}
+          >
+            <MessageCircle className="w-5 h-5" />
+            <span className="font-medium">WhatsApp</span>
+          </button>
         </nav>
 
         {/* Sign Out */}
@@ -665,7 +839,8 @@ export default function AdminDashboard() {
                 <h2 className="text-2xl font-bold text-white">
                   {activeSection === 'dashboard' ? 'Tableau de Bord' :
                    activeSection === 'merchants' ? 'Gestion des Marchands' :
-                   activeSection === 'loyalty' ? 'Cartes Fidélité' : 'Messages'}
+                   activeSection === 'loyalty' ? 'Cartes Fidélité' :
+                   activeSection === 'whatsapp' ? 'WhatsApp' : 'Messages'}
                 </h2>
                 <p className="text-white/70 text-sm mt-0.5">
                   {activeSection === 'dashboard'
@@ -674,6 +849,8 @@ export default function AdminDashboard() {
                     ? 'Liste et gestion des marchands'
                     : activeSection === 'loyalty'
                     ? 'Gestion des cartes de fidélité clients'
+                    : activeSection === 'whatsapp'
+                    ? 'Configuration WhatsApp par marchand'
                     : 'Demandes de contact Multi Store'}
                 </p>
               </div>
@@ -1713,6 +1890,214 @@ export default function AdminDashboard() {
                 </div>
               )}
             </div>
+          </>
+        )}
+
+        {/* WhatsApp Section */}
+        {activeSection === 'whatsapp' && (
+          <>
+            {waLoading ? (
+              <div className="flex items-center justify-center py-20">
+                <div className="w-10 h-10 border-4 border-teal-500 border-t-transparent rounded-full animate-spin"></div>
+              </div>
+            ) : (
+              <div className="bg-slate-800/50 rounded-xl border border-slate-700/50 overflow-hidden">
+                <div className="px-6 py-4 border-b border-slate-700/50 flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <MessageCircle className="w-5 h-5 text-teal-400" />
+                    <h3 className="text-lg font-semibold text-white">Configurations WhatsApp</h3>
+                  </div>
+                  <Badge className="bg-slate-700 text-white border-slate-600">
+                    {waConfigs.length} marchands
+                  </Badge>
+                </div>
+
+                <div className="divide-y divide-slate-700/50">
+                  {waConfigs.length === 0 ? (
+                    <div className="px-6 py-12 text-center text-white/50">
+                      <MessageCircle className="w-10 h-10 mx-auto mb-3 opacity-30" />
+                      <p>Aucun marchand trouvé</p>
+                    </div>
+                  ) : (
+                    waConfigs.map((merchant) => {
+                      const cfg = merchant.config;
+                      let statusLabel = 'Non configuré';
+                      let statusColor = 'bg-slate-600 text-slate-200';
+                      if (cfg) {
+                        if (cfg.is_verified) {
+                          statusLabel = 'Vérifié ✓';
+                          statusColor = 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30';
+                        } else if (cfg.provider === 'meta') {
+                          statusLabel = 'Meta Cloud';
+                          statusColor = 'bg-blue-500/20 text-blue-300 border border-blue-500/30';
+                        } else if (cfg.provider === 'whapi') {
+                          statusLabel = 'Whapi Legacy';
+                          statusColor = 'bg-yellow-500/20 text-yellow-300 border border-yellow-500/30';
+                        }
+                      }
+
+                      return (
+                        <div key={merchant.id} className="px-6 py-4 flex items-center justify-between hover:bg-slate-700/20 transition-colors">
+                          <div className="flex items-center gap-4 flex-1 min-w-0">
+                            <div className="p-2 bg-teal-500/10 rounded-lg shrink-0">
+                              <Phone className="w-4 h-4 text-teal-400" />
+                            </div>
+                            <div className="min-w-0">
+                              <p className="font-medium text-white truncate">{merchant.business_name}</p>
+                              <p className="text-sm text-white/50 truncate">{merchant.email}</p>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-3 shrink-0">
+                            <span className={`text-xs px-2.5 py-1 rounded-full font-medium ${statusColor}`}>
+                              {statusLabel}
+                            </span>
+                            <Button
+                              size="sm"
+                              onClick={() => openWaConfig(merchant)}
+                              className="gap-1.5 bg-teal-600 hover:bg-teal-500 text-white border-0"
+                            >
+                              <Settings2 className="w-3.5 h-3.5" />
+                              Configurer
+                            </Button>
+                          </div>
+                        </div>
+                      );
+                    })
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* WhatsApp Configuration Modal */}
+            {waEditMerchant && (
+              <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+                <div className="bg-slate-800 rounded-2xl border border-slate-700/50 w-full max-w-lg shadow-2xl">
+                  <div className="px-6 py-4 border-b border-slate-700/50 flex items-center justify-between">
+                    <div>
+                      <h3 className="text-lg font-semibold text-white">Configuration WhatsApp</h3>
+                      <p className="text-sm text-white/50">{waEditMerchant.business_name}</p>
+                    </div>
+                    <button
+                      onClick={() => setWaEditMerchant(null)}
+                      className="text-white/50 hover:text-white text-xl leading-none"
+                    >
+                      ×
+                    </button>
+                  </div>
+
+                  <div className="px-6 py-5 space-y-4">
+                    {/* Provider Select */}
+                    <div>
+                      <label className="block text-sm font-medium text-white/70 mb-1.5">Fournisseur</label>
+                      <select
+                        value={waForm.provider}
+                        onChange={(e) => setWaForm({ ...waForm, provider: e.target.value as 'meta' | 'whapi' })}
+                        className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:ring-2 focus:ring-teal-500/50"
+                      >
+                        <option value="meta">Meta Cloud API</option>
+                        <option value="whapi">Whapi (Legacy)</option>
+                      </select>
+                    </div>
+
+                    {waForm.provider === 'meta' ? (
+                      <>
+                        <div>
+                          <label className="block text-sm font-medium text-white/70 mb-1.5">WABA ID</label>
+                          <input
+                            type="text"
+                            value={waForm.waba_id}
+                            onChange={(e) => setWaForm({ ...waForm, waba_id: e.target.value })}
+                            placeholder="WhatsApp Business Account ID"
+                            className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white text-sm placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-teal-500/50"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-white/70 mb-1.5">Phone Number ID</label>
+                          <input
+                            type="text"
+                            value={waForm.phone_number_id}
+                            onChange={(e) => setWaForm({ ...waForm, phone_number_id: e.target.value })}
+                            placeholder="Phone Number ID"
+                            className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white text-sm placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-teal-500/50"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-white/70 mb-1.5">Access Token</label>
+                          <input
+                            type="password"
+                            value={waForm.access_token}
+                            onChange={(e) => setWaForm({ ...waForm, access_token: e.target.value })}
+                            placeholder="Permanent Access Token"
+                            className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white text-sm placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-teal-500/50"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-white/70 mb-1.5">Display Phone</label>
+                          <input
+                            type="text"
+                            value={waForm.display_phone}
+                            onChange={(e) => setWaForm({ ...waForm, display_phone: e.target.value })}
+                            placeholder="+33 6 12 34 56 78"
+                            className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white text-sm placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-teal-500/50"
+                          />
+                        </div>
+                      </>
+                    ) : (
+                      <div>
+                        <label className="block text-sm font-medium text-white/70 mb-1.5">API Key</label>
+                        <input
+                          type="password"
+                          value={waForm.api_key}
+                          onChange={(e) => setWaForm({ ...waForm, api_key: e.target.value })}
+                          placeholder="Whapi API Key"
+                          className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white text-sm placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-teal-500/50"
+                        />
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="px-6 py-4 border-t border-slate-700/50 flex items-center justify-between">
+                    <div>
+                      {waEditMerchant.config && (
+                        <Button
+                          size="sm"
+                          onClick={deleteWaConfig}
+                          disabled={waSaving}
+                          className="gap-1.5 bg-red-600/20 hover:bg-red-600/40 text-red-300 border border-red-500/30"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                          Supprimer
+                        </Button>
+                      )}
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Button
+                        size="sm"
+                        onClick={verifyWaConfig}
+                        disabled={waSaving}
+                        className="gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white border-0"
+                      >
+                        <Shield className="w-3.5 h-3.5" />
+                        Vérifier
+                      </Button>
+                      <Button
+                        size="sm"
+                        onClick={saveWaConfig}
+                        disabled={waSaving}
+                        className="gap-1.5 bg-teal-600 hover:bg-teal-500 text-white border-0"
+                      >
+                        {waSaving ? (
+                          <div className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                        ) : (
+                          <CheckCircle2 className="w-3.5 h-3.5" />
+                        )}
+                        Enregistrer
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </>
         )}
         </div>

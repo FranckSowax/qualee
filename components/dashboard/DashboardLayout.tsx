@@ -78,6 +78,7 @@ export function DashboardLayout({ children, merchant }: DashboardLayoutProps) {
       label: 'Marketing',
       items: [
         { name: 'Campagnes WhatsApp', href: '/dashboard/marketing/whatsapp-campaign', icon: Send },
+        { name: 'Templates WhatsApp', href: '/dashboard/marketing/whatsapp-campaign/templates', icon: MessageSquare },
       ],
     },
     {
