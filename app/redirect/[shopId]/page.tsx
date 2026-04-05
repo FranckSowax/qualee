@@ -81,7 +81,7 @@ export default function RedirectPage() {
 
   const [merchant, setMerchant] = useState<any>(null);
   const [isClient, setIsClient] = useState(false);
-  const [countdown, setCountdown] = useState(15);
+  const [countdown, setCountdown] = useState(10);
   const [canProceed, setCanProceed] = useState(false);
   const [redirectUrl, setRedirectUrl] = useState('');
   const [strategy, setStrategy] = useState('google_maps');
