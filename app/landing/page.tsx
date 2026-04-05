@@ -769,7 +769,7 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-5 sm:px-8 py-16">
           <div className="flex flex-col md:flex-row items-start justify-between gap-10">
             <div>
-              <img src="/logo-cartelle.png" alt="Cartelle" className="h-9 w-auto brightness-0 invert" />
+              <img src="/logo-cartelle-white.png" alt="Cartelle" className="h-9 w-auto" />
               <p className="mt-4 text-white/40 text-sm max-w-xs leading-relaxed">
                 La plateforme de fidélisation et gamification pour les commerces africains.
               </p>

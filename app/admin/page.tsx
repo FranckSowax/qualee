@@ -739,8 +739,8 @@ export default function AdminDashboard() {
         {/* Logo */}
         <div className="p-6 border-b border-slate-700/50">
           <div className="flex flex-col gap-2">
-            <img 
-              src="/logo-cartelle.png"
+            <img
+              src="/logo-cartelle-white.png"
               alt="Cartelle Logo"
               className="h-8 w-auto"
             />
