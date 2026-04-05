@@ -11,6 +11,12 @@ interface Country {
 }
 
 const countries: Country[] = [
+  { code: 'GA', name: 'Gabon', dialCode: '+241', flag: '🇬🇦' },
+  { code: 'CM', name: 'Cameroun', dialCode: '+237', flag: '🇨🇲' },
+  { code: 'CI', name: 'Côte d\'Ivoire', dialCode: '+225', flag: '🇨🇮' },
+  { code: 'SN', name: 'Sénégal', dialCode: '+221', flag: '🇸🇳' },
+  { code: 'CG', name: 'Congo', dialCode: '+242', flag: '🇨🇬' },
+  { code: 'CD', name: 'RD Congo', dialCode: '+243', flag: '🇨🇩' },
   { code: 'FR', name: 'France', dialCode: '+33', flag: '🇫🇷' },
   { code: 'US', name: 'États-Unis', dialCode: '+1', flag: '🇺🇸' },
   { code: 'GB', name: 'Royaume-Uni', dialCode: '+44', flag: '🇬🇧' },
@@ -37,12 +43,6 @@ const countries: Country[] = [
   { code: 'MA', name: 'Maroc', dialCode: '+212', flag: '🇲🇦' },
   { code: 'TN', name: 'Tunisie', dialCode: '+216', flag: '🇹🇳' },
   { code: 'DZ', name: 'Algérie', dialCode: '+213', flag: '🇩🇿' },
-  { code: 'SN', name: 'Sénégal', dialCode: '+221', flag: '🇸🇳' },
-  { code: 'CI', name: 'Côte d\'Ivoire', dialCode: '+225', flag: '🇨🇮' },
-  { code: 'CM', name: 'Cameroun', dialCode: '+237', flag: '🇨🇲' },
-  { code: 'GA', name: 'Gabon', dialCode: '+241', flag: '🇬🇦' },
-  { code: 'CG', name: 'Congo', dialCode: '+242', flag: '🇨🇬' },
-  { code: 'CD', name: 'RD Congo', dialCode: '+243', flag: '🇨🇩' },
   { code: 'KE', name: 'Kenya', dialCode: '+254', flag: '🇰🇪' },
   { code: 'NG', name: 'Nigeria', dialCode: '+234', flag: '🇳🇬' },
   { code: 'GH', name: 'Ghana', dialCode: '+233', flag: '🇬🇭' },
@@ -99,7 +99,7 @@ export function PhoneInputWithCountry({
 }: PhoneInputWithCountryProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCountry, setSelectedCountry] = useState<Country>(countries[0]); // France by default
+  const [selectedCountry, setSelectedCountry] = useState<Country>(countries[0]); // Gabon by default
   const dropdownRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
