@@ -3,36 +3,34 @@ import { createClient } from '@supabase/supabase-js';
 import { getWhatsAppConfig } from '@/lib/whatsapp/config';
 import { sendTemplateMessage } from '@/lib/whatsapp/client';
 
-const DEFAULT_COST_PER_MESSAGE = 50; // FCFA
-
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 );
 
-// GET — Return message price for a merchant (used by send page for cost preview)
+// GET — Return merchant credit balance
 export async function GET(request: NextRequest) {
   try {
     const merchantId = request.nextUrl.searchParams.get('merchantId');
     if (!merchantId) {
-      return NextResponse.json({ price: DEFAULT_COST_PER_MESSAGE });
+      return NextResponse.json({ credits: 0 });
     }
 
     const { data } = await supabaseAdmin
-      .from('merchant_whatsapp_config')
-      .select('message_price_fcfa')
-      .eq('merchant_id', merchantId)
+      .from('merchants')
+      .select('campaign_credits')
+      .eq('id', merchantId)
       .single();
 
     return NextResponse.json({
-      price: data?.message_price_fcfa || DEFAULT_COST_PER_MESSAGE,
+      credits: data?.campaign_credits || 0,
     });
   } catch {
-    return NextResponse.json({ price: DEFAULT_COST_PER_MESSAGE });
+    return NextResponse.json({ credits: 0 });
   }
 }
 
-// POST — Send campaign
+// POST — Send campaign (1 credit = 1 message)
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -42,21 +40,31 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'merchantId, templateId et recipients requis' }, { status: 400 });
     }
 
-    // 1. Get merchant WhatsApp config + price
+    // 1. Check credits
+    const { data: merchant } = await supabaseAdmin
+      .from('merchants')
+      .select('campaign_credits')
+      .eq('id', merchantId)
+      .single();
+
+    const currentCredits = merchant?.campaign_credits || 0;
+    const requiredCredits = recipients.length;
+
+    if (currentCredits < requiredCredits) {
+      return NextResponse.json({
+        error: `Crédits insuffisants. Vous avez ${currentCredits} crédit(s) mais cette campagne nécessite ${requiredCredits} crédit(s). Achetez un forfait pour continuer.`,
+        creditsAvailable: currentCredits,
+        creditsRequired: requiredCredits,
+      }, { status: 402 });
+    }
+
+    // 2. Get merchant WhatsApp config
     const config = await getWhatsAppConfig(merchantId);
     if (config.provider !== 'meta' || !config.accessToken) {
       return NextResponse.json({ error: 'Configuration Meta WhatsApp requise' }, { status: 400 });
     }
 
-    const { data: waConfig } = await supabaseAdmin
-      .from('merchant_whatsapp_config')
-      .select('message_price_fcfa')
-      .eq('merchant_id', merchantId)
-      .single();
-
-    const costPerMessage = waConfig?.message_price_fcfa || DEFAULT_COST_PER_MESSAGE;
-
-    // 2. Verify template is APPROVED
+    // 3. Verify template is APPROVED
     const { data: template } = await supabaseAdmin
       .from('whatsapp_templates')
       .select('*')
@@ -68,9 +76,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Le template doit être approuvé par Meta avant envoi' }, { status: 400 });
     }
 
-    // 3. Calculate cost
-    const estimatedCost = recipients.length * costPerMessage;
-
     // 4. Create or update campaign record
     let actualCampaignId = campaignId;
     if (!actualCampaignId) {
@@ -81,7 +86,7 @@ export async function POST(request: NextRequest) {
           name: `Campagne ${template.name} — ${new Date().toLocaleDateString('fr')}`,
           template_id: templateId,
           template_variables: variables || {},
-          estimated_cost_fcfa: estimatedCost,
+          estimated_cost_fcfa: 0,
           total_recipients: recipients.length,
         })
         .select()
@@ -97,7 +102,6 @@ export async function POST(request: NextRequest) {
         .update({
           template_id: templateId,
           template_variables: variables || {},
-          estimated_cost_fcfa: estimatedCost,
           total_recipients: recipients.length,
         })
         .eq('id', actualCampaignId);
@@ -110,7 +114,7 @@ export async function POST(request: NextRequest) {
       recipient_phone: r.phone,
       recipient_name: r.name || null,
       status: 'queued',
-      cost_fcfa: costPerMessage,
+      cost_fcfa: 0,
     }));
 
     await supabaseAdmin.from('whatsapp_campaign_messages').insert(messageRows);
@@ -118,8 +122,6 @@ export async function POST(request: NextRequest) {
     // 6. Send messages
     let sent = 0;
     let failed = 0;
-    let totalCost = 0;
-
     const templateComponents = variables?.components || [];
 
     for (const recipient of recipients) {
@@ -138,7 +140,6 @@ export async function POST(request: NextRequest) {
         updateData.sent_at = new Date().toISOString();
         updateData.meta_message_id = result.messageId;
         sent++;
-        totalCost += costPerMessage;
       } else {
         updateData.status = 'failed';
         updateData.failed_at = new Date().toISOString();
@@ -153,16 +154,23 @@ export async function POST(request: NextRequest) {
         .eq('recipient_phone', recipient.phone)
         .eq('status', 'queued');
 
-      // Rate limiting — ~10 msg/sec
+      // Rate limiting
       await new Promise(resolve => setTimeout(resolve, 100));
     }
 
-    // 7. Update campaign totals
+    // 7. Deduct credits (only for successfully sent messages)
+    const newBalance = currentCredits - sent;
+    await supabaseAdmin
+      .from('merchants')
+      .update({ campaign_credits: Math.max(0, newBalance) })
+      .eq('id', merchantId);
+
+    // 8. Update campaign totals
     await supabaseAdmin
       .from('whatsapp_campaigns')
       .update({
-        actual_cost_fcfa: totalCost,
         send_count: sent,
+        total_recipients: recipients.length,
         last_sent_at: new Date().toISOString(),
       })
       .eq('id', actualCampaignId);
@@ -172,9 +180,8 @@ export async function POST(request: NextRequest) {
       campaignId: actualCampaignId,
       sent,
       failed,
-      totalCost,
-      estimatedCost,
-      costPerMessage,
+      creditsUsed: sent,
+      creditsRemaining: Math.max(0, newBalance),
     });
   } catch (error: any) {
     console.error('[CAMPAIGN SEND] Error:', error);

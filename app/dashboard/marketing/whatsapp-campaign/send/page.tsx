@@ -103,8 +103,8 @@ function SendCampaignPage() {
   const [isTestSending, setIsTestSending] = useState(false);
   const [testResults, setTestResults] = useState<SendResult[]>([]);
 
-  // Cost — fetched dynamically from merchant config
-  const [costPerMessage, setCostPerMessage] = useState(50);
+  // Credits
+  const [credits, setCredits] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -114,14 +114,14 @@ function SendCampaignPage() {
         return;
       }
 
-      // Fetch message price
+      // Fetch credit balance
       try {
-        const priceRes = await fetch(`/api/whatsapp/campaign/send?merchantId=${user.id}`);
-        if (priceRes.ok) {
-          const priceData = await priceRes.json();
-          setCostPerMessage(priceData.price || 50);
+        const creditRes = await fetch(`/api/whatsapp/campaign/send?merchantId=${user.id}`);
+        if (creditRes.ok) {
+          const creditData = await creditRes.json();
+          setCredits(creditData.credits || 0);
         }
-      } catch { /* use default */ }
+      } catch { /* default 0 */ }
 
       // Fetch merchant
       const { data: merchantData } = await supabase
@@ -447,7 +447,8 @@ function SendCampaignPage() {
   const failureCount = sendResults.filter(r => !r.success).length;
 
   // Cost estimate
-  const estimatedCost = selectedCustomers.size * costPerMessage;
+  const creditsNeeded = selectedCustomers.size;
+  const hasEnoughCredits = credits >= creditsNeeded;
 
   // Test send functions
   const addTestNumber = () => {
@@ -798,8 +799,8 @@ function SendCampaignPage() {
                   <Wallet className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="text-xl font-bold text-gray-900">{estimatedCost.toLocaleString()}</p>
-                  <p className="text-xs text-gray-500">Cout estime (FCFA)</p>
+                  <p className={`text-xl font-bold ${hasEnoughCredits ? 'text-gray-900' : 'text-red-600'}`}>{creditsNeeded} / {credits}</p>
+                  <p className="text-xs text-gray-500">Crédits nécessaires / disponibles</p>
                 </div>
               </div>
             </div>
@@ -833,7 +834,10 @@ function SendCampaignPage() {
                 <div>
                   <p className="text-sm font-semibold text-emerald-900">Estimation du cout</p>
                   <p className="text-xs text-emerald-700">
-                    {selectedCustomers.size} destinataire{selectedCustomers.size > 1 ? 's' : ''} x {costPerMessage} FCFA = <span className="font-bold">{estimatedCost.toLocaleString()} FCFA</span>
+                    {selectedCustomers.size} destinataire{selectedCustomers.size > 1 ? 's' : ''} = <span className="font-bold">{creditsNeeded} crédit{creditsNeeded > 1 ? 's' : ''}</span>
+                    {!hasEnoughCredits && (
+                      <span className="block text-red-500 mt-1">Crédits insuffisants ({credits} disponible{credits > 1 ? 's' : ''}). <a href="/dashboard/marketing/whatsapp-campaign" className="underline font-semibold">Acheter un forfait</a></span>
+                    )}
                   </p>
                 </div>
               </div>
@@ -901,7 +905,7 @@ function SendCampaignPage() {
             {isTemplateMode && (
               <div className="p-3 bg-gray-50 rounded-lg mb-4">
                 <p className="text-xs text-gray-600">
-                  Cout total : <span className="font-bold text-gray-900">{(successCount * costPerMessage).toLocaleString()} FCFA</span>
+                  Crédits utilisés : <span className="font-bold text-gray-900">{successCount}</span> — Solde restant : <span className="font-bold text-teal-600">{Math.max(0, credits - successCount)}</span>
                 </p>
               </div>
             )}
@@ -1065,7 +1069,7 @@ function SendCampaignPage() {
                   <p className="text-sm font-semibold text-gray-900">{selectedCustomers.size} selectionne{selectedCustomers.size > 1 ? 's' : ''}</p>
                   <p className="text-[10px] text-gray-500">
                     {isTemplateMode
-                      ? `Cout : ${estimatedCost.toLocaleString()} FCFA`
+                      ? `${creditsNeeded} crédit${creditsNeeded > 1 ? 's' : ''} (solde: ${credits})`
                       : (t('marketing.whatsappCampaign.readyToSend') || 'Pret a envoyer')}
                   </p>
                 </div>

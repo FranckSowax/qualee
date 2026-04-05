@@ -190,6 +190,11 @@ export default function WhatsAppCampaignPage() {
   // Mode toggle
   const [mode, setMode] = useState<CampaignMode>('template');
 
+  // Credits
+  const [credits, setCredits] = useState(0);
+  const [creditPacks, setCreditPacks] = useState<any[]>([]);
+  const [buyingPack, setBuyingPack] = useState<string | null>(null);
+
   // ─── Template mode state ────────────────────────────────
   const [templates, setTemplates] = useState<WhatsAppTemplate[]>([]);
   const [templatesLoading, setTemplatesLoading] = useState(false);
@@ -237,6 +242,8 @@ export default function WhatsAppCampaignPage() {
         fetchSavedCampaigns(user.id);
         // Fetch templates
         fetchTemplates(user.id);
+        // Fetch credits
+        fetchCredits(user.id);
       }
       setLoading(false);
     };
@@ -258,6 +265,35 @@ export default function WhatsAppCampaignPage() {
     } finally {
       setTemplatesLoading(false);
     }
+  };
+
+  const fetchCredits = async (merchantId: string) => {
+    try {
+      const res = await fetch(`/api/whatsapp/credits?merchantId=${merchantId}`);
+      const data = await res.json();
+      setCredits(data.credits || 0);
+      setCreditPacks(data.packs || []);
+    } catch { /* ignore */ }
+  };
+
+  const buyPack = async (packId: string) => {
+    if (!merchant) return;
+    setBuyingPack(packId);
+    try {
+      const res = await fetch('/api/whatsapp/credits', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ merchantId: merchant.id, packId }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setCredits(data.balance);
+        alert(`${data.credited} crédits ajoutés ! Solde : ${data.balance}`);
+      } else {
+        alert(data.error || 'Erreur');
+      }
+    } catch { alert('Erreur réseau'); }
+    finally { setBuyingPack(null); }
   };
 
   const selectTemplate = (template: WhatsAppTemplate) => {
@@ -501,6 +537,34 @@ export default function WhatsAppCampaignPage() {
           <div>
             <h1 className="text-2xl font-bold text-gray-900">{t('marketing.whatsappCampaign.title')}</h1>
             <p className="text-sm text-gray-500 mt-1">{t('marketing.whatsappCampaign.subtitle')}</p>
+          </div>
+        </div>
+
+        {/* ═══ Credit Balance Banner ═══ */}
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-5 rounded-2xl bg-gradient-to-r from-teal-50 to-emerald-50 border border-teal-100">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-xl bg-teal-100 flex items-center justify-center">
+              <Send className="w-6 h-6 text-teal-600" />
+            </div>
+            <div>
+              <p className="text-sm text-gray-500">Crédits campagne disponibles</p>
+              <p className="text-3xl font-extrabold text-gray-900" style={{ fontFamily: 'Sora, sans-serif' }}>{credits.toLocaleString()}</p>
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {creditPacks.map((pack: any) => (
+              <button
+                key={pack.id}
+                onClick={() => buyPack(pack.id)}
+                disabled={buyingPack === pack.id}
+                className="px-4 py-2 rounded-xl border border-teal-200 bg-white text-sm font-medium text-teal-700 hover:bg-teal-50 hover:border-teal-300 transition-all disabled:opacity-50"
+              >
+                {buyingPack === pack.id ? (
+                  <Loader2 className="w-4 h-4 animate-spin inline mr-1" />
+                ) : null}
+                {pack.credits} crédits — {pack.price.toLocaleString()} F
+              </button>
+            ))}
           </div>
         </div>
 

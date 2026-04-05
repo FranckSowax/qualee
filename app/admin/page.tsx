@@ -2058,18 +2058,10 @@ export default function AdminDashboard() {
                       </div>
                     )}
 
-                    {/* Prix par message */}
+                    {/* Info forfaits */}
                     <div className="mt-4 p-4 bg-slate-700/30 rounded-xl border border-slate-600/50">
-                      <label className="block text-sm font-semibold text-white/90 mb-1.5">Prix par message (FCFA)</label>
-                      <p className="text-xs text-white/40 mb-2">Ce prix sera facturé au merchant pour chaque message de campagne envoyé.</p>
-                      <input
-                        type="number"
-                        min={1}
-                        value={waForm.message_price_fcfa}
-                        onChange={(e) => setWaForm({ ...waForm, message_price_fcfa: parseInt(e.target.value) || 50 })}
-                        placeholder="50"
-                        className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white text-sm placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-teal-500/50"
-                      />
+                      <p className="text-sm font-semibold text-white/90 mb-1">Système de forfaits crédits</p>
+                      <p className="text-xs text-white/40">Les merchants achètent des crédits campagne (1 crédit = 1 message). Forfaits : 100 crédits / 8 000 F, 500 / 30 000 F, 1 000 / 50 000 F, 5 000 / 200 000 F</p>
                     </div>
                   </div>
 
