@@ -471,20 +471,20 @@ export default function LoyaltyPage() {
                 {/* Points Preview */}
                 <div className="group relative p-6 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-gradient-to-br from-teal-50/50 to-emerald-50/50">
                   <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-                  <h3 className="font-semibold text-gray-900 mb-4">Points Calculation Example</h3>
+                  <h3 className="font-semibold text-gray-900 mb-4">Exemple de calcul des points</h3>
                   <div className="flex items-center justify-center gap-4 text-center">
                     <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
                       <p className="text-2xl font-bold text-teal-600">{purchaseThreshold.toLocaleString()} FCFA</p>
-                      <p className="text-sm text-gray-500">Purchase Amount</p>
+                      <p className="text-sm text-gray-500">Montant d'achat</p>
                     </div>
                     <div className="text-2xl text-teal-500 font-bold">=</div>
                     <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
                       <p className="text-2xl font-bold text-teal-600">{pointsPerPurchase}</p>
-                      <p className="text-sm text-gray-500">Points Earned</p>
+                      <p className="text-sm text-gray-500">Points gagnés</p>
                     </div>
                   </div>
                   <p className="text-center text-sm text-gray-500 mt-4">
-                    Example: {(purchaseThreshold * 5).toLocaleString()} FCFA purchase = {pointsPerPurchase * 5} points
+                    Exemple : achat de {(purchaseThreshold * 5).toLocaleString()} FCFA = {pointsPerPurchase * 5} points
                   </p>
                 </div>
               </>
