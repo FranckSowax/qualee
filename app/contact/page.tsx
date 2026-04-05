@@ -61,7 +61,7 @@ export default function ContactPage() {
         <div className="container mx-auto px-4 sm:px-6 py-2 sm:py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
             <img
-              src="/LOGO-STARSPIN-WHITE_web.png"
+              src="/logo-cartelle.png"
               alt="Cartelle Logo"
               className="h-12 sm:h-16 md:h-20 w-auto"
             />

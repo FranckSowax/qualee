@@ -128,7 +128,7 @@ export function DashboardLayout({ children, merchant }: DashboardLayoutProps) {
           <div className="flex items-center justify-between h-20 px-6 border-b border-slate-800/50 bg-[#0F172A]">
             <Link href="/dashboard" className="flex items-center gap-3">
               <img 
-                src="/LOGO-STARSPIN-WHITE_web.png"
+                src="/logo-cartelle.png"
                 alt="Cartelle Logo" 
                 className="h-8 w-auto transition-transform hover:scale-105"
               />
