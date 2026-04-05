@@ -203,13 +203,12 @@ export default function LandingPage() {
         }`}
       >
         <nav className="max-w-7xl mx-auto px-5 sm:px-8 flex items-center justify-between h-[72px]">
-          <Link href="/" className="flex items-center gap-2.5 group">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-teal-600 to-emerald-500 flex items-center justify-center shadow-lg shadow-teal-500/20 group-hover:shadow-teal-500/40 transition-shadow">
-              <Sparkles className="w-5 h-5 text-white" />
-            </div>
-            <span className={`text-xl font-bold tracking-tight transition-colors ${scrolled ? 'text-gray-900' : 'text-white'}`} style={{ fontFamily: 'Sora, sans-serif' }}>
-              Cartelle
-            </span>
+          <Link href="/" className="flex items-center group">
+            <img
+              src="/logo-cartelle.png"
+              alt="Cartelle"
+              className={`h-9 w-auto transition-all ${scrolled ? 'brightness-100' : 'brightness-0 invert'}`}
+            />
           </Link>
 
           {/* Desktop nav */}
@@ -727,12 +726,11 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-5 sm:px-8 py-16">
           <div className="flex flex-col md:flex-row items-start justify-between gap-10">
             <div>
-              <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-teal-600 to-emerald-500 flex items-center justify-center">
-                  <Sparkles className="w-5 h-5 text-white" />
-                </div>
-                <span className="text-xl font-bold text-white tracking-tight" style={{ fontFamily: 'Sora, sans-serif' }}>Cartelle</span>
-              </div>
+              <img
+                src="/logo-cartelle.png"
+                alt="Cartelle"
+                className="h-9 w-auto brightness-0 invert"
+              />
               <p className="mt-4 text-white/40 text-sm max-w-xs leading-relaxed">
                 La plateforme de fidélisation et gamification pour les commerces africains.
               </p>
