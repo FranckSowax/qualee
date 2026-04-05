@@ -7,6 +7,7 @@ export async function GET(request: NextRequest) {
   const origin = requestUrl.origin;
 
   if (code) {
+    // Client anon pour échanger le code auth
     const supabase = createClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
@@ -21,8 +22,14 @@ export async function GET(request: NextRequest) {
     }
 
     if (session?.user) {
+      // Client service_role pour bypasser RLS et créer le profil marchand
+      const supabaseAdmin = createClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.SUPABASE_SERVICE_ROLE_KEY!
+      );
+
       // Vérifier si le profil marchand existe déjà
-      const { data: existingMerchant } = await supabase
+      const { data: existingMerchant } = await supabaseAdmin
         .from('merchants')
         .select('id')
         .eq('id', session.user.id)
@@ -31,8 +38,8 @@ export async function GET(request: NextRequest) {
       if (!existingMerchant) {
         // Créer le profil marchand avec les métadonnées de l'utilisateur
         const businessName = session.user.user_metadata?.business_name || 'Mon Commerce';
-        
-        const { error: merchantError } = await supabase.from('merchants').insert({
+
+        const { error: merchantError } = await supabaseAdmin.from('merchants').insert({
           id: session.user.id,
           email: session.user.email,
           business_name: businessName,
@@ -41,7 +48,6 @@ export async function GET(request: NextRequest) {
 
         if (merchantError) {
           console.error('Merchant creation error:', merchantError);
-          // Continuer quand même vers le dashboard, l'utilisateur pourra compléter son profil
         }
       }
 
@@ -49,6 +55,5 @@ export async function GET(request: NextRequest) {
     }
   }
 
-  // Si pas de code ou erreur, rediriger vers login
   return NextResponse.redirect(`${origin}/auth/login`);
 }
