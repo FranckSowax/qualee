@@ -391,7 +391,7 @@ export default function SpinPage() {
         if (spinData) {
           const generatedCode = `${merchant.business_name?.substring(0, 3).toUpperCase()}-${crypto.randomUUID().substring(0, 8).toUpperCase()}`;
           const expiresAt = new Date();
-          expiresAt.setHours(expiresAt.getHours() + 24);
+          expiresAt.setDate(expiresAt.getDate() + 30);
 
           const { error: couponError } = await supabase.from('coupons').insert({
             spin_id: spinData.id,

@@ -10,32 +10,32 @@ const WHAPI_API_URL = 'https://gate.whapi.cloud/messages/interactive';
 const CONGRATULATION_MESSAGES: Record<string, (prizeName: string) => { body: string; footer: string; buttonText: string }> = {
   fr: (prizeName) => ({
     body: `🎉 FÉLICITATIONS ! 🎉\n\nVous avez gagné : *${prizeName}* !\n\n🎁 Cliquez sur le bouton ci-dessous pour afficher votre coupon avec le QR code.`,
-    footer: '⏰ Votre coupon expire dans 24h !',
+    footer: '⏰ Votre coupon expire dans 30 jours !',
     buttonText: 'Voir votre Prix',
   }),
   en: (prizeName) => ({
     body: `🎉 CONGRATULATIONS! 🎉\n\nYou won: *${prizeName}*!\n\n🎁 Click the button below to view your coupon with QR code.`,
-    footer: '⏰ Your coupon expires in 24h!',
+    footer: '⏰ Your coupon expires in 30 days!',
     buttonText: 'View your Prize',
   }),
   es: (prizeName) => ({
     body: `🎉 ¡FELICIDADES! 🎉\n\nHas ganado: *${prizeName}*!\n\n🎁 Haz clic en el botón para ver tu cupón con código QR.`,
-    footer: '⏰ ¡Tu cupón expira en 24h!',
+    footer: '⏰ ¡Tu cupón expira en 30 jours!',
     buttonText: 'Ver tu Premio',
   }),
   pt: (prizeName) => ({
     body: `🎉 PARABÉNS! 🎉\n\nVocê ganhou: *${prizeName}*!\n\n🎁 Clique no botão para ver seu cupom com QR code.`,
-    footer: '⏰ Seu cupom expira em 24h!',
+    footer: '⏰ Seu cupom expira em 30 dias!',
     buttonText: 'Ver seu Prêmio',
   }),
   de: (prizeName) => ({
     body: `🎉 HERZLICHEN GLÜCKWUNSCH! 🎉\n\nSie haben gewonnen: *${prizeName}*!\n\n🎁 Klicken Sie auf den Button, um Ihren Coupon mit QR-Code anzuzeigen.`,
-    footer: '⏰ Ihr Coupon läuft in 24h ab!',
+    footer: '⏰ Ihr Coupon läuft in 30 Tagen ab!',
     buttonText: 'Preis ansehen',
   }),
   it: (prizeName) => ({
     body: `🎉 CONGRATULAZIONI! 🎉\n\nHai vinto: *${prizeName}*!\n\n🎁 Clicca sul pulsante per visualizzare il tuo coupon con QR code.`,
-    footer: '⏰ Il tuo coupon scade tra 24h!',
+    footer: '⏰ Il tuo coupon scade tra 30 giorni!',
     buttonText: 'Vedi il tuo Premio',
   }),
   ar: (prizeName) => ({
