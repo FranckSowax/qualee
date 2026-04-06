@@ -323,40 +323,45 @@ export async function POST(request: NextRequest) {
       headerText = businessName;
     }
 
-    // 13. Send message via Whapi
-    // Strategy: Try CTA URL (single button) first, then text fallback with links
-    // Whapi cta_url only supports 1 button, so if we have cardUrl we include it in body text
+    // 13. Send interactive message with URL buttons (Whapi format)
+    // Whapi supports up to 3 buttons of type "url" via POST /messages/interactive
+    const btnTs = Date.now();
+    const actionButtons: Array<{ type: string; title: string; id: string; url: string }> = [
+      {
+        type: 'url',
+        title: spinButtonText.substring(0, 25),
+        id: `spin_${btnTs}`,
+        url: spinUrl,
+      },
+    ];
 
-    // Build body text with card info if applicable
-    let fullBody = bodyText;
     if (cardUrl) {
-      fullBody += `\n\n🎁 *${cardButtonText}*\n${cardUrl}`;
+      actionButtons.push({
+        type: 'url',
+        title: cardButtonText.substring(0, 25),
+        id: `card_${btnTs + 1}`,
+        url: cardUrl,
+      });
     }
 
-    // Try CTA URL button (single clickable button for the spin wheel)
     const interactivePayload = {
       to: formattedPhone,
-      type: 'cta_url',
+      type: 'button',
       header: {
-        type: 'text',
         text: headerText.substring(0, 60),
       },
       body: {
-        text: fullBody,
+        text: bodyText,
       },
       footer: {
         text: 'Cartelle',
       },
       action: {
-        name: 'cta_url',
-        parameters: {
-          display_text: spinButtonText.substring(0, 20),
-          url: spinUrl,
-        },
+        buttons: actionButtons,
       },
     };
 
-    console.log('[WHATSAPP SEND] Sending CTA URL, spinUrl:', spinUrl, '| cardUrl:', cardUrl);
+    console.log('[WHATSAPP SEND] Sending', actionButtons.length, 'URL button(s):', JSON.stringify(actionButtons.map(b => ({ title: b.title, url: b.url }))));
 
     let whapiResponse = await fetch(WHAPI_INTERACTIVE_URL, {
       method: 'POST',
@@ -367,10 +372,10 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify(interactivePayload),
     });
 
-    // 14. If CTA URL fails, try text message with clickable links
+    // 14. If interactive fails, fallback to text with clickable URLs
     if (!whapiResponse.ok) {
       const errorText = await whapiResponse.text();
-      console.error('[WHATSAPP SEND] CTA URL failed:', whapiResponse.status, errorText);
+      console.error('[WHATSAPP SEND] Interactive failed:', whapiResponse.status, errorText);
 
       let textMessage = `*${headerText}*\n\n${bodyText}\n\n🎰 *${spinButtonText}*\n${spinUrl}`;
 
