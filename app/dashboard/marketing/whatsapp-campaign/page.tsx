@@ -569,30 +569,7 @@ export default function WhatsAppCampaignPage() {
         </div>
 
         {/* ═══ Mode Toggle ═══ */}
-        <div className="flex items-center gap-1 p-1 bg-gray-100 rounded-xl w-fit">
-          <button
-            onClick={() => setMode('template')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-              mode === 'template'
-                ? 'bg-white text-teal-700 shadow-sm'
-                : 'text-gray-500 hover:text-gray-700'
-            }`}
-          >
-            <LayoutTemplate className="w-4 h-4" />
-            Template
-          </button>
-          <button
-            onClick={() => setMode('carousel')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-              mode === 'carousel'
-                ? 'bg-white text-teal-700 shadow-sm'
-                : 'text-gray-500 hover:text-gray-700'
-            }`}
-          >
-            <Layers className="w-4 h-4" />
-            Carousel
-          </button>
-        </div>
+        {/* Mode toggle masqué — Carousel désactivé */}
 
         {/* ═══════════════════════════════════════════════════════════════════
             TEMPLATE MODE
@@ -847,7 +824,8 @@ export default function WhatsAppCampaignPage() {
         {/* ═══════════════════════════════════════════════════════════════════
             CAROUSEL MODE (existing)
         ═══════════════════════════════════════════════════════════════════ */}
-        {mode === 'carousel' && (
+        {/* Carousel masqué */}
+        {false && mode === 'carousel' && (
           <div className="space-y-6">
             {/* Carousel Info Banner */}
             <div className="group relative p-4 border border-amber-200 rounded-xl overflow-hidden bg-gradient-to-r from-amber-50 to-yellow-50">
