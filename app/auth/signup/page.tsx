@@ -57,7 +57,7 @@ function SignUpPage() {
         email,
         password,
         options: {
-          emailRedirectTo: `${process.env.NEXT_PUBLIC_APP_URL || window.location.origin}/auth/callback`,
+          emailRedirectTo: `https://cartelle-production.up.railway.app/auth/callback`,
           data: {
             business_name: businessName,
             ...(refCode ? { referral_code: refCode } : {}),
