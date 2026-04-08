@@ -89,11 +89,25 @@ export default function DashboardPage() {
 
       setUser(user);
 
-      const { data: merchantData } = await supabase
+      // Try to fetch merchant
+      let { data: merchantData } = await supabase
         .from('merchants')
         .select('*')
         .eq('id', user.id)
-        .single();
+        .maybeSingle();
+
+      // If no merchant, call ensure-merchant endpoint to create/sync it
+      if (!merchantData) {
+        try {
+          const ensureRes = await fetch('/api/account/ensure-merchant', { method: 'POST' });
+          if (ensureRes.ok) {
+            const result = await ensureRes.json();
+            merchantData = result.merchant;
+          }
+        } catch (err) {
+          console.error('[DASHBOARD] ensure-merchant failed:', err);
+        }
+      }
 
       setMerchant(merchantData);
 

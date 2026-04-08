@@ -59,13 +59,33 @@ export async function GET(request: NextRequest) {
       process.env.SUPABASE_SERVICE_ROLE_KEY!
     );
 
-    const { data: existingMerchant } = await supabaseAdmin
+    // Check if merchant exists by id
+    const { data: existingById } = await supabaseAdmin
       .from('merchants')
       .select('id')
       .eq('id', data.user.id)
-      .single();
+      .maybeSingle();
 
-    if (!existingMerchant) {
+    // If not by id, check by email (orphan merchant from previous signup)
+    let existingByEmail = null;
+    if (!existingById && data.user.email) {
+      const result = await supabaseAdmin
+        .from('merchants')
+        .select('id')
+        .eq('email', data.user.email)
+        .maybeSingle();
+      existingByEmail = result.data;
+    }
+
+    if (existingByEmail) {
+      // Sync orphan merchant id to current auth user id
+      await supabaseAdmin
+        .from('merchants')
+        .update({ id: data.user.id })
+        .eq('id', existingByEmail.id);
+      console.log('[CONFIRM] Synced orphan merchant for', data.user.email);
+    } else if (!existingById) {
+      // Create new merchant
       const businessName = data.user.user_metadata?.business_name || 'Mon Commerce';
 
       // Generate referral code
@@ -78,7 +98,7 @@ export async function GET(request: NextRequest) {
         return code;
       };
 
-      await supabaseAdmin.from('merchants').insert({
+      const { error: insertError } = await supabaseAdmin.from('merchants').insert({
         id: data.user.id,
         email: data.user.email,
         business_name: businessName,
@@ -86,6 +106,10 @@ export async function GET(request: NextRequest) {
         is_headquarters: true,
         referral_code: generateRefCode(),
       });
+
+      if (insertError) {
+        console.error('[CONFIRM] Insert error:', insertError);
+      }
 
       // Process referral if present
       const refCode = data.user.user_metadata?.referral_code;
