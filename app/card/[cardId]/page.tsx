@@ -46,7 +46,7 @@ export default function LoyaltyCardPage({ params }: PageProps) {
   const [transactions, setTransactions] = useState<PointsTransaction[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<'card' | 'rewards' | 'history' | 'profile'>('card');
+  const [activeTab, setActiveTab] = useState<'card' | 'prizes' | 'rewards' | 'history' | 'profile'>('card');
   const [redeeming, setRedeeming] = useState<string | null>(null);
   const [downloading, setDownloading] = useState(false);
   const [showLanguageMenu, setShowLanguageMenu] = useState(false);
@@ -54,6 +54,7 @@ export default function LoyaltyCardPage({ params }: PageProps) {
   const qrRef = useRef<HTMLDivElement>(null);
   const [redemptionModal, setRedemptionModal] = useState<{ code: string; rewardName: string; expiresAt: string } | null>(null);
   const [redeemedRewards, setRedeemedRewards] = useState<any[]>([]);
+  const [wonPrizes, setWonPrizes] = useState<any[]>([]);
 
   // Profile edit state
   const [editName, setEditName] = useState('');
@@ -118,6 +119,13 @@ export default function LoyaltyCardPage({ params }: PageProps) {
         if (redeemedRes.ok) {
           const redeemedData = await redeemedRes.json();
           setRedeemedRewards(redeemedData.redeemedRewards || []);
+        }
+
+        // Fetch prizes won via the spin wheel
+        const prizesRes = await fetch(`/api/loyalty/prizes?clientId=${clientData.client.id}`);
+        if (prizesRes.ok) {
+          const prizesData = await prizesRes.json();
+          setWonPrizes(prizesData.prizes || []);
         }
       }
     } catch {
@@ -540,6 +548,7 @@ export default function LoyaltyCardPage({ params }: PageProps) {
                 <div className="flex">
                   {[
                     { id: 'card' as const, icon: QrCode, label: 'QR Code' },
+                    { id: 'prizes' as const, icon: Award, label: 'Mes Prix' },
                     { id: 'rewards' as const, icon: Gift, label: t('loyalty.rewards.title') },
                     { id: 'history' as const, icon: History, label: t('loyalty.clients.history') },
                     { id: 'profile' as const, icon: User, label: t('loyalty.card.editProfile') }
@@ -608,6 +617,105 @@ export default function LoyaltyCardPage({ params }: PageProps) {
                         {t('loyalty.card.share')}
                       </Button>
                     </div>
+                  </div>
+                )}
+
+                {activeTab === 'prizes' && (
+                  <div className="space-y-3">
+                    {wonPrizes.length === 0 ? (
+                      <div className="text-center py-12">
+                        <Award className="w-16 h-16 text-slate-300 mx-auto mb-4" />
+                        <p className="text-slate-500 font-medium">Aucun prix gagné pour le moment</p>
+                        <p className="text-xs text-slate-400 mt-2">Vos gains à la roue apparaîtront ici</p>
+                      </div>
+                    ) : (
+                      wonPrizes.map((prize: any) => (
+                        <div
+                          key={prize.id}
+                          className={`relative p-5 rounded-2xl border-2 transition-all ${
+                            prize.status === 'active'
+                              ? 'bg-gradient-to-br from-amber-50 to-yellow-50 border-amber-200 hover:shadow-lg hover:border-amber-300'
+                              : prize.status === 'used'
+                              ? 'bg-slate-50 border-slate-200 opacity-75'
+                              : 'bg-red-50 border-red-200 opacity-75'
+                          }`}
+                        >
+                          {/* Status badge */}
+                          <div className="absolute top-3 right-3">
+                            {prize.status === 'active' && (
+                              <span className="px-2.5 py-1 rounded-full bg-amber-500 text-white text-xs font-bold shadow-sm">
+                                🎁 Actif
+                              </span>
+                            )}
+                            {prize.status === 'used' && (
+                              <span className="px-2.5 py-1 rounded-full bg-slate-400 text-white text-xs font-bold">
+                                ✓ Utilisé
+                              </span>
+                            )}
+                            {prize.status === 'expired' && (
+                              <span className="px-2.5 py-1 rounded-full bg-red-400 text-white text-xs font-bold">
+                                ⏰ Expiré
+                              </span>
+                            )}
+                          </div>
+
+                          <div className="flex items-start gap-4">
+                            {/* Prize icon */}
+                            <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shrink-0 ${
+                              prize.status === 'active'
+                                ? 'bg-gradient-to-br from-amber-400 to-yellow-500 shadow-md'
+                                : 'bg-slate-200'
+                            }`}>
+                              {prize.status === 'active' ? '🎁' : prize.status === 'used' ? '✓' : '⏰'}
+                            </div>
+
+                            <div className="flex-1 min-w-0 pr-16">
+                              {/* Prize name */}
+                              <h3 className="font-bold text-slate-900 text-base truncate">{prize.prize_name}</h3>
+                              <p className="text-xs text-slate-500 mt-0.5">{prize.business_name}</p>
+
+                              {/* Code */}
+                              <div className="mt-3 flex items-center gap-2 flex-wrap">
+                                <span className="text-xs font-medium text-slate-600">Code :</span>
+                                <code className={`px-2 py-1 rounded-lg font-mono text-xs font-bold ${
+                                  prize.status === 'active'
+                                    ? 'bg-white border border-amber-200 text-amber-700'
+                                    : 'bg-slate-100 text-slate-500'
+                                }`}>{prize.code}</code>
+                              </div>
+
+                              {/* Expiry info */}
+                              {prize.status === 'active' && prize.days_left > 0 && (
+                                <p className="mt-2 text-xs text-amber-700 font-medium">
+                                  ⏱️ Expire dans {prize.days_left} jour{prize.days_left > 1 ? 's' : ''}
+                                </p>
+                              )}
+                              {prize.status === 'used' && prize.used_at && (
+                                <p className="mt-2 text-xs text-slate-500">
+                                  Utilisé le {new Date(prize.used_at).toLocaleDateString('fr-FR')}
+                                </p>
+                              )}
+                              {prize.status === 'expired' && (
+                                <p className="mt-2 text-xs text-red-600">
+                                  Expiré le {new Date(prize.expires_at).toLocaleDateString('fr-FR')}
+                                </p>
+                              )}
+                            </div>
+                          </div>
+
+                          {/* View button for active prizes */}
+                          {prize.status === 'active' && (
+                            <Button
+                              onClick={() => window.open(`/coupon/${prize.merchant_id}?code=${prize.code}`, '_blank')}
+                              className="w-full mt-4 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-white border-0 shadow-md"
+                              size="sm"
+                            >
+                              Afficher le QR Code
+                            </Button>
+                          )}
+                        </div>
+                      ))
+                    )}
                   </div>
                 )}
 
