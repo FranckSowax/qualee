@@ -35,9 +35,9 @@
                 Bienvenue sur Cartelle ! Cliquez sur le bouton ci-dessous pour activer votre compte et commencer à fidéliser vos clients.
               </p>
 
-              <!-- CTA Button -->
+              <!-- CTA Button — URL hardcodée vers Railway -->
               <div style="text-align: center; margin-bottom: 32px;">
-                <a href="{{ .ConfirmationURL }}" target="_blank" style="display: inline-block; padding: 14px 36px; background: linear-gradient(135deg, #0f766e 0%, #10b981 100%); color: #ffffff; font-size: 16px; font-weight: 600; text-decoration: none; border-radius: 12px; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);">
+                <a href="https://cartelle-production.up.railway.app/auth/confirm?token_hash={{ .TokenHash }}&type=signup&next=/dashboard" target="_blank" style="display: inline-block; padding: 14px 36px; background: linear-gradient(135deg, #0f766e 0%, #10b981 100%); color: #ffffff; font-size: 16px; font-weight: 600; text-decoration: none; border-radius: 12px; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);">
                   Confirmer mon adresse email
                 </a>
               </div>
@@ -85,7 +85,7 @@
                 Si le bouton ne fonctionne pas, copiez-collez ce lien dans votre navigateur :
               </p>
               <p style="margin: 8px 0 0; font-size: 11px; color: #d1d5db; word-break: break-all; text-align: center;">
-                {{ .ConfirmationURL }}
+                https://cartelle-production.up.railway.app/auth/confirm?token_hash={{ .TokenHash }}&type=signup&next=/dashboard
               </p>
             </td>
           </tr>
