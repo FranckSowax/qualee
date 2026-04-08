@@ -1,6 +1,8 @@
 import { createClient } from '@supabase/supabase-js';
 import { NextRequest, NextResponse } from 'next/server';
 
+const SITE_URL = 'https://cartelle-production.up.railway.app';
+
 /**
  * Custom email confirmation route.
  * Exchanges the token_hash from the email link for a session,
@@ -10,12 +12,14 @@ import { NextRequest, NextResponse } from 'next/server';
  */
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
-  const tokenHash = searchParams.get('token_hash');
-  const type = searchParams.get('type') || 'signup';
+  const tokenHash = searchParams.get('token_hash') || searchParams.get('token');
+  const requestedType = searchParams.get('type') || 'email';
   const next = searchParams.get('next') || '/dashboard';
 
+  console.log('[CONFIRM] Received:', { tokenHash: tokenHash?.substring(0, 20) + '...', type: requestedType, next });
+
   if (!tokenHash) {
-    return NextResponse.redirect(new URL('/auth/login?error=missing_token', request.url));
+    return NextResponse.redirect(`${SITE_URL}/auth/login?error=missing_token`);
   }
 
   // Use anon client to verify the OTP
@@ -24,14 +28,28 @@ export async function GET(request: NextRequest) {
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
   );
 
-  const { data, error } = await supabase.auth.verifyOtp({
-    type: type as any,
-    token_hash: tokenHash,
-  });
+  // Try multiple types because Supabase might send 'email', 'signup', or 'magiclink'
+  const typesToTry = [requestedType, 'email', 'signup', 'magiclink'].filter((v, i, a) => a.indexOf(v) === i);
+  let data: any = null;
+  let lastError: any = null;
 
-  if (error || !data.user) {
-    console.error('[CONFIRM] Verify OTP error:', error);
-    return NextResponse.redirect(new URL(`/auth/login?error=${encodeURIComponent(error?.message || 'verification_failed')}`, request.url));
+  for (const type of typesToTry) {
+    const result = await supabase.auth.verifyOtp({
+      type: type as any,
+      token_hash: tokenHash,
+    });
+    if (!result.error && result.data.user) {
+      data = result.data;
+      console.log('[CONFIRM] Success with type:', type);
+      break;
+    }
+    lastError = result.error;
+    console.log('[CONFIRM] Failed with type:', type, '—', result.error?.message);
+  }
+
+  if (!data || !data.user) {
+    console.error('[CONFIRM] All types failed. Last error:', lastError);
+    return NextResponse.redirect(`${SITE_URL}/auth/login?error=${encodeURIComponent(lastError?.message || 'verification_failed')}`);
   }
 
   // Create merchant profile if it doesn't exist (uses service_role to bypass RLS)
@@ -105,6 +123,7 @@ export async function GET(request: NextRequest) {
     // Continue anyway — user can complete setup later
   }
 
-  // Redirect to dashboard (or wherever)
-  return NextResponse.redirect(new URL(next, request.url));
+  // Redirect to dashboard with absolute URL (avoids localhost issues)
+  const redirectUrl = next.startsWith('http') ? next : `${SITE_URL}${next}`;
+  return NextResponse.redirect(redirectUrl);
 }
