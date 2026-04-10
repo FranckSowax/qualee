@@ -2,55 +2,63 @@ export interface SubscriptionPlan {
   key: string;
   name: string;
   price_xaf: number;
-  price_usd: number;
+  period: string;
+  description: string;
   max_locations: number;
   features: string[];
+  popular?: boolean;
+  accent?: boolean;
 }
 
 export const PLANS: Record<string, SubscriptionPlan> = {
-  starter: {
-    key: 'starter',
-    name: 'Starter',
-    price_xaf: 9000,
-    price_usd: 15,
+  essentiel: {
+    key: 'essentiel',
+    name: 'Essentiel',
+    price_xaf: 10000,
+    period: 'FCFA / mois',
+    description: 'Le plus choisi par nos clients',
     max_locations: 1,
+    popular: true,
     features: [
-      'Roue de la fortune',
-      'Programme de fidélité',
-      'QR Codes illimités',
-      'Avis clients',
       '1 établissement',
-      'Support email',
-    ],
-  },
-  pro: {
-    key: 'pro',
-    name: 'Pro',
-    price_xaf: 36000,
-    price_usd: 59,
-    max_locations: 3,
-    features: [
-      'Tout Starter +',
+      'Roue + Carte fidélité',
+      'QR Code personnalisé',
+      'Statistiques avancées',
       'Campagnes WhatsApp',
-      'Analytiques avancées',
-      'Jusqu\'à 3 établissements',
-      'Automatisations WhatsApp',
       'Support prioritaire',
     ],
   },
-  'multi-shop': {
-    key: 'multi-shop',
-    name: 'Multi-Shop',
-    price_xaf: 60000,
-    price_usd: 99,
-    max_locations: -1,
+  premium: {
+    key: 'premium',
+    name: 'Premium',
+    price_xaf: 25000,
+    period: 'FCFA / mois',
+    description: 'Performance maximale',
+    max_locations: 3,
     features: [
-      'Tout Pro +',
+      '3 établissements',
+      'Toutes les fonctionnalités',
+      'Branding personnalisé',
+      'Wallet Apple & Google',
+      'Analytics avancés',
+      'Gestionnaire dédié',
+    ],
+  },
+  'sur-mesure': {
+    key: 'sur-mesure',
+    name: 'Sur mesure',
+    price_xaf: 0,
+    period: '',
+    description: 'Réseaux multi-sites',
+    max_locations: -1,
+    accent: true,
+    features: [
       'Établissements illimités',
-      'Dashboard multi-sites',
-      'Rapports consolidés',
-      'API personnalisée',
-      'Support dédié',
+      'API & intégrations',
+      'White label',
+      'SLA garanti',
+      'Accompagnement stratégique',
+      'Formation équipes',
     ],
   },
 };

@@ -23,7 +23,8 @@ const supabaseAdmin = createClient(
  */
 export async function POST(request: NextRequest) {
   try {
-    const { token, tier } = await request.json();
+    const body = await request.json();
+    const { token, tier } = body;
 
     if (!token || !tier) {
       return NextResponse.json({ error: 'Token et plan requis' }, { status: 400 });
@@ -38,53 +39,86 @@ export async function POST(request: NextRequest) {
     // 2. Validate plan
     const plan = getPlan(tier);
     if (!plan) {
-      return NextResponse.json({ error: 'Plan invalide' }, { status: 400 });
+      return NextResponse.json({ error: `Plan "${tier}" invalide` }, { status: 400 });
     }
 
-    // 3. Get merchant phone
-    const { data: merchant } = await supabaseAdmin
+    // 3. Get merchant info
+    const { data: merchant, error: merchantError } = await supabaseAdmin
       .from('merchants')
       .select('phone, email, business_name')
       .eq('id', tokenData.merchant_id)
       .single();
 
+    if (merchantError) {
+      console.error('[PAYMENT] Merchant fetch error:', merchantError);
+      return NextResponse.json({ error: 'Marchand introuvable' }, { status: 404 });
+    }
+
     const externalReference = generateExternalReference();
     const phone = formatPhoneNumber(merchant?.phone);
+    const email = tokenData.email || merchant?.email || '';
+    const payerName = tokenData.business_name || merchant?.business_name || 'Marchand Cartelle';
     const description = `Abonnement Cartelle ${plan.name}`;
 
+    console.log('[PAYMENT] Initiating:', { tier, amount: plan.price_xaf, phone, externalReference });
+
     // ─── STEP 1: init.php (OBLIGATOIRE — TOUJOURS EN PREMIER) ──────────
-    const initResult = await initTransaction({
-      userId: tokenData.merchant_id,
-      amount: plan.price_xaf,
-      phone,
-      description,
-      externalReference,
-    });
+    let initResult;
+    try {
+      initResult = await initTransaction({
+        userId: tokenData.merchant_id,
+        amount: plan.price_xaf,
+        phone,
+        description,
+        externalReference,
+      });
+    } catch (initError: any) {
+      console.error('[PAYMENT] init.php network error:', initError);
+      return NextResponse.json(
+        { error: 'Impossible de contacter le serveur de paiement. Réessayez.' },
+        { status: 502 }
+      );
+    }
 
     // Si init échoue → STOP IMMÉDIAT, ne PAS continuer
     if (!initResult.success) {
+      console.error('[PAYMENT] init.php failed:', initResult.message);
       return NextResponse.json(
         { error: initResult.message || 'Erreur initialisation paiement' },
         { status: 502 }
       );
     }
 
+    console.log('[PAYMENT] init.php OK, mysql_id:', initResult.mysql_id);
+
     // ─── STEP 2: e_bills (SEULEMENT après init réussi) ─────────────────
-    const ebillResult = await createEBill({
-      email: tokenData.email,
-      phone,
-      amount: plan.price_xaf,
-      description,
-      externalReference,
-      payerName: tokenData.business_name || 'Marchand Cartelle',
-    });
+    let ebillResult;
+    try {
+      ebillResult = await createEBill({
+        email,
+        phone,
+        amount: plan.price_xaf,
+        description,
+        externalReference,
+        payerName,
+      });
+    } catch (ebillError: any) {
+      console.error('[PAYMENT] e_bills network error:', ebillError);
+      return NextResponse.json(
+        { error: 'Impossible de créer la facture. Réessayez.' },
+        { status: 502 }
+      );
+    }
 
     if (!ebillResult.success || !ebillResult.bill_id) {
+      console.error('[PAYMENT] e_bills failed:', ebillResult.message);
       return NextResponse.json(
         { error: ebillResult.message || 'Erreur création facture' },
         { status: 502 }
       );
     }
+
+    console.log('[PAYMENT] e_bills OK, bill_id:', ebillResult.bill_id);
 
     // 4. Save payment record
     const paymentType = tokenData.purpose === 'renewal_payment' ? 'renewal' : 'new';
@@ -119,7 +153,7 @@ export async function POST(request: NextRequest) {
       payment_id: payment.id,
     });
   } catch (error: any) {
-    console.error('[PAYMENT INITIATE] Error:', error);
+    console.error('[PAYMENT INITIATE] Unhandled error:', error.message, error.stack);
     return NextResponse.json({ error: error.message || 'Erreur serveur' }, { status: 500 });
   }
 }

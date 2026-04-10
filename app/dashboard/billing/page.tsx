@@ -83,7 +83,7 @@ export default function BillingPage() {
     );
   }
 
-  const currentPlan = PLANS[merchant.subscription_tier] || PLANS['starter'];
+  const currentPlan = PLANS[merchant.subscription_tier] || PLANS['essentiel'];
   const hasSubscription = !!merchant.subscription_expires_at;
   const isExpired = hasSubscription && new Date(merchant.subscription_expires_at) < new Date();
   const isActive = hasSubscription && !isExpired;

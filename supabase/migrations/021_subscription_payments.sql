@@ -71,14 +71,11 @@ CREATE POLICY "Service role full access on subscription_tokens"
   USING (auth.role() = 'service_role');
 
 -- ─── Update subscription_tiers with XAF pricing ────────────────────────────
-UPDATE subscription_tiers
-SET features = COALESCE(features, '{}'::jsonb) || '{"price_xaf": 9000}'::jsonb
-WHERE tier_name = 'starter';
-
-UPDATE subscription_tiers
-SET features = COALESCE(features, '{}'::jsonb) || '{"price_xaf": 36000}'::jsonb
-WHERE tier_name = 'pro';
-
-UPDATE subscription_tiers
-SET features = COALESCE(features, '{}'::jsonb) || '{"price_xaf": 60000}'::jsonb
-WHERE tier_name = 'multi-shop';
+INSERT INTO subscription_tiers (tier_name, max_locations, price, features)
+VALUES
+  ('essentiel', 1, 10000, '{"price_xaf": 10000}'::jsonb),
+  ('premium', 3, 25000, '{"price_xaf": 25000}'::jsonb),
+  ('sur-mesure', -1, 0, '{"price_xaf": 0}'::jsonb)
+ON CONFLICT (tier_name) DO UPDATE SET
+  price = EXCLUDED.price,
+  features = COALESCE(subscription_tiers.features, '{}'::jsonb) || EXCLUDED.features;
