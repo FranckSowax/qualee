@@ -31,28 +31,7 @@ export async function GET(request: NextRequest) {
 
     let query = supabaseAdmin
       .from('merchants')
-      .select(`
-        id,
-        business_name,
-        email,
-        logo_url,
-        logo_background_color,
-        background_url,
-        google_review_url,
-        tripadvisor_url,
-        instagram_url,
-        tiktok_url,
-        redirect_strategy,
-        is_active,
-        subscription_tier,
-        loyalty_enabled,
-        loyalty_card_image_url,
-        points_per_purchase,
-        purchase_amount_threshold,
-        loyalty_currency,
-        welcome_points,
-        loyalty_message_template
-      `);
+      .select('*');
 
     if (id) {
       query = query.eq('id', id);
