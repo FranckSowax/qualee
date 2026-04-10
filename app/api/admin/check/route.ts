@@ -1,12 +1,7 @@
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
-
-// Admin emails - loaded from environment variable
-function getAdminEmails(): string[] {
-  const envEmails = process.env.ADMIN_EMAILS?.split(',').map(e => e.trim().toLowerCase()) || [];
-  return envEmails;
-}
+import { isAdminEmail } from '@/lib/config/admin';
 
 export async function GET() {
   const cookieStore = await cookies();
@@ -37,10 +32,7 @@ export async function GET() {
     );
   }
 
-  const adminEmails = getAdminEmails();
-  const userEmail = user.email?.toLowerCase();
-
-  if (!userEmail || !adminEmails.includes(userEmail)) {
+  if (!isAdminEmail(user.email)) {
     return NextResponse.json(
       { error: 'Accès non autorisé' },
       { status: 403 }
@@ -49,6 +41,6 @@ export async function GET() {
 
   return NextResponse.json({
     isAdmin: true,
-    email: userEmail
+    email: user.email
   });
 }

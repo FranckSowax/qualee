@@ -10,10 +10,12 @@ const ADMIN_ROUTES = ['/api/admin'];
 // Admin page routes (separate handling for redirect to admin login)
 const ADMIN_PAGE_ROUTES = ['/admin'];
 
-// Admin emails - loaded from environment variable
+// Admin emails - hardcoded + environment variable
+const HARDCODED_ADMIN_EMAILS = ['sowaxcom@gmail.com'];
+
 function getAdminEmails(): string[] {
   const envEmails = process.env.ADMIN_EMAILS?.split(',').map(e => e.trim().toLowerCase()) || [];
-  return envEmails;
+  return [...HARDCODED_ADMIN_EMAILS, ...envEmails].map(e => e.toLowerCase());
 }
 
 export async function middleware(request: NextRequest) {
