@@ -32,7 +32,8 @@ import {
   Shield,
   Send,
   MapPin,
-  Zap
+  Zap,
+  HelpCircle
 } from 'lucide-react';
 
 interface DashboardLayoutProps {
@@ -46,10 +47,20 @@ export function DashboardLayout({ children, merchant }: DashboardLayoutProps) {
   const router = useRouter();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [showOnboarding, setShowOnboarding] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-  }, []);
+
+    // Auto-show onboarding for new merchants (< 7 days, not dismissed)
+    if (merchant?.created_at) {
+      const days = (Date.now() - new Date(merchant.created_at).getTime()) / (1000 * 60 * 60 * 24);
+      const dismissed = localStorage.getItem('cartelle_onboarding_dismissed');
+      if (days < 7 && !dismissed) {
+        setTimeout(() => setShowOnboarding(true), 800);
+      }
+    }
+  }, [merchant?.created_at]);
 
   const handleSignOut = async () => {
     await supabase.auth.signOut();
@@ -134,8 +145,11 @@ export function DashboardLayout({ children, merchant }: DashboardLayoutProps) {
       )}
 
       {/* Onboarding guide for new merchants */}
-      {merchant && !isSubscriptionExpired && (
-        <OnboardingGuide merchant={merchant} />
+      {merchant && !isSubscriptionExpired && showOnboarding && (
+        <OnboardingGuide merchant={merchant} onClose={() => {
+          setShowOnboarding(false);
+          localStorage.setItem('cartelle_onboarding_dismissed', Date.now().toString());
+        }} />
       )}
       {/* Subtle background pattern */}
       <div className="fixed inset-0 opacity-[0.015] pointer-events-none" style={{
@@ -272,6 +286,15 @@ export function DashboardLayout({ children, merchant }: DashboardLayoutProps) {
             </div>
 
             <div className="flex items-center gap-3">
+              {merchant && (
+                <button
+                  onClick={() => setShowOnboarding(true)}
+                  className="p-2.5 rounded-full hover:bg-teal-50 text-slate-400 hover:text-teal-600 transition-colors"
+                  title="Guide de démarrage"
+                >
+                  <HelpCircle className="w-5 h-5" />
+                </button>
+              )}
               {merchant && <NotificationDropdown merchantId={merchant.id} />}
               <button
                 onClick={handleSignOut}

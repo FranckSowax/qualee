@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { UserCircle, Target, Gift, Award, QrCode, ChevronRight, ChevronLeft, X, Sparkles, PartyPopper, Check } from 'lucide-react';
 
@@ -10,6 +10,7 @@ interface OnboardingGuideProps {
     business_name?: string | null;
     created_at: string;
   };
+  onClose: () => void;
 }
 
 const STEPS = [
@@ -95,39 +96,18 @@ const STEPS = [
   },
 ];
 
-const STORAGE_KEY = 'cartelle_onboarding_dismissed';
-
-export function OnboardingGuide({ merchant }: OnboardingGuideProps) {
+export function OnboardingGuide({ merchant, onClose }: OnboardingGuideProps) {
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(0);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    // Don't show if already dismissed
-    const dismissed = localStorage.getItem(STORAGE_KEY);
-    if (dismissed) return;
-
-    // Show only for merchants created less than 7 days ago
-    const createdAt = new Date(merchant.created_at);
-    const daysSinceCreation = (Date.now() - createdAt.getTime()) / (1000 * 60 * 60 * 24);
-    if (daysSinceCreation > 7) return;
-
-    // Small delay for smoother appearance
-    const timer = setTimeout(() => setVisible(true), 800);
-    return () => clearTimeout(timer);
-  }, [merchant.created_at]);
 
   const handleDismiss = () => {
-    localStorage.setItem(STORAGE_KEY, Date.now().toString());
-    setVisible(false);
+    onClose();
   };
 
   const handleGoToStep = (href: string) => {
-    handleDismiss();
+    onClose();
     router.push(href);
   };
-
-  if (!visible) return null;
 
   const step = STEPS[currentStep];
   const Icon = step.icon;
