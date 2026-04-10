@@ -8,7 +8,7 @@ import { supabase } from '@/lib/supabase/client';
 import { DashboardLayout } from '@/components/dashboard/DashboardLayout';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Check, X, Loader2, Calendar, MapPin, Star, Music, Instagram as InstagramIcon, Globe, MessageCircle, Palette, Link2, Route } from 'lucide-react';
+import { Check, X, Loader2, Calendar, MapPin, Star, Music, Instagram as InstagramIcon, Globe, MessageCircle, Palette, Link2, Route, Lightbulb, ChevronDown } from 'lucide-react';
 
 const PLATFORMS = [
   { value: 'google_maps', label: 'Google Reviews', icon: MapPin, color: 'bg-red-500' },
@@ -41,6 +41,7 @@ export default function StrategyPage() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
   const [activeTab, setActiveTab] = useState<TabId>('workflow');
+  const [showGoogleTip, setShowGoogleTip] = useState(false);
 
   // Workflow mode: 'web' or 'whatsapp'
   const [workflowMode, setWorkflowMode] = useState<'web' | 'whatsapp'>('web');
@@ -550,6 +551,88 @@ export default function StrategyPage() {
                       placeholder="https://g.page/your-business"
                       className="w-full px-3 py-2.5 border border-gray-300 rounded-lg bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 focus:bg-teal-50/30 transition-all duration-200"
                     />
+
+                    {/* Tips: Comment trouver le lien Google Reviews */}
+                    <button
+                      type="button"
+                      onClick={() => setShowGoogleTip(!showGoogleTip)}
+                      className="mt-2 flex items-center gap-1.5 text-xs text-teal-600 hover:text-teal-700 transition-colors"
+                    >
+                      <Lightbulb className="w-3.5 h-3.5" />
+                      <span>{isFr ? 'Comment trouver mon lien Google Reviews ?' : 'How to find my Google Reviews link?'}</span>
+                      <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${showGoogleTip ? 'rotate-180' : ''}`} />
+                    </button>
+
+                    {showGoogleTip && (
+                      <div className="mt-2 p-4 bg-amber-50 border border-amber-200 rounded-lg text-sm space-y-3 animate-[fadeIn_0.2s_ease-out]">
+                        <p className="font-semibold text-amber-800 flex items-center gap-2">
+                          <Lightbulb className="w-4 h-4" />
+                          {isFr ? 'Guide : Trouver votre lien Google Reviews' : 'Guide: Find your Google Reviews link'}
+                        </p>
+
+                        <ol className="list-decimal list-inside space-y-2 text-gray-700">
+                          <li>
+                            {isFr
+                              ? <>Ouvrez <strong>Google Maps</strong> sur votre ordinateur ou téléphone</>
+                              : <>Open <strong>Google Maps</strong> on your computer or phone</>}
+                          </li>
+                          <li>
+                            {isFr
+                              ? <>Recherchez le <strong>nom de votre établissement</strong></>
+                              : <>Search for <strong>your business name</strong></>}
+                          </li>
+                          <li>
+                            {isFr
+                              ? <>Cliquez sur votre fiche, puis sur le bouton <strong>&quot;Avis&quot;</strong> (ou <strong>&quot;Reviews&quot;</strong>)</>
+                              : <>Click on your listing, then on the <strong>&quot;Reviews&quot;</strong> button</>}
+                          </li>
+                          <li>
+                            {isFr
+                              ? <>Cliquez sur <strong>&quot;Donner un avis&quot;</strong> (ou <strong>&quot;Write a review&quot;</strong>)</>
+                              : <>Click on <strong>&quot;Write a review&quot;</strong></>}
+                          </li>
+                          <li>
+                            {isFr
+                              ? <>Copiez l&apos;<strong>URL complète</strong> de la barre d&apos;adresse de votre navigateur</>
+                              : <>Copy the <strong>full URL</strong> from your browser&apos;s address bar</>}
+                          </li>
+                          <li>
+                            {isFr
+                              ? <>Collez-la dans le champ ci-dessus</>
+                              : <>Paste it in the field above</>}
+                          </li>
+                        </ol>
+
+                        <div className="bg-white border border-amber-200 rounded-lg p-3 space-y-2">
+                          <p className="font-medium text-amber-800 text-xs">
+                            {isFr ? 'Méthode rapide (Google Business Profile) :' : 'Quick method (Google Business Profile):'}
+                          </p>
+                          <ol className="list-decimal list-inside space-y-1.5 text-gray-700 text-xs">
+                            <li>
+                              {isFr
+                                ? <>Allez sur <strong>business.google.com</strong></>
+                                : <>Go to <strong>business.google.com</strong></>}
+                            </li>
+                            <li>
+                              {isFr
+                                ? <>Cliquez sur <strong>&quot;Demander des avis&quot;</strong> dans le menu de gauche</>
+                                : <>Click on <strong>&quot;Ask for reviews&quot;</strong> in the left menu</>}
+                            </li>
+                            <li>
+                              {isFr
+                                ? <>Copiez le <strong>lien court</strong> qui s&apos;affiche (format : <code className="bg-amber-100 px-1 rounded">g.page/r/...</code>)</>
+                                : <>Copy the <strong>short link</strong> that appears (format: <code className="bg-amber-100 px-1 rounded">g.page/r/...</code>)</>}
+                            </li>
+                          </ol>
+                        </div>
+
+                        <p className="text-xs text-amber-700">
+                          {isFr
+                            ? 'Le lien doit ressembler à : https://g.page/r/CxxxxxxxxEBE/review ou https://search.google.com/local/writereview?placeid=...'
+                            : 'The link should look like: https://g.page/r/CxxxxxxxxEBE/review or https://search.google.com/local/writereview?placeid=...'}
+                        </p>
+                      </div>
+                    )}
                   </div>
 
                   {/* TripAdvisor URL */}

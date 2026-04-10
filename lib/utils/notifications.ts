@@ -11,7 +11,7 @@ const supabaseAdmin = createClient(
   }
 );
 
-export type NotificationType = 'feedback' | 'spin' | 'coupon_used' | 'new_customer';
+export type NotificationType = 'feedback' | 'spin' | 'coupon_used' | 'new_customer' | 'subscription_expiry';
 
 interface CreateNotificationParams {
   merchantId: string;
@@ -109,6 +109,36 @@ export async function notifyCouponUsed(
     title: '✅ Coupon utilisé',
     message: `Le coupon "${couponCode}" pour "${prizeName}" a été validé.`,
     data: { couponCode, prizeName },
+  });
+}
+
+export async function notifySubscriptionExpiry(
+  merchantId: string,
+  tier: string,
+  expiresAt: string
+): Promise<void> {
+  const expiryDate = new Date(expiresAt).toLocaleDateString('fr-FR');
+
+  await createNotification({
+    merchantId,
+    type: 'subscription_expiry',
+    title: 'Abonnement expiré',
+    message: `Votre abonnement ${tier} a expiré le ${expiryDate}. Renouvelez pour continuer à utiliser Cartelle.`,
+    data: { tier, expiresAt },
+  });
+}
+
+export async function notifySubscriptionExpiringSoon(
+  merchantId: string,
+  tier: string,
+  daysLeft: number
+): Promise<void> {
+  await createNotification({
+    merchantId,
+    type: 'subscription_expiry',
+    title: 'Abonnement bientôt expiré',
+    message: `Votre abonnement ${tier} expire dans ${daysLeft} jour${daysLeft > 1 ? 's' : ''}. Pensez à renouveler.`,
+    data: { tier, daysLeft },
   });
 }
 

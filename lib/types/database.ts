@@ -33,6 +33,13 @@ export interface Merchant {
   loyalty_currency?: 'XAF';
   welcome_points?: number;
   loyalty_message_template?: string | null;
+  // Subscription fields
+  phone?: string | null;
+  subscription_started_at?: string | null;
+  subscription_expires_at?: string | null;
+  last_renewal_reminder_at?: string | null;
+  last_trial_reminder_at?: string | null;
+  is_active?: boolean;
   created_at: string;
   updated_at: string;
 }
@@ -98,7 +105,34 @@ export interface SubscriptionTier {
   features: Record<string, any>;
 }
 
-export type NotificationType = 'feedback' | 'spin' | 'coupon_used' | 'new_customer';
+export type SubscriptionPaymentStatus = 'pending' | 'processing' | 'completed' | 'failed' | 'cancelled' | 'expired';
+export type SubscriptionPaymentType = 'new' | 'renewal';
+
+export interface SubscriptionPayment {
+  id: string;
+  merchant_id: string;
+  tier: string;
+  amount_xaf: number;
+  payment_type: SubscriptionPaymentType;
+  external_reference: string;
+  ebilling_bill_id: string | null;
+  mysql_init_id: number | null;
+  status: SubscriptionPaymentStatus;
+  paid_at: string | null;
+  created_at: string;
+}
+
+export interface SubscriptionToken {
+  id: string;
+  merchant_id: string;
+  token: string;
+  purpose: 'trial_payment' | 'renewal_payment';
+  expires_at: string;
+  used_at: string | null;
+  created_at: string;
+}
+
+export type NotificationType = 'feedback' | 'spin' | 'coupon_used' | 'new_customer' | 'subscription_expiry';
 
 export interface Notification {
   id: string;

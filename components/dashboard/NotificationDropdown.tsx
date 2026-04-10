@@ -12,7 +12,8 @@ import {
   X,
   Check,
   Trash2,
-  MessageSquare
+  MessageSquare,
+  AlertTriangle
 } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
 import { fr } from 'date-fns/locale';
@@ -26,6 +27,7 @@ const notificationIcons: Record<string, React.ElementType> = {
   spin: RotateCw,
   coupon_used: CheckCircle,
   new_customer: MessageSquare,
+  subscription_expiry: AlertTriangle,
 };
 
 const notificationColors: Record<string, string> = {
@@ -33,6 +35,7 @@ const notificationColors: Record<string, string> = {
   spin: 'bg-purple-100 text-purple-600',
   coupon_used: 'bg-emerald-100 text-emerald-600',
   new_customer: 'bg-blue-100 text-blue-600',
+  subscription_expiry: 'bg-red-100 text-red-600',
 };
 
 export function NotificationDropdown({ merchantId }: NotificationDropdownProps) {
