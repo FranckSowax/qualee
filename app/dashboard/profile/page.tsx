@@ -46,7 +46,7 @@ export default function ProfilePage() {
   const [website, setWebsite] = useState('');
   const [managerName, setManagerName] = useState('');
   const [managerPhone, setManagerPhone] = useState('');
-  const [siret, setSiret] = useState('');
+
 
   // Appearance state
   const [logoBackgroundColor, setLogoBackgroundColor] = useState('#FFFFFF');
@@ -79,7 +79,6 @@ export default function ProfilePage() {
         setWebsite(merchantData?.website || '');
         setManagerName(merchantData?.manager_name || '');
         setManagerPhone(merchantData?.manager_phone || '');
-        setSiret(merchantData?.siret || '');
         setLogoBackgroundColor(merchantData.logo_background_color || '#FFFFFF');
         if (merchantData.logo_url) setLogoPreview(merchantData.logo_url);
         if (merchantData.background_url) setBackgroundPreview(merchantData.background_url);
@@ -173,7 +172,6 @@ export default function ProfilePage() {
         updates.website = website || null;
         updates.manager_name = managerName || null;
         updates.manager_phone = managerPhone || null;
-        updates.siret = siret || null;
       } else if (activeTab === 'appearance') {
         updates.logo_background_color = logoBackgroundColor || '#FFFFFF';
 
@@ -414,15 +412,6 @@ CREATE POLICY "Auth Update" ON storage.objects FOR UPDATE USING ( bucket_id = 'm
                         type="tel"
                         value={managerPhone}
                         onChange={(e) => setManagerPhone(e.target.value)}
-                        className={inputClass}
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">SIRET</label>
-                      <input
-                        type="text"
-                        value={siret}
-                        onChange={(e) => setSiret(e.target.value)}
                         className={inputClass}
                       />
                     </div>
