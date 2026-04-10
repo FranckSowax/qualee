@@ -27,6 +27,24 @@ export function formatPhoneNumber(phone?: string | null): string {
   return '241' + cleaned;
 }
 
+/**
+ * Safely fetch + parse JSON. Handles non-JSON responses gracefully.
+ */
+async function safeFetchJson(url: string, options: RequestInit): Promise<{ ok: boolean; status: number; data: any }> {
+  const response = await fetch(url, options);
+  const text = await response.text();
+
+  let data;
+  try {
+    data = JSON.parse(text);
+  } catch {
+    console.error(`[EBILLING] Non-JSON response from ${url}:`, text.substring(0, 500));
+    data = { error: `Réponse invalide du serveur (HTTP ${response.status})` };
+  }
+
+  return { ok: response.ok, status: response.status, data };
+}
+
 // ─── Step 1: init.php (OBLIGATOIRE — TOUJOURS EN PREMIER) ──────────────────
 
 interface InitParams {
@@ -44,7 +62,7 @@ interface InitResult {
 }
 
 export async function initTransaction(params: InitParams): Promise<InitResult> {
-  const response = await fetch(`${BACKEND_URL}/init.php`, {
+  const { ok, data } = await safeFetchJson(`${BACKEND_URL}/init.php`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -59,10 +77,10 @@ export async function initTransaction(params: InitParams): Promise<InitResult> {
     }),
   });
 
-  const data = await response.json();
+  console.log('[EBILLING] init.php response:', { ok, data });
 
-  if (!data.success || !data.data?.mysql_id) {
-    return { success: false, message: data.message || 'Erreur initialisation transaction' };
+  if (!ok || !data.success || !data.data?.mysql_id) {
+    return { success: false, message: data.message || data.error || 'Erreur initialisation transaction' };
   }
 
   return { success: true, mysql_id: data.data.mysql_id };
@@ -86,7 +104,7 @@ interface EBillResult {
 }
 
 export async function createEBill(params: EBillParams): Promise<EBillResult> {
-  const response = await fetch(EBILLING_API_URL, {
+  const { ok, data } = await safeFetchJson(EBILLING_API_URL, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -105,14 +123,15 @@ export async function createEBill(params: EBillParams): Promise<EBillResult> {
     }),
   });
 
-  const data = await response.json();
+  console.log('[EBILLING] e_bills response:', { ok, billId: data.e_bill?.bill_id });
+
   const billId = data.e_bill?.bill_id;
 
   if (!billId) {
-    return { success: false, message: data.message || 'Erreur création facture E-Billing' };
+    return { success: false, message: data.message || data.error || 'Erreur création facture E-Billing' };
   }
 
-  return { success: true, bill_id: billId };
+  return { success: true, bill_id: String(billId) };
 }
 
 // ─── Step 3: Portal URL ────────────────────────────────────────────────────
@@ -132,11 +151,10 @@ interface StatusResult {
 }
 
 export async function checkPaymentStatus(externalReference: string): Promise<StatusResult> {
-  const response = await fetch(
-    `${BACKEND_URL}/check_status.php?external_reference=${encodeURIComponent(externalReference)}`
+  const { data } = await safeFetchJson(
+    `${BACKEND_URL}/check_status.php?external_reference=${encodeURIComponent(externalReference)}`,
+    { method: 'GET' }
   );
-
-  const data = await response.json();
 
   if (!data.success) {
     return { success: false, status: 'pending', message: data.message };
