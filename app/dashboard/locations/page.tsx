@@ -6,7 +6,7 @@ import { supabase } from '@/lib/supabase/client';
 import { DashboardLayout } from '@/components/dashboard/DashboardLayout';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { MapPin, Plus, Trash2, Building2, AlertCircle, X, Loader2 } from 'lucide-react';
+import { MapPin, Plus, Trash2, Building2, AlertCircle, X, Loader2, Lock, ExternalLink } from 'lucide-react';
 
 interface Location {
   id: string;
@@ -124,6 +124,8 @@ export default function LocationsPage() {
   }
 
   const childLocations = locations.filter(l => !l.is_headquarters);
+  const isFree = !tier || tier === 'starter' || tier === 'free';
+  const isUnlimited = maxLocations === -1;
 
   return (
     <DashboardLayout merchant={merchant}>
@@ -138,24 +140,51 @@ export default function LocationsPage() {
           </div>
           <Button
             onClick={() => setShowModal(true)}
-            className="bg-teal-600 hover:bg-teal-700 text-white"
+            disabled={isFree}
+            className="bg-teal-600 hover:bg-teal-700 text-white disabled:opacity-50 disabled:cursor-not-allowed"
+            title={isFree ? 'Passez à un plan payant pour ajouter des établissements' : ''}
           >
-            <Plus className="w-4 h-4 mr-2" />
-            Ajouter un établissement
+            {isFree ? (
+              <><Lock className="w-4 h-4 mr-2" /> Ajouter un établissement</>
+            ) : (
+              <><Plus className="w-4 h-4 mr-2" /> Ajouter un établissement</>
+            )}
           </Button>
         </div>
 
         {/* Tier info */}
-        <Card className="p-4 bg-teal-50 border-teal-200">
-          <div className="flex items-center gap-3">
-            <AlertCircle className="w-5 h-5 text-teal-600 flex-shrink-0" />
-            <p className="text-sm text-teal-800">
-              Votre plan <strong className="capitalize">{tier}</strong> vous autorise{' '}
-              <strong>{maxLocations}</strong> établissement(s) supplémentaire(s).
-              Vous en utilisez <strong>{childLocations.length}</strong>.
-            </p>
-          </div>
-        </Card>
+        {isFree ? (
+          <Card className="p-4 bg-amber-50 border-amber-200">
+            <div className="flex items-center gap-3">
+              <Lock className="w-5 h-5 text-amber-600 flex-shrink-0" />
+              <div className="flex-1">
+                <p className="text-sm text-amber-800">
+                  Votre plan <strong>Gratuit</strong> ne permet pas d&apos;ajouter d&apos;établissements supplémentaires.
+                </p>
+                <p className="text-xs text-amber-700 mt-1">
+                  Passez au plan <strong>Essentiel</strong> (1 établissement) ou <strong>Premium</strong> (3 établissements) pour gérer plusieurs points de vente.
+                </p>
+              </div>
+              <a
+                href="/dashboard/billing"
+                className="flex items-center gap-1 text-xs font-semibold text-amber-700 hover:text-amber-900 whitespace-nowrap"
+              >
+                Voir les plans <ExternalLink className="w-3 h-3" />
+              </a>
+            </div>
+          </Card>
+        ) : (
+          <Card className="p-4 bg-teal-50 border-teal-200">
+            <div className="flex items-center gap-3">
+              <AlertCircle className="w-5 h-5 text-teal-600 flex-shrink-0" />
+              <p className="text-sm text-teal-800">
+                Votre plan <strong className="capitalize">{tier === 'sur-mesure' ? 'Sur mesure' : tier}</strong> vous autorise{' '}
+                <strong>{isUnlimited ? 'un nombre illimité d\'' : `${maxLocations} `}</strong>établissement(s) supplémentaire(s).
+                Vous en utilisez <strong>{childLocations.length}</strong>.
+              </p>
+            </div>
+          </Card>
+        )}
 
         {/* Locations grid */}
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

@@ -6,12 +6,15 @@ const supabaseAdmin = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 );
 
-// Tier limits for max locations
+// Tier limits for max additional locations (child establishments)
 const TIER_MAX_LOCATIONS: Record<string, number> = {
-  starter: 1,
-  pro: 3,
-  business: 10,
-  enterprise: 50,
+  // Free / trial — no additional locations
+  starter: 0,
+  free: 0,
+  // Paid plans
+  essentiel: 1,
+  premium: 3,
+  'sur-mesure': -1, // unlimited
 };
 
 /**
@@ -47,7 +50,7 @@ export async function GET(request: NextRequest) {
       .single();
 
     const tier = parent?.subscription_tier || 'starter';
-    const maxLocations = TIER_MAX_LOCATIONS[tier] || 1;
+    const maxLocations = TIER_MAX_LOCATIONS[tier] ?? 0;
 
     return NextResponse.json({ locations: locations || [], maxLocations, tier });
   } catch (error) {
@@ -85,7 +88,15 @@ export async function POST(request: NextRequest) {
     }
 
     const tier = parent.subscription_tier || 'starter';
-    const maxLocations = TIER_MAX_LOCATIONS[tier] || 1;
+    const maxLocations = TIER_MAX_LOCATIONS[tier] ?? 0;
+
+    // Free plan cannot add any location
+    if (maxLocations === 0) {
+      return NextResponse.json(
+        { error: 'Votre plan gratuit ne permet pas d\'ajouter d\'établissements supplémentaires. Passez au plan Essentiel ou Premium.' },
+        { status: 403 }
+      );
+    }
 
     // Count existing locations
     const { count } = await supabaseAdmin
@@ -93,9 +104,10 @@ export async function POST(request: NextRequest) {
       .select('id', { count: 'exact', head: true })
       .eq('parent_merchant_id', parentMerchantId);
 
-    if ((count || 0) >= maxLocations) {
+    // -1 means unlimited
+    if (maxLocations !== -1 && (count || 0) >= maxLocations) {
       return NextResponse.json(
-        { error: `Limite atteinte : votre plan ${tier} autorise ${maxLocations} établissement(s) supplémentaire(s).` },
+        { error: `Limite atteinte : votre plan ${tier} autorise ${maxLocations} établissement(s) supplémentaire(s). Passez au plan supérieur.` },
         { status: 403 }
       );
     }
