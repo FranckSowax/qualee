@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { supabase } from '@/lib/supabase/client';
 import { DashboardLayout } from '@/components/dashboard/DashboardLayout';
@@ -35,7 +35,7 @@ import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import type { Merchant, LoyaltyClient, LoyaltyStats } from '@/lib/types/database';
 
-export default function LoyaltyPage() {
+function LoyaltyPageContent() {
   const { t } = useTranslation();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -672,5 +672,17 @@ export default function LoyaltyPage() {
         )}
       </div>
     </DashboardLayout>
+  );
+}
+
+export default function LoyaltyPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <Loader2 className="w-8 h-8 animate-spin text-teal-600" />
+      </div>
+    }>
+      <LoyaltyPageContent />
+    </Suspense>
   );
 }
