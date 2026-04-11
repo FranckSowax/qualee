@@ -18,6 +18,7 @@ import {
   Star,
   BarChart3,
   Filter,
+  Phone,
 } from 'lucide-react';
 
 const PAGE_SIZE = 10;
@@ -177,7 +178,8 @@ export default function FeedbackPage() {
             <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
 
             {/* Table header */}
-            <div className="hidden md:grid md:grid-cols-[minmax(0,1fr)_100px_100px_120px] gap-4 px-6 py-3 bg-gray-50 border-b border-gray-200 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+            <div className="hidden md:grid md:grid-cols-[160px_minmax(0,1fr)_100px_100px_140px] gap-4 px-6 py-3 bg-gray-50 border-b border-gray-200 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+              <span>WhatsApp</span>
               <span>{t('dashboardFeedback.colComment')}</span>
               <span className="text-center">{t('dashboardFeedback.colRating')}</span>
               <span className="text-center">{t('dashboardFeedback.colSentiment')}</span>
@@ -186,59 +188,77 @@ export default function FeedbackPage() {
 
             {/* Rows */}
             <div className="divide-y divide-gray-100">
-              {paginatedData.map((f) => (
-                <div
-                  key={f.id}
-                  className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_100px_100px_120px] gap-2 md:gap-4 px-6 py-4 hover:bg-gray-50/50 transition-colors items-center"
-                >
-                  {/* Comment */}
-                  <div className="min-w-0">
-                    <p className="text-sm text-gray-700 truncate">
-                      {f.comment || <span className="text-gray-400 italic">{t('dashboardFeedback.noComment')}</span>}
-                    </p>
-                  </div>
+              {paginatedData.map((f) => {
+                const createdDate = new Date(f.created_at);
+                const dateStr = createdDate.toLocaleDateString('fr-FR');
+                const timeStr = createdDate.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+                return (
+                  <div
+                    key={f.id}
+                    className="grid grid-cols-1 md:grid-cols-[160px_minmax(0,1fr)_100px_100px_140px] gap-2 md:gap-4 px-6 py-4 hover:bg-gray-50/50 transition-colors items-center"
+                  >
+                    {/* WhatsApp phone */}
+                    <div className="flex items-center gap-1.5 min-w-0">
+                      <Phone className="w-3.5 h-3.5 text-green-600 flex-shrink-0" />
+                      {f.customer_phone ? (
+                        <span className="text-xs font-mono text-gray-700 truncate">{f.customer_phone}</span>
+                      ) : (
+                        <span className="text-xs text-gray-400 italic">—</span>
+                      )}
+                    </div>
 
-                  {/* Star rating with colored dots */}
-                  <div className="flex items-center justify-center gap-0.5">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <div
-                        key={star}
-                        className={`w-2 h-2 rounded-full ${
-                          star <= f.rating
-                            ? f.rating >= 4
-                              ? 'bg-emerald-500'
-                              : f.rating === 3
-                                ? 'bg-amber-500'
-                                : 'bg-red-500'
-                            : 'bg-gray-200'
-                        }`}
-                      />
-                    ))}
-                    <span className="ml-1.5 text-xs font-medium text-gray-500">{f.rating}</span>
-                  </div>
+                    {/* Comment */}
+                    <div className="min-w-0">
+                      <p className="text-sm text-gray-700 truncate">
+                        {f.comment || <span className="text-gray-400 italic">{t('dashboardFeedback.noComment')}</span>}
+                      </p>
+                    </div>
 
-                  {/* Sentiment */}
-                  <div className="flex justify-center">
-                    {f.is_positive ? (
-                      <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-emerald-50 text-emerald-700 rounded-full text-xs font-medium">
-                        <ThumbsUp className="w-3 h-3" />
-                        {t('dashboardFeedback.positive')}
-                      </span>
-                    ) : (
-                      <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-red-50 text-red-700 rounded-full text-xs font-medium">
-                        <ThumbsDown className="w-3 h-3" />
-                        {t('dashboardFeedback.negative')}
-                      </span>
-                    )}
-                  </div>
+                    {/* Star rating with colored dots */}
+                    <div className="flex items-center justify-center gap-0.5">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <div
+                          key={star}
+                          className={`w-2 h-2 rounded-full ${
+                            star <= f.rating
+                              ? f.rating >= 4
+                                ? 'bg-emerald-500'
+                                : f.rating === 3
+                                  ? 'bg-amber-500'
+                                  : 'bg-red-500'
+                              : 'bg-gray-200'
+                          }`}
+                        />
+                      ))}
+                      <span className="ml-1.5 text-xs font-medium text-gray-500">{f.rating}</span>
+                    </div>
 
-                  {/* Date */}
-                  <div className="flex items-center justify-end gap-1.5 text-xs text-gray-500">
-                    <Calendar className="w-3 h-3" />
-                    {new Date(f.created_at).toLocaleDateString()}
+                    {/* Sentiment */}
+                    <div className="flex justify-center">
+                      {f.is_positive ? (
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-emerald-50 text-emerald-700 rounded-full text-xs font-medium">
+                          <ThumbsUp className="w-3 h-3" />
+                          {t('dashboardFeedback.positive')}
+                        </span>
+                      ) : (
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-red-50 text-red-700 rounded-full text-xs font-medium">
+                          <ThumbsDown className="w-3 h-3" />
+                          {t('dashboardFeedback.negative')}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Date + time */}
+                    <div className="flex flex-col items-end gap-0.5 text-xs text-gray-500">
+                      <div className="flex items-center gap-1.5">
+                        <Calendar className="w-3 h-3" />
+                        {dateStr}
+                      </div>
+                      <span className="font-mono text-gray-400">{timeStr}</span>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
             {/* Compact pagination footer */}
