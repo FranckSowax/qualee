@@ -3,6 +3,10 @@
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { DashboardLayout } from '@/components/dashboard/DashboardLayout';
+import { CampaignOnboarding } from '@/components/dashboard/CampaignOnboarding';
+import { CampaignLock } from '@/components/dashboard/CampaignLock';
+import { EXEMPT_EMAILS } from '@/lib/config/admin';
+import { HelpCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { supabase } from '@/lib/supabase/client';
 import { useTranslation } from 'react-i18next';
@@ -227,6 +231,11 @@ export default function WhatsAppCampaignPage() {
   const [isSaving, setIsSaving] = useState(false);
   const [saveMessage, setSaveMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
 
+  // Onboarding + lock gate
+  const [showOnboarding, setShowOnboarding] = useState(false);
+  const [loyaltyClientCount, setLoyaltyClientCount] = useState<number>(0);
+  const [gateChecked, setGateChecked] = useState(false);
+
   useEffect(() => {
     const fetchMerchant = async () => {
       const { data: { user } } = await supabase.auth.getUser();
@@ -237,6 +246,20 @@ export default function WhatsAppCampaignPage() {
           .eq('id', user.id)
           .single();
         setMerchant(data);
+
+        // Count loyalty clients for the 100-client gate
+        const { count } = await supabase
+          .from('loyalty_clients')
+          .select('id', { count: 'exact', head: true })
+          .eq('merchant_id', user.id);
+        setLoyaltyClientCount(count || 0);
+        setGateChecked(true);
+
+        // Auto-show onboarding if never dismissed
+        const dismissed = localStorage.getItem('cartelle_campaign_onboarding_dismissed');
+        if (!dismissed) {
+          setTimeout(() => setShowOnboarding(true), 600);
+        }
 
         // Fetch saved campaigns
         fetchSavedCampaigns(user.id);
@@ -529,8 +552,29 @@ export default function WhatsAppCampaignPage() {
     );
   }
 
+  // Gate: require 100 loyalty clients (exempt emails bypass)
+  const isExempt = merchant?.email
+    ? EXEMPT_EMAILS.map(e => e.toLowerCase()).includes(merchant.email.toLowerCase())
+    : false;
+  const isLocked = gateChecked && !isExempt && loyaltyClientCount < 100;
+
+  if (isLocked) {
+    return (
+      <DashboardLayout merchant={merchant}>
+        {showOnboarding && <CampaignOnboarding variant="campaign" onClose={() => setShowOnboarding(false)} />}
+        <CampaignLock
+          currentClients={loyaltyClientCount}
+          required={100}
+          onOpenGuide={() => setShowOnboarding(true)}
+        />
+      </DashboardLayout>
+    );
+  }
+
   return (
     <DashboardLayout merchant={merchant}>
+      {showOnboarding && <CampaignOnboarding variant="campaign" onClose={() => setShowOnboarding(false)} />}
+
       <div className="space-y-6">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
@@ -538,6 +582,13 @@ export default function WhatsAppCampaignPage() {
             <h1 className="text-2xl font-bold text-gray-900">{t('marketing.whatsappCampaign.title')}</h1>
             <p className="text-sm text-gray-500 mt-1">{t('marketing.whatsappCampaign.subtitle')}</p>
           </div>
+          <button
+            onClick={() => setShowOnboarding(true)}
+            className="inline-flex items-center gap-1.5 text-sm text-teal-600 hover:text-teal-700 font-medium transition-colors self-start"
+          >
+            <HelpCircle className="w-4 h-4" />
+            Guide
+          </button>
         </div>
 
         {/* ═══ Credit Balance Banner ═══ */}

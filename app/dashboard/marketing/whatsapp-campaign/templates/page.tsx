@@ -3,6 +3,10 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { DashboardLayout } from '@/components/dashboard/DashboardLayout';
+import { CampaignOnboarding } from '@/components/dashboard/CampaignOnboarding';
+import { CampaignLock } from '@/components/dashboard/CampaignLock';
+import { EXEMPT_EMAILS } from '@/lib/config/admin';
+import { HelpCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { supabase } from '@/lib/supabase/client';
 import {
@@ -197,6 +201,9 @@ export default function WhatsAppTemplatesPage() {
   const router = useRouter();
   const [merchant, setMerchant] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [showOnboarding, setShowOnboarding] = useState(false);
+  const [loyaltyClientCount, setLoyaltyClientCount] = useState<number>(0);
+  const [gateChecked, setGateChecked] = useState(false);
 
   // Templates list
   const [templates, setTemplates] = useState<WhatsAppTemplate[]>([]);
@@ -238,6 +245,21 @@ export default function WhatsAppTemplatesPage() {
         return;
       }
       setMerchant(data);
+
+      // Loyalty client count gate
+      const { count } = await supabase
+        .from('loyalty_clients')
+        .select('id', { count: 'exact', head: true })
+        .eq('merchant_id', user.id);
+      setLoyaltyClientCount(count || 0);
+      setGateChecked(true);
+
+      // Auto-show onboarding if never dismissed
+      const dismissed = localStorage.getItem('cartelle_templates_onboarding_dismissed');
+      if (!dismissed) {
+        setTimeout(() => setShowOnboarding(true), 600);
+      }
+
       setLoading(false);
     };
     init();
@@ -438,9 +460,40 @@ export default function WhatsAppTemplatesPage() {
     );
   }
 
+  // Gate: require 100 loyalty clients (exempt emails bypass)
+  const isExempt = merchant?.email
+    ? EXEMPT_EMAILS.map(e => e.toLowerCase()).includes(merchant.email.toLowerCase())
+    : false;
+  const isLocked = gateChecked && !isExempt && loyaltyClientCount < 100;
+
+  if (isLocked) {
+    return (
+      <DashboardLayout merchant={merchant}>
+        {showOnboarding && <CampaignOnboarding variant="templates" onClose={() => setShowOnboarding(false)} />}
+        <CampaignLock
+          currentClients={loyaltyClientCount}
+          required={100}
+          onOpenGuide={() => setShowOnboarding(true)}
+        />
+      </DashboardLayout>
+    );
+  }
+
   return (
-    <DashboardLayout>
+    <DashboardLayout merchant={merchant}>
+      {showOnboarding && <CampaignOnboarding variant="templates" onClose={() => setShowOnboarding(false)} />}
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-6">
+        {/* Help button */}
+        <div className="flex justify-end">
+          <button
+            onClick={() => setShowOnboarding(true)}
+            className="inline-flex items-center gap-1.5 text-sm text-teal-600 hover:text-teal-700 font-medium transition-colors"
+          >
+            <HelpCircle className="w-4 h-4" />
+            Guide des templates
+          </button>
+        </div>
         {/* ----------------------------------------------------------------- */}
         {/* Header                                                            */}
         {/* ----------------------------------------------------------------- */}

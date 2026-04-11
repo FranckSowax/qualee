@@ -3,6 +3,10 @@
 import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { DashboardLayout } from '@/components/dashboard/DashboardLayout';
+import { CampaignOnboarding } from '@/components/dashboard/CampaignOnboarding';
+import { CampaignLock } from '@/components/dashboard/CampaignLock';
+import { EXEMPT_EMAILS } from '@/lib/config/admin';
+import { HelpCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -81,6 +85,9 @@ function SendCampaignPage() {
   const templateVariables = variablesJson ? JSON.parse(variablesJson) : {};
 
   const [merchant, setMerchant] = useState<any>(null);
+  const [showOnboarding, setShowOnboarding] = useState(false);
+  const [loyaltyClientCount, setLoyaltyClientCount] = useState<number>(0);
+  const [gateChecked, setGateChecked] = useState(false);
   const [loading, setLoading] = useState(true);
   const [customers, setCustomers] = useState<WhatsAppCustomer[]>([]);
   const [filteredCustomers, setFilteredCustomers] = useState<WhatsAppCustomer[]>([]);
@@ -130,6 +137,20 @@ function SendCampaignPage() {
         .eq('id', user.id)
         .single();
       setMerchant(merchantData);
+
+      // Loyalty client count gate
+      const { count } = await supabase
+        .from('loyalty_clients')
+        .select('id', { count: 'exact', head: true })
+        .eq('merchant_id', user.id);
+      setLoyaltyClientCount(count || 0);
+      setGateChecked(true);
+
+      // Auto-show onboarding if never dismissed
+      const dismissed = localStorage.getItem('cartelle_send_onboarding_dismissed');
+      if (!dismissed) {
+        setTimeout(() => setShowOnboarding(true), 600);
+      }
 
       if (isTemplateMode) {
         // ─── Template mode: fetch from BOTH feedback + loyalty_clients ───
@@ -563,8 +584,29 @@ function SendCampaignPage() {
     );
   }
 
+  // Gate: require 100 loyalty clients (exempt emails bypass)
+  const isExempt = merchant?.email
+    ? EXEMPT_EMAILS.map(e => e.toLowerCase()).includes(merchant.email.toLowerCase())
+    : false;
+  const isLocked = gateChecked && !isExempt && loyaltyClientCount < 100;
+
+  if (isLocked) {
+    return (
+      <DashboardLayout merchant={merchant}>
+        {showOnboarding && <CampaignOnboarding variant="send" onClose={() => setShowOnboarding(false)} />}
+        <CampaignLock
+          currentClients={loyaltyClientCount}
+          required={100}
+          onOpenGuide={() => setShowOnboarding(true)}
+        />
+      </DashboardLayout>
+    );
+  }
+
   return (
     <DashboardLayout merchant={merchant}>
+      {showOnboarding && <CampaignOnboarding variant="send" onClose={() => setShowOnboarding(false)} />}
+
       <div className="space-y-5">
         {/* Header */}
         <div className="flex items-center gap-3">
@@ -587,6 +629,13 @@ function SendCampaignPage() {
                 : t('marketing.whatsappCampaign.selectRecipientsDesc')}
             </p>
           </div>
+          <button
+            onClick={() => setShowOnboarding(true)}
+            className="inline-flex items-center gap-1.5 text-sm text-teal-600 hover:text-teal-700 font-medium transition-colors"
+          >
+            <HelpCircle className="w-4 h-4" />
+            Guide
+          </button>
         </div>
 
         {/* Campaign Summary Banner */}

@@ -2,6 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { getWhatsAppConfig } from '@/lib/whatsapp/config';
 import { sendTemplateMessage } from '@/lib/whatsapp/client';
+import { isExemptEmail } from '@/lib/config/admin';
+
+const MIN_LOYALTY_CLIENTS = 100;
+const MAX_CAMPAIGNS_PER_WEEK = 2;
 
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -40,13 +44,51 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'merchantId, templateId et recipients requis' }, { status: 400 });
     }
 
-    // 1. Check credits
+    // 1. Load merchant (for email + credits)
     const { data: merchant } = await supabaseAdmin
       .from('merchants')
-      .select('campaign_credits')
+      .select('campaign_credits, email')
       .eq('id', merchantId)
       .single();
 
+    const exempt = isExemptEmail(merchant?.email);
+
+    // 2. Gate: 100 loyalty clients minimum (exempt accounts bypass)
+    if (!exempt) {
+      const { count: loyaltyCount } = await supabaseAdmin
+        .from('loyalty_clients')
+        .select('id', { count: 'exact', head: true })
+        .eq('merchant_id', merchantId);
+
+      if ((loyaltyCount || 0) < MIN_LOYALTY_CLIENTS) {
+        return NextResponse.json({
+          error: `Les campagnes WhatsApp nécessitent au moins ${MIN_LOYALTY_CLIENTS} clients fidèles. Vous en avez ${loyaltyCount || 0}.`,
+          currentClients: loyaltyCount || 0,
+          required: MIN_LOYALTY_CLIENTS,
+        }, { status: 403 });
+      }
+    }
+
+    // 3. Gate: max 2 campaigns per week (exempt accounts bypass)
+    if (!exempt) {
+      const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
+      const { count: recentCampaigns } = await supabaseAdmin
+        .from('whatsapp_campaigns')
+        .select('id', { count: 'exact', head: true })
+        .eq('merchant_id', merchantId)
+        .gte('last_sent_at', sevenDaysAgo)
+        .not('last_sent_at', 'is', null);
+
+      if ((recentCampaigns || 0) >= MAX_CAMPAIGNS_PER_WEEK) {
+        return NextResponse.json({
+          error: `Limite atteinte : maximum ${MAX_CAMPAIGNS_PER_WEEK} campagnes par semaine. Réessayez dans quelques jours.`,
+          campaignsThisWeek: recentCampaigns || 0,
+          maxPerWeek: MAX_CAMPAIGNS_PER_WEEK,
+        }, { status: 429 });
+      }
+    }
+
+    // 4. Check credits
     const currentCredits = merchant?.campaign_credits || 0;
     const requiredCredits = recipients.length;
 
