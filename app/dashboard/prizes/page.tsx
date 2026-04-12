@@ -9,7 +9,7 @@ import { DashboardLayout } from '@/components/dashboard/DashboardLayout';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Prize } from '@/lib/types/database';
-import { Plus, Trash2, AlertCircle, Upload, Image as ImageIcon, Percent, Pencil, X, Ban, RefreshCw, Lock, Palette, Gift, Settings2, BarChart3, Sparkles } from 'lucide-react';
+import { Plus, Trash2, AlertCircle, Upload, Image as ImageIcon, Percent, Pencil, X, Ban, RefreshCw, Lock, Palette, Gift, Settings2, BarChart3, Sparkles, Check } from 'lucide-react';
 import { WheelPreview, PrizeWithQuantity } from '@/components/dashboard/WheelPreview';
 
 // Default segment colors (S1-S6 = prizes, S7 = #UNLUCKY#, S8 = #R&#xC9;ESSAYER#)
@@ -125,6 +125,8 @@ export default function PrizesPage() {
   const [uploading, setUploading] = useState(false);
   const [segmentColors, setSegmentColors] = useState(DEFAULT_SEGMENT_COLORS);
   const [selectedTheme, setSelectedTheme] = useState<number | null>(null);
+  const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -354,8 +356,10 @@ export default function PrizesPage() {
   };
 
   // Save segment quantities to merchant
-  const saveSegmentQuantities = async () => {
+  const saveSegmentQuantities = async (showFeedback = false) => {
     if (!user) return;
+
+    if (showFeedback) setSaving(true);
 
     try {
       const { error } = await supabase
@@ -369,8 +373,15 @@ export default function PrizesPage() {
         .eq('id', user.id);
 
       if (error) throw error;
+
+      if (showFeedback) {
+        setSaved(true);
+        setTimeout(() => setSaved(false), 2500);
+      }
     } catch (error: unknown) {
       console.error('Save error:', error);
+    } finally {
+      if (showFeedback) setSaving(false);
     }
   };
 
@@ -1020,6 +1031,32 @@ export default function PrizesPage() {
                   </div>
                 </div>
               </Card>
+
+              {/* Save Button */}
+              <div className="flex justify-end">
+                <Button
+                  onClick={() => saveSegmentQuantities(true)}
+                  disabled={saving}
+                  className="gap-2 bg-gradient-to-r from-[#EB1E99] to-[#7209B7] hover:opacity-90 text-white px-8 py-3 text-sm font-semibold shadow-lg shadow-pink-500/20"
+                >
+                  {saving ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                      {isFr ? 'Sauvegarde...' : 'Saving...'}
+                    </>
+                  ) : saved ? (
+                    <>
+                      <Check className="w-4 h-4" />
+                      {isFr ? 'Configuration sauvegardée !' : 'Configuration saved!'}
+                    </>
+                  ) : (
+                    <>
+                      <Settings2 className="w-4 h-4" />
+                      {isFr ? 'Sauvegarder la configuration' : 'Save configuration'}
+                    </>
+                  )}
+                </Button>
+              </div>
             </div>
           )}
         </div>
