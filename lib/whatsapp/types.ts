@@ -127,7 +127,7 @@ export interface WhatsAppCampaignMessage {
   meta_message_id: string | null;
   status: CampaignMessageStatus;
   error_message: string | null;
-  cost_fcfa: number;
+  cost_eur: number;
   sent_at: string | null;
   delivered_at: string | null;
   read_at: string | null;

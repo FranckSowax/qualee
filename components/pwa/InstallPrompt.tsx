@@ -52,14 +52,14 @@ export default function InstallPrompt() {
 
   return (
     <div className="fixed bottom-0 inset-x-0 z-50 px-4 pb-4">
-      <div className="mx-auto max-w-lg rounded-t-2xl bg-gradient-to-r from-teal-600 to-emerald-500 p-4 shadow-xl">
+      <div className="mx-auto max-w-lg rounded-t-2xl bg-gradient-to-r from-[#EB1E99] to-[#7209B7] p-4 shadow-xl">
         <div className="flex items-center gap-3">
           <p className="flex-1 text-sm text-white">
             Installez Qualee sur votre appareil pour un accès rapide
           </p>
           <button
             onClick={handleInstall}
-            className="shrink-0 rounded-lg bg-white px-4 py-2 text-sm font-semibold text-teal-700 hover:bg-teal-50 transition-colors"
+            className="shrink-0 rounded-lg bg-white px-4 py-2 text-sm font-semibold text-violet-700 hover:bg-pink-50 transition-colors"
           >
             Installer
           </button>

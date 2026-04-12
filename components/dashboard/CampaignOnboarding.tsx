@@ -19,7 +19,7 @@ const CAMPAIGN_STEPS = [
       'Vous ciblez vos clients qui ont déjà laissé un avis',
       'Messages riches avec images, boutons, liens',
     ],
-    color: 'from-green-500 to-emerald-500',
+    color: 'from-green-500 to-violet-500',
     bgLight: 'bg-green-50',
     textColor: 'text-green-600',
   },
@@ -80,9 +80,9 @@ const CAMPAIGN_STEPS = [
       'Les échecs sont affichés avec les numéros concernés',
       'Meta fournit les statuts : envoyé, livré, lu',
     ],
-    color: 'from-teal-500 to-emerald-500',
-    bgLight: 'bg-teal-50',
-    textColor: 'text-teal-600',
+    color: 'from-[#EB1E99] to-[#7209B7]',
+    bgLight: 'bg-pink-50',
+    textColor: 'text-pink-600',
   },
 ];
 
@@ -127,7 +127,7 @@ const TEMPLATE_STEPS = [
       'REJECTED : corrigez et soumettez à nouveau',
       'Évitez les contenus promotionnels agressifs',
     ],
-    color: 'from-green-500 to-emerald-500',
+    color: 'from-green-500 to-violet-500',
     bgLight: 'bg-green-50',
     textColor: 'text-green-600',
   },
@@ -173,9 +173,9 @@ const SEND_STEPS = [
       'Suivi en temps réel : envoyés, livrés, échoués',
       'Les numéros en erreur sont listés pour correction',
     ],
-    color: 'from-teal-500 to-emerald-500',
-    bgLight: 'bg-teal-50',
-    textColor: 'text-teal-600',
+    color: 'from-[#EB1E99] to-[#7209B7]',
+    bgLight: 'bg-pink-50',
+    textColor: 'text-pink-600',
   },
 ];
 
@@ -295,7 +295,7 @@ export function CampaignOnboarding({ variant = 'campaign', onClose }: CampaignOn
             ) : (
               <button
                 onClick={handleDismiss}
-                className="flex items-center gap-1 text-sm font-semibold text-teal-600 hover:text-teal-700 transition-colors"
+                className="flex items-center gap-1 text-sm font-semibold text-pink-600 hover:text-violet-700 transition-colors"
               >
                 J'ai compris
                 <Check className="w-4 h-4" />

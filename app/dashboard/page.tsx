@@ -222,7 +222,7 @@ export default function DashboardPage() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-teal-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-16 h-16 border-4 border-pink-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-lg text-gray-600">{t('dashboard.common.loading')}</p>
         </div>
       </div>
@@ -296,20 +296,20 @@ export default function DashboardPage() {
 
           {/* Review Link Banner */}
           <Card className="group relative border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md p-0">
-            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
             <div className="flex items-center gap-3 px-4 py-3">
-              <div className="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center shrink-0">
+              <div className="w-10 h-10 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center shrink-0">
                 <ArrowUpRight className="w-5 h-5" />
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium text-gray-900">{t('dashboard.reviewLink.publicLink')}</p>
-                <code className="text-xs text-teal-600 truncate block">{reviewUrl}</code>
+                <code className="text-xs text-pink-600 truncate block">{reviewUrl}</code>
               </div>
               <div className="flex items-center gap-2 shrink-0">
                 <Button
                   size="sm"
                   onClick={handleCopyLink}
-                  className="bg-teal-600 hover:bg-teal-700 text-white text-xs h-8 px-3"
+                  className="bg-pink-600 hover:bg-violet-700 text-white text-xs h-8 px-3"
                 >
                   <Copy className="w-3.5 h-3.5 mr-1.5" />
                   {linkCopied ? (i18n.language === 'fr' ? 'Copie !' : 'Copied!') : t('dashboard.reviewLink.copy')}
@@ -337,10 +337,10 @@ export default function DashboardPage() {
                 key={stat.label}
                 className="group relative border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md p-0"
               >
-                <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                 <div className="p-4">
                   <div className="flex items-center justify-between mb-2">
-                    <div className="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center">
                       <Icon className="w-5 h-5" />
                     </div>
                     {stat.trend !== undefined && stat.trend !== 0 && (
@@ -352,7 +352,7 @@ export default function DashboardPage() {
                       </span>
                     )}
                     {stat.badge && (
-                      <span className="inline-flex items-center text-xs font-medium px-1.5 py-0.5 rounded-md bg-teal-50 text-teal-700">
+                      <span className="inline-flex items-center text-xs font-medium px-1.5 py-0.5 rounded-md bg-pink-50 text-violet-700">
                         {stat.badge}
                       </span>
                     )}
@@ -377,10 +377,10 @@ export default function DashboardPage() {
 
           {/* Recent Reviews - Compact List */}
           <Card className="group relative border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md p-0">
-            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
             <div className="p-4">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center">
                   <MessageSquare className="w-5 h-5" />
                 </div>
                 <h3 className="text-sm font-semibold text-gray-900">{t('dashboard.recentReviews.title')}</h3>
@@ -438,7 +438,7 @@ export default function DashboardPage() {
 
         {/* Quick Actions - 3x2 grid */}
         <Card className="group relative border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md p-0">
-          <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+          <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
           <div className="p-4">
             <h3 className="text-sm font-semibold text-gray-900 mb-3">{t('dashboard.quickActions.title')}</h3>
             <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
@@ -448,9 +448,9 @@ export default function DashboardPage() {
                   <button
                     key={action.href}
                     onClick={() => router.push(action.href)}
-                    className="flex flex-col items-center gap-1.5 p-3 rounded-lg hover:bg-teal-50 transition-colors group/action"
+                    className="flex flex-col items-center gap-1.5 p-3 rounded-lg hover:bg-pink-50 transition-colors group/action"
                   >
-                    <div className="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center group-hover/action:bg-teal-600 group-hover/action:text-white transition-colors">
+                    <div className="w-10 h-10 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center group-hover/action:bg-pink-600 group-hover/action:text-white transition-colors">
                       <Icon className="w-5 h-5" />
                     </div>
                     <span className="text-xs font-medium text-gray-700 text-center leading-tight">{action.label}</span>

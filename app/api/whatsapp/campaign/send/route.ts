@@ -128,7 +128,7 @@ export async function POST(request: NextRequest) {
           name: `Campagne ${template.name} — ${new Date().toLocaleDateString('fr')}`,
           template_id: templateId,
           template_variables: variables || {},
-          estimated_cost_fcfa: 0,
+          estimated_cost_eur: 0,
           total_recipients: recipients.length,
         })
         .select()
@@ -156,7 +156,7 @@ export async function POST(request: NextRequest) {
       recipient_phone: r.phone,
       recipient_name: r.name || null,
       status: 'queued',
-      cost_fcfa: 0,
+      cost_eur: 0,
     }));
 
     await supabaseAdmin.from('whatsapp_campaign_messages').insert(messageRows);

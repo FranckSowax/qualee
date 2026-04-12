@@ -77,18 +77,18 @@ export async function POST(request: NextRequest) {
     }
 
     // Pricing
-    let amount_xaf = 0;
+    let amount_eur = 0;
     const qty = Math.max(1, quantity || 1);
 
     if (support_type === 'plexiglas') {
-      amount_xaf = 5000 * qty;
+      amount_eur = 5000 * qty;
     } else if (support_type === 'dtf') {
       if (qty < 4) {
         return NextResponse.json({ error: 'Minimum 4 unités pour le DTF' }, { status: 400 });
       }
-      amount_xaf = 10000; // Forfait 4 DTF
+      amount_eur = 10000; // Forfait 4 DTF
       if (qty > 4) {
-        amount_xaf = Math.ceil(qty / 4) * 10000;
+        amount_eur = Math.ceil(qty / 4) * 10000;
       }
     }
     // paper = gratuit (0)
@@ -108,7 +108,7 @@ export async function POST(request: NextRequest) {
         merchant_name: merchant?.business_name || '',
         support_type,
         quantity: qty,
-        amount_xaf,
+        amount_eur,
         shipping_address: shipping_address || null,
         phone: phone || null,
         notes: notes || null,

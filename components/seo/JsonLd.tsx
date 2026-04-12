@@ -5,11 +5,11 @@ export function SoftwareApplicationJsonLd() {
     name: 'Qualee',
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'Web',
-    description: 'Plateforme de fidélisation et gamification pour les commerces africains. Roue de la fortune, carte fidélité digitale, campagnes WhatsApp.',
+    description: 'Plateforme de fidélisation et gamification pour les professionnels de la beauté. Roue de la fortune, carte fidélité digitale, campagnes WhatsApp.',
     offers: {
       '@type': 'Offer',
       price: '0',
-      priceCurrency: 'XAF',
+      priceCurrency: 'EUR',
       description: 'Essai gratuit 14 jours',
     },
     aggregateRating: {

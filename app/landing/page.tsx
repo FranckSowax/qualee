@@ -165,7 +165,7 @@ export default function LandingPage() {
       avatar: '👗',
       quote: 'Simple, efficace, et nos clients en parlent autour d\'eux. Le bouche-à-oreille a explosé.',
       metrics: [
-        { label: 'Panier moyen', before: '15 000 F', after: '22 000 F', period: '1 mois' },
+        { label: 'Panier moyen', before: '35 €', after: '52 €', period: '1 mois' },
         { label: 'Nouveaux clients', before: '—', after: '+85', period: '6 sem.' },
       ],
     },
@@ -178,12 +178,12 @@ export default function LandingPage() {
       cta: 'Créer mon compte gratuit', popular: false, accent: false,
     },
     {
-      name: 'Essentiel', price: '10 000', period: 'FCFA / mois', desc: 'Le plus choisi par nos clients',
+      name: 'Essentiel', price: '15', period: 'EUR / mois', desc: 'Le plus choisi par nos clients',
       features: ['1 établissement', 'Roue + Carte fidélité', 'QR Code personnalisé', 'Statistiques avancées', 'Campagnes WhatsApp', 'Support prioritaire'],
       cta: 'Activer mon essai', popular: true, accent: false,
     },
     {
-      name: 'Premium', price: '25 000', period: 'FCFA / mois', desc: 'Performance maximale',
+      name: 'Premium', price: '39', period: 'EUR / mois', desc: 'Performance maximale',
       features: ['3 établissements', 'Toutes les fonctionnalités', 'Branding personnalisé', 'Wallet Apple & Google', 'Analytics avancés', 'Gestionnaire dédié'],
       cta: 'Activer mon essai', popular: false, accent: false,
     },
@@ -227,13 +227,13 @@ export default function LandingPage() {
 
           <div className="hidden md:flex items-center gap-8">
             {NAV.map((l) => (
-              <a key={l.href} href={l.href} className="nav-link-underline text-sm font-medium text-gray-600 transition-colors hover:text-teal-600">{l.label}</a>
+              <a key={l.href} href={l.href} className="nav-link-underline text-sm font-medium text-gray-600 transition-colors hover:text-pink-600">{l.label}</a>
             ))}
           </div>
 
           <div className="hidden md:flex items-center gap-3">
-            <Link href="/auth/login" className="text-sm font-medium px-4 py-2 rounded-xl text-gray-700 hover:text-teal-700 transition-colors">Connexion</Link>
-            <Link href="/auth/signup" className="text-sm font-semibold px-5 py-2.5 rounded-xl bg-gradient-to-r from-teal-600 to-emerald-500 text-white hover:shadow-lg hover:shadow-teal-500/25 hover:-translate-y-0.5 transition-all">
+            <Link href="/auth/login" className="text-sm font-medium px-4 py-2 rounded-xl text-gray-700 hover:text-violet-700 transition-colors">Connexion</Link>
+            <Link href="/auth/signup" className="text-sm font-semibold px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#EB1E99] to-[#7209B7] text-white hover:shadow-lg hover:shadow-pink-500/25 hover:-translate-y-0.5 transition-all">
               Essai gratuit <ArrowRight className="w-4 h-4 inline ml-1" />
             </Link>
           </div>
@@ -251,7 +251,7 @@ export default function LandingPage() {
               ))}
               <div className="flex gap-3 mt-4">
                 <Link href="/auth/login" className="flex-1 text-center py-2.5 rounded-xl border border-gray-200 text-gray-700 font-medium">Connexion</Link>
-                <Link href="/auth/signup" className="flex-1 text-center py-2.5 rounded-xl bg-teal-600 text-white font-semibold">Essai gratuit</Link>
+                <Link href="/auth/signup" className="flex-1 text-center py-2.5 rounded-xl bg-pink-600 text-white font-semibold">Essai gratuit</Link>
               </div>
             </motion.div>
           )}
@@ -260,15 +260,15 @@ export default function LandingPage() {
 
       {/* ═══════════ HERO ═══════════ */}
       <section ref={heroRef} className="relative min-h-[100vh] flex items-center bg-white overflow-hidden">
-        <div className="absolute top-20 -left-40 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] rounded-full bg-teal-100/40 blur-[120px]" />
-        <div className="absolute bottom-10 right-10 w-[250px] h-[250px] sm:w-[400px] sm:h-[400px] rounded-full bg-emerald-100/30 blur-[100px]" />
+        <div className="absolute top-20 -left-40 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] rounded-full bg-pink-100/40 blur-[120px]" />
+        <div className="absolute bottom-10 right-10 w-[250px] h-[250px] sm:w-[400px] sm:h-[400px] rounded-full bg-violet-100/30 blur-[100px]" />
 
         <motion.div style={{ opacity: heroOpacity }} className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 pt-28 pb-12 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
             <div>
               {/* Social proof badge */}
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-teal-50 border border-teal-100 text-teal-700 text-sm font-medium">
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-pink-50 border border-pink-100 text-violet-700 text-sm font-medium">
                   <Check className="w-3.5 h-3.5" />
                   500+ commerces nous font confiance
                 </span>
@@ -283,7 +283,7 @@ export default function LandingPage() {
               >
                 Vos clients reviennent.
                 <br />
-                <span className="bg-gradient-to-r from-teal-600 via-emerald-500 to-teal-500 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#EB1E99] via-[#7209B7] to-[#3A0CA3] bg-clip-text text-transparent">
                   Automatiquement.
                 </span>
               </motion.h1>
@@ -307,8 +307,8 @@ export default function LandingPage() {
               >
                 {STATS.map((s, i) => (
                   <div key={i} className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center">
-                      <s.icon className="w-5 h-5 text-teal-600" />
+                    <div className="w-10 h-10 rounded-xl bg-pink-50 flex items-center justify-center">
+                      <s.icon className="w-5 h-5 text-pink-600" />
                     </div>
                     <div>
                       <span className="text-2xl font-extrabold text-gray-900" style={{ fontFamily: 'Sora, sans-serif' }}>
@@ -327,11 +327,11 @@ export default function LandingPage() {
                 transition={{ duration: 0.7, delay: 0.5 }}
                 className="mt-8 flex flex-wrap gap-4"
               >
-                <Link href="/auth/signup" className="animate-cta-glow group inline-flex items-center gap-2 px-7 py-4 rounded-2xl bg-gradient-to-r from-teal-600 to-emerald-500 text-white font-semibold text-base hover:shadow-2xl hover:shadow-teal-500/25 hover:-translate-y-0.5 hover:scale-[1.03] transition-all">
+                <Link href="/auth/signup" className="animate-cta-glow group inline-flex items-center gap-2 px-7 py-4 rounded-2xl bg-gradient-to-r from-[#EB1E99] to-[#7209B7] text-white font-semibold text-base hover:shadow-2xl hover:shadow-pink-500/25 hover:-translate-y-0.5 hover:scale-[1.03] transition-all">
                   Créer mon compte gratuit
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
-                <Link href="/contact" className="group inline-flex items-center gap-2 px-7 py-4 rounded-2xl border border-gray-200 text-gray-600 font-medium hover:border-teal-300 hover:text-teal-700 hover:bg-teal-50/50 transition-all">
+                <Link href="/contact" className="group inline-flex items-center gap-2 px-7 py-4 rounded-2xl border border-gray-200 text-gray-600 font-medium hover:border-pink-300 hover:text-violet-700 hover:bg-pink-50/50 transition-all">
                   <Play className="w-4 h-4 group-hover:scale-110 transition-transform" />
                   Découvrir en 2 min
                 </Link>
@@ -387,12 +387,12 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <motion.div variants={fadeUp} custom={0}>
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-teal-50 text-teal-700 text-sm font-semibold">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-pink-50 text-violet-700 text-sm font-semibold">
                 <Zap className="w-4 h-4" /> Bénéfices
               </span>
             </motion.div>
             <motion.h2 variants={fadeUp} custom={1} className="mt-5 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight" style={{ fontFamily: 'Sora, sans-serif' }}>
-              La fidélité, <span className="bg-gradient-to-r from-teal-600 to-emerald-500 bg-clip-text text-transparent">sans friction</span>
+              La fidélité, <span className="bg-gradient-to-r from-[#EB1E99] to-[#7209B7] bg-clip-text text-transparent">sans friction</span>
             </motion.h2>
             <motion.p variants={fadeUp} custom={2} className="mt-4 text-lg text-gray-500">
               Des résultats concrets dès le premier mois pour votre établissement.
@@ -401,13 +401,13 @@ export default function LandingPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {BENEFITS.map((b, i) => (
-              <motion.div key={i} variants={fadeUp} custom={i} className="group relative p-8 rounded-2xl bg-white border border-gray-100 hover:shadow-xl hover:shadow-teal-100/50 hover:border-teal-200 hover:-translate-y-1 transition-all duration-300">
+              <motion.div key={i} variants={fadeUp} custom={i} className="group relative p-8 rounded-2xl bg-white border border-gray-100 hover:shadow-xl hover:shadow-pink-100/50 hover:border-pink-200 hover:-translate-y-1 transition-all duration-300">
                 <div className="flex items-start justify-between mb-5">
-                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center shadow-lg shadow-teal-500/20 group-hover:scale-105 transition-transform">
+                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#EB1E99] to-[#7209B7] flex items-center justify-center shadow-lg shadow-pink-500/20 group-hover:scale-105 transition-transform">
                     <b.icon className="w-6 h-6 text-white" />
                   </div>
                   <div className="text-right">
-                    <span className="text-2xl font-extrabold text-teal-600" style={{ fontFamily: 'Sora, sans-serif' }}>{b.stat}</span>
+                    <span className="text-2xl font-extrabold text-pink-600" style={{ fontFamily: 'Sora, sans-serif' }}>{b.stat}</span>
                     <p className="text-xs text-gray-400">{b.statLabel}</p>
                   </div>
                 </div>
@@ -444,15 +444,15 @@ export default function LandingPage() {
             </motion.div>
 
             {/* After */}
-            <motion.div variants={fadeUp} custom={1} className="p-8 rounded-2xl bg-white border border-teal-100 shadow-lg shadow-teal-50">
+            <motion.div variants={fadeUp} custom={1} className="p-8 rounded-2xl bg-white border border-pink-100 shadow-lg shadow-pink-50">
               <div className="flex items-center gap-2 mb-6">
-                <div className="w-3 h-3 rounded-full bg-teal-500" />
-                <span className="text-sm font-bold text-teal-600 uppercase tracking-wide">Avec Qualee</span>
+                <div className="w-3 h-3 rounded-full bg-pink-500" />
+                <span className="text-sm font-bold text-pink-600 uppercase tracking-wide">Avec Qualee</span>
               </div>
               <ul className="space-y-4">
                 {BEFORE_AFTER.after.map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <Check className="w-5 h-5 text-teal-500 shrink-0 mt-0.5" />
+                    <Check className="w-5 h-5 text-pink-500 shrink-0 mt-0.5" />
                     <span className="text-gray-700 font-medium">{item}</span>
                   </li>
                 ))}
@@ -474,7 +474,7 @@ export default function LandingPage() {
             </motion.div>
             <motion.h2 variants={fadeUp} custom={1} className="mt-5 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight" style={{ fontFamily: 'Sora, sans-serif' }}>
               Qualee travaille pour vous,
-              {' '}<span className="bg-gradient-to-r from-purple-600 to-teal-500 bg-clip-text text-transparent">même quand vous dormez</span>
+              {' '}<span className="bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent">même quand vous dormez</span>
             </motion.h2>
             <motion.p variants={fadeUp} custom={2} className="mt-5 text-lg text-gray-500 leading-relaxed">
               Des messages automatiques envoyés au bon moment, au bon client. Vous configurez une fois, Qualee s'occupe du reste.
@@ -513,7 +513,7 @@ export default function LandingPage() {
             {/* Points milestone */}
             <motion.div variants={fadeUp} custom={2} className="group p-7 rounded-2xl bg-white border border-gray-100 hover:shadow-xl hover:border-purple-200 hover:-translate-y-1 transition-all duration-300">
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-2xl bg-teal-50 flex items-center justify-center shrink-0 text-2xl">🏆</div>
+                <div className="w-12 h-12 rounded-2xl bg-pink-50 flex items-center justify-center shrink-0 text-2xl">🏆</div>
                 <div>
                   <h3 className="font-bold text-gray-900" style={{ fontFamily: 'Sora, sans-serif' }}>Palier de points atteint</h3>
                   <p className="mt-1.5 text-sm text-gray-500 leading-relaxed">Quand un client franchit un palier (50, 100, 200, 500 points), il reçoit une félicitation + invitation à découvrir ses récompenses.</p>
@@ -562,7 +562,7 @@ export default function LandingPage() {
             </motion.div>
             <motion.h2 variants={fadeUp} custom={1} className="mt-5 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight" style={{ fontFamily: 'Sora, sans-serif' }}>
               Parlez à des clients qui vous
-              {' '}<span className="bg-gradient-to-r from-green-600 to-teal-500 bg-clip-text text-transparent">connaissent déjà</span>
+              {' '}<span className="bg-gradient-to-r from-green-600 to-pink-500 bg-clip-text text-transparent">connaissent déjà</span>
             </motion.h2>
             <motion.p variants={fadeUp} custom={2} className="mt-5 text-lg text-gray-500 leading-relaxed">
               Vos clients ont scanné votre QR code, joué à la roue, cumulé des points. WhatsApp devient le canal le plus puissant pour les faire revenir.
@@ -664,9 +664,9 @@ export default function LandingPage() {
 
           {/* Bottom CTA */}
           <motion.div variants={fadeUp} custom={5} className="mt-14 text-center">
-            <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 rounded-2xl bg-gradient-to-r from-green-50 to-teal-50 border border-green-100">
+            <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 rounded-2xl bg-gradient-to-r from-green-50 to-pink-50 border border-green-100">
               <p className="text-gray-600 text-sm">
-                <span className="text-gray-900 font-semibold">Forfaits à partir de 8 000 FCFA</span> pour 100 messages. Sans abonnement.
+                <span className="text-gray-900 font-semibold">Forfaits à partir de 12 EUR</span> pour 100 messages. Sans abonnement.
               </p>
               <Link href="/auth/signup" className="px-5 py-2.5 rounded-xl bg-green-600 text-white text-sm font-semibold hover:bg-green-700 transition-colors whitespace-nowrap">
                 Essayer gratuitement
@@ -681,32 +681,32 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <motion.div variants={fadeUp} custom={0}>
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-teal-50 text-teal-700 text-sm font-semibold">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-pink-50 text-violet-700 text-sm font-semibold">
                 <Sparkles className="w-4 h-4" /> Comment ça marche
               </span>
             </motion.div>
             <motion.h2 variants={fadeUp} custom={1} className="mt-5 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900" style={{ fontFamily: 'Sora, sans-serif' }}>
-              Opérationnel en <span className="bg-gradient-to-r from-teal-600 to-emerald-500 bg-clip-text text-transparent">4 étapes</span>
+              Opérationnel en <span className="bg-gradient-to-r from-[#EB1E99] to-[#7209B7] bg-clip-text text-transparent">4 étapes</span>
             </motion.h2>
           </div>
 
           {/* Timeline */}
           <div className="relative max-w-3xl mx-auto">
             {/* Vertical line */}
-            <div className="hidden md:block absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-teal-200 via-emerald-200 to-teal-100" />
+            <div className="hidden md:block absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-pink-200 via-violet-200 to-pink-100" />
 
             <div className="space-y-8">
               {STEPS.map((s, i) => (
                 <motion.div key={i} variants={fadeUp} custom={i} className="group relative flex items-start gap-6 md:pl-0">
                   {/* Step number circle */}
-                  <div className="relative z-10 w-16 h-16 rounded-2xl bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center shadow-lg shadow-teal-500/20 shrink-0 group-hover:scale-110 transition-transform">
+                  <div className="relative z-10 w-16 h-16 rounded-2xl bg-gradient-to-br from-[#EB1E99] to-[#7209B7] flex items-center justify-center shadow-lg shadow-pink-500/20 shrink-0 group-hover:scale-110 transition-transform">
                     <s.icon className="w-7 h-7 text-white" />
                   </div>
 
                   {/* Content */}
                   <div className="flex-1 pb-8">
                     <div className="flex items-center gap-3 mb-2">
-                      <span className="text-xs font-bold text-teal-600 uppercase tracking-widest">Étape {s.step}</span>
+                      <span className="text-xs font-bold text-pink-600 uppercase tracking-widest">Étape {s.step}</span>
                     </div>
                     <h3 className="text-xl font-bold text-gray-900" style={{ fontFamily: 'Sora, sans-serif' }}>{s.title}</h3>
                     <p className="mt-2 text-gray-500 leading-relaxed">{s.desc}</p>
@@ -718,14 +718,14 @@ export default function LandingPage() {
 
           {/* Help block */}
           <motion.div variants={fadeUp} custom={5} className="mt-14 text-center">
-            <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-5 rounded-2xl bg-teal-50 border border-teal-100">
+            <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-5 rounded-2xl bg-pink-50 border border-pink-100">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-teal-100 flex items-center justify-center">
-                  <MessageCircle className="w-5 h-5 text-teal-600" />
+                <div className="w-10 h-10 rounded-xl bg-pink-100 flex items-center justify-center">
+                  <MessageCircle className="w-5 h-5 text-pink-600" />
                 </div>
                 <p className="text-gray-600 text-sm"><span className="text-gray-900 font-semibold">Besoin d'aide ?</span> Notre équipe vous accompagne à chaque étape.</p>
               </div>
-              <Link href="/contact" className="px-5 py-2.5 rounded-xl bg-teal-600 text-white text-sm font-semibold hover:bg-teal-700 transition-colors whitespace-nowrap">
+              <Link href="/contact" className="px-5 py-2.5 rounded-xl bg-pink-600 text-white text-sm font-semibold hover:bg-violet-700 transition-colors whitespace-nowrap">
                 Parler à un expert
               </Link>
             </div>
@@ -738,7 +738,7 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-14">
             <motion.div variants={fadeUp} custom={0}>
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-teal-50 text-teal-700 text-sm font-semibold">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-pink-50 text-violet-700 text-sm font-semibold">
                 <TrendingUp className="w-4 h-4" /> Résultats concrets
               </span>
             </motion.div>
@@ -765,8 +765,8 @@ export default function LandingPage() {
                       <span className="text-xs font-medium text-gray-500">{m.label}</span>
                       <div className="flex items-center gap-2">
                         <span className="text-xs text-gray-400">{m.before}</span>
-                        <ArrowRight className="w-3 h-3 text-teal-500" />
-                        <span className="text-sm font-bold text-teal-600">{m.after}</span>
+                        <ArrowRight className="w-3 h-3 text-pink-500" />
+                        <span className="text-sm font-bold text-pink-600">{m.after}</span>
                       </div>
                     </div>
                   ))}
@@ -784,7 +784,7 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-6">
             <motion.div variants={fadeUp} custom={0}>
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-teal-50 text-teal-700 text-sm font-semibold">Tarifs</span>
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-pink-50 text-violet-700 text-sm font-semibold">Tarifs</span>
             </motion.div>
             <motion.h2 variants={fadeUp} custom={1} className="mt-5 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900" style={{ fontFamily: 'Sora, sans-serif' }}>
               Des tarifs simples et transparents
@@ -798,7 +798,7 @@ export default function LandingPage() {
           <motion.div variants={fadeUp} custom={3} className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mb-12">
             {ALL_PLANS_INCLUDE.map((f, i) => (
               <span key={i} className="flex items-center gap-1.5 text-sm text-gray-500">
-                <Check className="w-4 h-4 text-teal-500" />{f}
+                <Check className="w-4 h-4 text-pink-500" />{f}
               </span>
             ))}
           </motion.div>
@@ -811,14 +811,14 @@ export default function LandingPage() {
                 custom={i}
                 className={`relative flex flex-col p-7 rounded-2xl border transition-all duration-300 hover:-translate-y-1 ${
                   plan.popular
-                    ? 'bg-[#0A1A14] border-teal-500/30 shadow-2xl shadow-teal-900/20 text-white ring-2 ring-teal-500/20'
+                    ? 'bg-[#1B1B1F] border-pink-500/30 shadow-2xl shadow-violet-900/20 text-white ring-2 ring-pink-500/20'
                     : plan.accent
-                    ? 'bg-gradient-to-br from-teal-600 to-emerald-600 border-transparent text-white shadow-xl shadow-teal-500/20'
-                    : 'bg-white border-gray-200 hover:border-teal-200 hover:shadow-xl hover:shadow-teal-100/50'
+                    ? 'bg-gradient-to-br from-pink-600 to-violet-600 border-transparent text-white shadow-xl shadow-pink-500/20'
+                    : 'bg-white border-gray-200 hover:border-pink-200 hover:shadow-xl hover:shadow-pink-100/50'
                 }`}
               >
                 {plan.popular && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-teal-500 to-emerald-500 text-white text-xs font-bold shadow-lg">
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-[#EB1E99] to-[#7209B7] text-white text-xs font-bold shadow-lg">
                     Le plus populaire
                   </span>
                 )}
@@ -834,7 +834,7 @@ export default function LandingPage() {
                 <ul className="mt-7 space-y-3 flex-1">
                   {plan.features.map((f, fi) => (
                     <li key={fi} className="flex items-start gap-2.5">
-                      <Check className={`w-4 h-4 mt-0.5 shrink-0 ${plan.popular ? 'text-emerald-400' : plan.accent ? 'text-white/80' : 'text-teal-500'}`} />
+                      <Check className={`w-4 h-4 mt-0.5 shrink-0 ${plan.popular ? 'text-violet-400' : plan.accent ? 'text-white/80' : 'text-pink-500'}`} />
                       <span className={`text-sm ${plan.popular ? 'text-white/70' : plan.accent ? 'text-white/80' : 'text-gray-600'}`}>{f}</span>
                     </li>
                   ))}
@@ -843,8 +843,8 @@ export default function LandingPage() {
                 <Link
                   href={plan.accent ? '/contact' : '/auth/signup'}
                   className={`mt-8 block text-center py-3 rounded-xl font-semibold text-sm transition-all ${
-                    plan.popular ? 'bg-gradient-to-r from-teal-500 to-emerald-500 text-white hover:shadow-lg hover:shadow-teal-500/30'
-                    : plan.accent ? 'bg-white text-teal-700 hover:bg-white/90'
+                    plan.popular ? 'bg-gradient-to-r from-[#EB1E99] to-[#7209B7] text-white hover:shadow-lg hover:shadow-pink-500/30'
+                    : plan.accent ? 'bg-white text-violet-700 hover:bg-white/90'
                     : 'bg-gray-900 text-white hover:bg-gray-800'
                   }`}
                 >
@@ -857,7 +857,7 @@ export default function LandingPage() {
           {/* Guarantee */}
           <motion.div variants={fadeUp} custom={5} className="mt-10 text-center">
             <p className="inline-flex items-center gap-2 text-sm text-gray-400">
-              <Shield className="w-4 h-4 text-teal-500" />
+              <Shield className="w-4 h-4 text-pink-500" />
               14 jours satisfait ou remboursé — Annulez en un clic
             </p>
           </motion.div>
@@ -901,7 +901,7 @@ export default function LandingPage() {
 
           <motion.div variants={fadeUp} custom={7} className="mt-8 text-center">
             <p className="text-sm text-gray-400 mb-3">Vous avez d'autres questions ?</p>
-            <Link href="/contact" className="inline-flex items-center gap-2 text-sm font-semibold text-teal-600 hover:text-teal-700 transition-colors">
+            <Link href="/contact" className="inline-flex items-center gap-2 text-sm font-semibold text-pink-600 hover:text-violet-700 transition-colors">
               Contactez notre équipe <ChevronRight className="w-4 h-4" />
             </Link>
           </motion.div>
@@ -913,7 +913,7 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-14">
             <motion.div variants={fadeUp} custom={0}>
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-teal-50 text-teal-700 text-sm font-semibold">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-pink-50 text-violet-700 text-sm font-semibold">
                 <Star className="w-4 h-4" /> Témoignages
               </span>
             </motion.div>
@@ -925,7 +925,7 @@ export default function LandingPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {TESTIMONIALS.map((t, i) => (
               <motion.div key={i} variants={fadeUp} custom={i} className="relative p-7 rounded-2xl bg-gray-50/80 border border-gray-100 hover:bg-white hover:shadow-xl hover:shadow-gray-200/50 hover:-translate-y-1 transition-all duration-300">
-                <Quote className="w-8 h-8 text-teal-100 mb-3" />
+                <Quote className="w-8 h-8 text-pink-100 mb-3" />
                 <div className="flex gap-0.5 mb-4">
                   {[...Array(t.stars)].map((_, si) => <Star key={si} className="w-4 h-4 fill-amber-400 text-amber-400" />)}
                 </div>
@@ -943,14 +943,14 @@ export default function LandingPage() {
       {/* ═══════════ CTA FINAL ═══════════ */}
       <Reveal className="py-24 px-5 sm:px-8">
         <div className="max-w-5xl mx-auto">
-          <motion.div variants={scaleIn} className="relative p-12 sm:p-16 rounded-3xl bg-[#0A1A14] overflow-hidden">
-            <div className="absolute top-0 right-0 w-[250px] h-[250px] sm:w-[400px] sm:h-[400px] rounded-full bg-teal-600/20 blur-[120px]" />
-            <div className="absolute bottom-0 left-0 w-[300px] h-[300px] rounded-full bg-emerald-500/15 blur-[100px]" />
+          <motion.div variants={scaleIn} className="relative p-12 sm:p-16 rounded-3xl bg-[#1B1B1F] overflow-hidden">
+            <div className="absolute top-0 right-0 w-[250px] h-[250px] sm:w-[400px] sm:h-[400px] rounded-full bg-pink-600/20 blur-[120px]" />
+            <div className="absolute bottom-0 left-0 w-[300px] h-[300px] rounded-full bg-violet-500/15 blur-[100px]" />
 
             <div className="relative text-center">
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-tight" style={{ fontFamily: 'Sora, sans-serif' }}>
                 Prêt à fidéliser<br />
-                <span className="bg-gradient-to-r from-emerald-300 to-teal-200 bg-clip-text text-transparent">vos clients ?</span>
+                <span className="bg-gradient-to-r from-pink-300 to-violet-200 bg-clip-text text-transparent">vos clients ?</span>
               </h2>
               <p className="mt-6 text-white/50 text-lg max-w-xl mx-auto">
                 Essayez Qualee gratuitement pendant 14 jours. Sans carte bancaire.
@@ -960,13 +960,13 @@ export default function LandingPage() {
               <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 mt-6">
                 {['14 jours gratuits', 'Sans engagement', 'Mise en place en 24h'].map((b, i) => (
                   <span key={i} className="flex items-center gap-1.5 text-sm text-white/40">
-                    <Check className="w-4 h-4 text-emerald-400" />{b}
+                    <Check className="w-4 h-4 text-violet-400" />{b}
                   </span>
                 ))}
               </div>
 
               <div className="mt-10 flex flex-wrap justify-center gap-4">
-                <Link href="/auth/signup" className="animate-cta-glow group inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-gradient-to-r from-teal-500 to-emerald-500 text-white font-semibold hover:shadow-2xl hover:shadow-teal-500/30 hover:-translate-y-0.5 hover:scale-[1.03] transition-all">
+                <Link href="/auth/signup" className="animate-cta-glow group inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-gradient-to-r from-[#EB1E99] to-[#7209B7] text-white font-semibold hover:shadow-2xl hover:shadow-pink-500/30 hover:-translate-y-0.5 hover:scale-[1.03] transition-all">
                   Créer mon compte gratuit
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
@@ -980,18 +980,18 @@ export default function LandingPage() {
       </Reveal>
 
       {/* ═══════════ FOOTER ═══════════ */}
-      <footer className="bg-[#0A1A14] border-t border-white/[0.05]">
+      <footer className="bg-[#1B1B1F] border-t border-white/[0.05]">
         <div className="max-w-7xl mx-auto px-5 sm:px-8 py-16">
           <div className="flex flex-col md:flex-row items-start justify-between gap-10">
             <div>
               <img src="/Logo Qualee wht.png" alt="Qualee" className="h-9 w-auto" />
               <p className="mt-4 text-white/40 text-sm max-w-xs leading-relaxed">
-                La plateforme de fidélisation et gamification pour les commerces africains.
+                La plateforme de fidélisation et gamification pour les professionnels de la beauté.
               </p>
               {/* Newsletter */}
               <div className="mt-6">
                 <p className="text-white/30 text-xs font-semibold uppercase tracking-widest mb-2">Newsletter</p>
-                <p className="text-white/40 text-xs mb-3">Conseils fidélisation pour commerces africains</p>
+                <p className="text-white/40 text-xs mb-3">Conseils fidélisation pour professionnels de la beauté</p>
               </div>
             </div>
             <div className="flex flex-wrap gap-x-16 gap-y-8">

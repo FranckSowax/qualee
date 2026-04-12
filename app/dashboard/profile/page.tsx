@@ -239,14 +239,14 @@ CREATE POLICY "Auth Update" ON storage.objects FOR UPDATE USING ( bucket_id = 'm
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-teal-600 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+          <div className="w-16 h-16 border-4 border-pink-600 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
           <p className="text-lg text-gray-600">{isFr ? 'Chargement...' : 'Loading...'}</p>
         </div>
       </div>
     );
   }
 
-  const inputClass = 'w-full px-3 py-2.5 border border-gray-300 rounded-lg bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 focus:bg-teal-50/30 transition-all duration-200';
+  const inputClass = 'w-full px-3 py-2.5 border border-gray-300 rounded-lg bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500/20 focus:border-pink-500 focus:bg-pink-50/30 transition-all duration-200';
 
   return (
     <DashboardLayout merchant={merchant}>
@@ -266,14 +266,14 @@ CREATE POLICY "Auth Update" ON storage.objects FOR UPDATE USING ( bucket_id = 'm
           <div
             className={`flex items-start gap-2 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
               message.type === 'success'
-                ? 'bg-teal-50 border border-teal-200 text-teal-700'
+                ? 'bg-pink-50 border border-pink-200 text-violet-700'
                 : message.type === 'warning'
                 ? 'bg-amber-50 border border-amber-200 text-amber-800'
                 : 'bg-red-50 border border-red-200 text-red-700'
             }`}
           >
             {message.type === 'success' ? (
-              <Check className="w-4 h-4 text-teal-600 shrink-0 mt-0.5" />
+              <Check className="w-4 h-4 text-pink-600 shrink-0 mt-0.5" />
             ) : message.type === 'warning' ? (
               <span className="shrink-0 mt-0.5">&#9888;</span>
             ) : (
@@ -304,8 +304,8 @@ CREATE POLICY "Auth Update" ON storage.objects FOR UPDATE USING ( bucket_id = 'm
               className={`
                 relative flex items-center gap-2 px-5 py-3 text-sm font-medium transition-all duration-300 rounded-t-lg whitespace-nowrap
                 ${activeTab === tab.id
-                  ? 'text-teal-600'
-                  : 'text-gray-500 hover:text-teal-700 hover:bg-teal-50/50'
+                  ? 'text-pink-600'
+                  : 'text-gray-500 hover:text-violet-700 hover:bg-pink-50/50'
                 }
               `}
             >
@@ -313,7 +313,7 @@ CREATE POLICY "Auth Update" ON storage.objects FOR UPDATE USING ( bucket_id = 'm
               <span>{isFr ? tab.labelFr : tab.labelEn}</span>
               {/* Active underline */}
               <span
-                className={`absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-teal-500 to-emerald-500 transition-transform duration-300 origin-left ${
+                className={`absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#EB1E99] to-[#7209B7] transition-transform duration-300 origin-left ${
                   activeTab === tab.id ? 'scale-x-100' : 'scale-x-0'
                 }`}
               />
@@ -328,9 +328,9 @@ CREATE POLICY "Auth Update" ON storage.objects FOR UPDATE USING ( bucket_id = 'm
             <div className="space-y-5">
               {/* Business Info Card */}
               <Card className="group relative p-6 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md">
-                <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                 <div className="flex items-center gap-3 mb-5">
-                  <div className="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center">
                     <Building2 className="w-5 h-5" />
                   </div>
                   <div>
@@ -421,9 +421,9 @@ CREATE POLICY "Auth Update" ON storage.objects FOR UPDATE USING ( bucket_id = 'm
 
               {/* Address Card */}
               <Card className="group relative p-6 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md">
-                <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                 <div className="flex items-center gap-3 mb-5">
-                  <div className="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center">
                     <MapPin className="w-5 h-5" />
                   </div>
                   <div>
@@ -480,9 +480,9 @@ CREATE POLICY "Auth Update" ON storage.objects FOR UPDATE USING ( bucket_id = 'm
             <div className="space-y-5">
               {/* Logo Upload Card */}
               <Card className="group relative p-6 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md">
-                <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                 <div className="flex items-center gap-3 mb-5">
-                  <div className="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center">
                     <ImageIcon className="w-5 h-5" />
                   </div>
                   <div>
@@ -519,9 +519,9 @@ CREATE POLICY "Auth Update" ON storage.objects FOR UPDATE USING ( bucket_id = 'm
 
               {/* Background Upload Card */}
               <Card className="group relative p-6 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md">
-                <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                 <div className="flex items-center gap-3 mb-5">
-                  <div className="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center">
                     <Upload className="w-5 h-5" />
                   </div>
                   <div>
@@ -577,9 +577,9 @@ CREATE POLICY "Auth Update" ON storage.objects FOR UPDATE USING ( bucket_id = 'm
 
               {/* Logo Background Color Card */}
               <Card className="group relative p-6 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md">
-                <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                 <div className="flex items-center gap-3 mb-5">
-                  <div className="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center">
                     <Palette className="w-5 h-5" />
                   </div>
                   <div>
@@ -628,7 +628,7 @@ CREATE POLICY "Auth Update" ON storage.objects FOR UPDATE USING ( bucket_id = 'm
           <Button
             onClick={handleSave}
             disabled={saving}
-            className="bg-teal-600 hover:bg-teal-700 text-white px-6"
+            className="bg-pink-600 hover:bg-violet-700 text-white px-6"
           >
             {saving ? (
               <>

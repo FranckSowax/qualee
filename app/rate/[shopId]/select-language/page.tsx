@@ -13,7 +13,7 @@ export default function SelectLanguagePage() {
   }, [shopId, router]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-teal-600 to-teal-700">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-600 to-violet-700">
       <div className="bg-white/10 backdrop-blur-lg rounded-3xl shadow-2xl p-8">
         <div className="w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin mx-auto"></div>
       </div>

@@ -36,8 +36,8 @@ const SUPPORTS = [
     key: 'plexiglas',
     name: 'Chevalet Plexiglas',
     description: 'Support premium transparent, résistant et professionnel',
-    price: 5000,
-    priceLabel: '5 000 FCFA',
+    price: 8,
+    priceLabel: '8 EUR',
     minQty: 1,
     image: '/qr-plexi.jpeg',
     badge: 'Premium',
@@ -47,8 +47,8 @@ const SUPPORTS = [
     key: 'dtf',
     name: 'QR Code DTF',
     description: 'Sticker à coller sur table, vitrine ou menu. Lot de 4 minimum',
-    price: 10000,
-    priceLabel: '10 000 FCFA / lot de 4',
+    price: 15,
+    priceLabel: '15 EUR / lot de 4',
     minQty: 4,
     image: '/qr-dtf.jpeg',
     badge: 'Autocollant',
@@ -187,7 +187,7 @@ export default function QRCodePage() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
-          <div className="w-12 h-12 border-3 border-teal-600 border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
+          <div className="w-12 h-12 border-3 border-pink-600 border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
           <p className="text-sm text-gray-500">Chargement...</p>
         </div>
       </div>
@@ -202,7 +202,7 @@ export default function QRCodePage() {
         {/* Header */}
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center">
               <QrCode className="w-5 h-5" />
             </div>
             QR Code & Supports
@@ -214,10 +214,10 @@ export default function QRCodePage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* QR Code Card */}
           <Card className="group relative overflow-hidden border border-gray-200 hover:border-gray-300 hover:shadow-md transition-all">
-            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500" />
+            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7]" />
             <div className="p-6 flex flex-col items-center">
               {merchant?.qr_code_url && (
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-teal-50 text-teal-700 rounded-full text-xs font-medium mb-3">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-pink-50 text-violet-700 rounded-full text-xs font-medium mb-3">
                   <CheckCircle2 className="w-3.5 h-3.5" />
                   QR Code actif
                 </span>
@@ -227,7 +227,7 @@ export default function QRCodePage() {
                 <canvas ref={canvasRef} className="hidden" />
               </div>
               <div className="flex items-center gap-2 mt-4">
-                <Button onClick={downloadQR} size="sm" className="gap-1.5 bg-teal-600 hover:bg-teal-700 text-xs">
+                <Button onClick={downloadQR} size="sm" className="gap-1.5 bg-pink-600 hover:bg-violet-700 text-xs">
                   <Download className="w-3.5 h-3.5" /> Télécharger
                 </Button>
                 <Button onClick={() => window.print()} variant="outline" size="sm" className="gap-1.5 text-xs">
@@ -239,11 +239,11 @@ export default function QRCodePage() {
 
           {/* Link Card */}
           <Card className="group relative overflow-hidden border border-gray-200 hover:border-gray-300 hover:shadow-md transition-all">
-            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
             <div className="p-6 flex flex-col justify-between h-full">
               <div>
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center">
                     <Copy className="w-5 h-5" />
                   </div>
                   <div>
@@ -255,7 +255,7 @@ export default function QRCodePage() {
                   <div className="flex-1 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-xs font-mono text-gray-600 truncate">
                     {reviewUrl}
                   </div>
-                  <Button onClick={copyLink} size="sm" variant={copied ? 'default' : 'outline'} className={`shrink-0 gap-1.5 text-xs ${copied ? 'bg-teal-600 text-white' : ''}`}>
+                  <Button onClick={copyLink} size="sm" variant={copied ? 'default' : 'outline'} className={`shrink-0 gap-1.5 text-xs ${copied ? 'bg-pink-600 text-white' : ''}`}>
                     {copied ? <><CheckCircle2 className="w-3.5 h-3.5" /> Copié !</> : <><Copy className="w-3.5 h-3.5" /> Copier</>}
                   </Button>
                 </div>
@@ -300,7 +300,7 @@ export default function QRCodePage() {
                   }}
                   className={`relative text-left rounded-xl border-2 overflow-hidden transition-all duration-200 ${
                     isSelected
-                      ? 'border-teal-500 shadow-lg ring-2 ring-teal-500/20'
+                      ? 'border-pink-500 shadow-lg ring-2 ring-pink-500/20'
                       : 'border-gray-200 hover:border-gray-300 hover:shadow-md'
                   }`}
                 >
@@ -311,7 +311,7 @@ export default function QRCodePage() {
                       {support.badge}
                     </Badge>
                     {isSelected && (
-                      <div className="absolute top-2 left-2 w-6 h-6 rounded-full bg-teal-500 flex items-center justify-center">
+                      <div className="absolute top-2 left-2 w-6 h-6 rounded-full bg-pink-500 flex items-center justify-center">
                         <Check className="w-4 h-4 text-white" />
                       </div>
                     )}
@@ -335,9 +335,9 @@ export default function QRCodePage() {
 
           {/* Order form (shown when support selected) */}
           {selectedSupport && currentSupport && (
-            <Card className="mt-4 p-5 border border-teal-200 bg-teal-50/30">
+            <Card className="mt-4 p-5 border border-pink-200 bg-pink-50/30">
               <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                <Package className="w-4 h-4 text-teal-600" />
+                <Package className="w-4 h-4 text-pink-600" />
                 Commander : {currentSupport.name}
               </h3>
 
@@ -383,7 +383,7 @@ export default function QRCodePage() {
                           ? (Math.ceil(quantity / 4) * 10000).toLocaleString('fr-FR')
                           : (currentSupport.price * quantity).toLocaleString('fr-FR')
                         }
-                        <span className="text-sm font-normal text-gray-500 ml-1">FCFA</span>
+                        <span className="text-sm font-normal text-gray-500 ml-1">EUR</span>
                       </>
                     )}
                   </div>
@@ -400,7 +400,7 @@ export default function QRCodePage() {
                       value={address}
                       onChange={(e) => setAddress(e.target.value)}
                       placeholder="Ex: Quartier Bonanjo, Rue de la Joie, Douala"
-                      className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 outline-none"
+                      className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-pink-500/20 focus:border-pink-500 outline-none"
                     />
                   </div>
                 )}
@@ -415,7 +415,7 @@ export default function QRCodePage() {
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="+237 6XX XXX XXX"
-                    className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 outline-none"
+                    className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-pink-500/20 focus:border-pink-500 outline-none"
                   />
                 </div>
               </div>
@@ -423,7 +423,7 @@ export default function QRCodePage() {
               <Button
                 onClick={handleOrder}
                 disabled={ordering}
-                className="w-full mt-4 bg-teal-600 hover:bg-teal-700 text-white py-3"
+                className="w-full mt-4 bg-pink-600 hover:bg-violet-700 text-white py-3"
               >
                 {ordering ? (
                   <><Loader2 className="w-4 h-4 animate-spin mr-2" /> Envoi en cours...</>
@@ -469,7 +469,7 @@ export default function QRCodePage() {
                         <td className="py-2.5 px-4 text-gray-900 font-medium text-xs">{supportName}</td>
                         <td className="py-2.5 px-4 text-gray-600 text-xs">{order.quantity}</td>
                         <td className="py-2.5 px-4 text-gray-900 font-medium text-xs">
-                          {order.amount_xaf === 0 ? 'Gratuit' : `${order.amount_xaf.toLocaleString('fr-FR')} FCFA`}
+                          {order.amount_eur === 0 ? 'Gratuit' : `${order.amount_eur.toLocaleString('fr-FR')} EUR`}
                         </td>
                         <td className="py-2.5 px-4">
                           <Badge className={`${status.color} text-xs`}>{status.label}</Badge>

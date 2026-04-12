@@ -8,7 +8,7 @@ import { Input } from '@/components/atoms/Input';
 
 export default function SignUpPageWrapper() {
   return (
-    <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="w-10 h-10 border-3 border-teal-600 border-t-transparent rounded-full animate-spin" /></div>}>
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="w-10 h-10 border-3 border-pink-600 border-t-transparent rounded-full animate-spin" /></div>}>
       <SignUpPage />
     </Suspense>
   );
@@ -134,7 +134,7 @@ function SignUpPage() {
     return (
       <div className="min-h-screen relative flex items-center justify-center p-4">
         <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: 'url(/bg-pattern-2.jpg)' }} />
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0F766E]/85 to-[#059669]/80 backdrop-blur-[2px]" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#EB1E99]/85 to-[#7209B7]/80 backdrop-blur-[2px]" />
         <div className="relative z-10 bg-white rounded-3xl shadow-2xl p-8 max-w-md w-full text-center">
           {/* Animation de succès */}
           <div className="relative mb-6">
@@ -232,17 +232,17 @@ function SignUpPage() {
   return (
     <div className="min-h-screen relative flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: 'url(/bg-pattern-2.jpg)' }} />
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0F766E]/85 to-[#059669]/80 backdrop-blur-[2px]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#EB1E99]/85 to-[#7209B7]/80 backdrop-blur-[2px]" />
       <div className="relative z-10 bg-white rounded-3xl shadow-2xl p-8 max-w-md w-full">
         <h1 className="text-3xl font-bold text-center text-gray-900 mb-2">Rejoindre Qualee</h1>
         <p className="text-center text-gray-600 mb-4">Créez votre compte commerçant</p>
 
         {refCode && (
-          <div className="bg-teal-50 border border-teal-200 rounded-xl px-4 py-3 mb-4 text-center">
-            <p className="text-sm text-teal-800 font-medium">
+          <div className="bg-pink-50 border border-pink-200 rounded-xl px-4 py-3 mb-4 text-center">
+            <p className="text-sm text-violet-800 font-medium">
               Parrainé par : <strong>{refBusiness || refCode}</strong>
             </p>
-            <p className="text-xs text-teal-600 mt-0.5">50 crédits offerts à l&apos;inscription !</p>
+            <p className="text-xs text-pink-600 mt-0.5">50 crédits offerts à l&apos;inscription !</p>
           </div>
         )}
 

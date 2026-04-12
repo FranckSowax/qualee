@@ -37,8 +37,8 @@ interface Campaign {
   name: string;
   template_id: string;
   template_variables: any;
-  estimated_cost_fcfa: number;
-  actual_cost_fcfa: number;
+  estimated_cost_eur: number;
+  actual_cost_eur: number;
   total_recipients: number;
   send_count: number;
   last_sent_at: string;
@@ -51,7 +51,7 @@ interface CampaignMessage {
   recipient_phone: string;
   recipient_name: string | null;
   status: 'queued' | 'sent' | 'delivered' | 'read' | 'failed';
-  cost_fcfa: number;
+  cost_eur: number;
   sent_at: string | null;
   delivered_at: string | null;
   read_at: string | null;
@@ -69,7 +69,7 @@ const STATUS_CONFIG: Record<string, { bg: string; text: string; label: string; i
   queued: { bg: 'bg-gray-100', text: 'text-gray-700', label: 'En attente', icon: Clock },
   sent: { bg: 'bg-blue-100', text: 'text-blue-700', label: 'Envoye', icon: Send },
   delivered: { bg: 'bg-green-100', text: 'text-green-700', label: 'Delivre', icon: MailCheck },
-  read: { bg: 'bg-emerald-100', text: 'text-emerald-700', label: 'Lu', icon: Eye },
+  read: { bg: 'bg-violet-100', text: 'text-violet-700', label: 'Lu', icon: Eye },
   failed: { bg: 'bg-red-100', text: 'text-red-700', label: 'Echoue', icon: MailX },
 };
 
@@ -160,7 +160,7 @@ export default function CampaignReportPage() {
   const totalQueued = messages.filter(m => m.status === 'queued').length;
   const totalCost = messages
     .filter(m => ['sent', 'delivered', 'read'].includes(m.status))
-    .reduce((sum, m) => sum + (m.cost_fcfa || 0), 0);
+    .reduce((sum, m) => sum + (m.cost_eur || 0), 0);
 
   const deliveryRate = totalSent > 0 ? Math.round((totalDelivered / totalSent) * 100) : 0;
   const readRate = totalDelivered > 0 ? Math.round((totalRead / totalDelivered) * 100) : 0;
@@ -169,7 +169,7 @@ export default function CampaignReportPage() {
     return (
       <DashboardLayout>
         <div className="flex items-center justify-center h-96">
-          <Loader2 className="w-8 h-8 animate-spin text-teal-600" />
+          <Loader2 className="w-8 h-8 animate-spin text-pink-600" />
         </div>
       </DashboardLayout>
     );
@@ -245,7 +245,7 @@ export default function CampaignReportPage() {
 
           {/* Delivres */}
           <div className="group relative p-4 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-white">
-            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-green-500 to-emerald-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-green-500 to-violet-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-lg bg-green-50 text-green-600 flex items-center justify-center">
                 <MailCheck className="w-5 h-5" />
@@ -259,9 +259,9 @@ export default function CampaignReportPage() {
 
           {/* Lus */}
           <div className="group relative p-4 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-white">
-            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-emerald-500 to-teal-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-violet-500 to-pink-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-lg bg-violet-50 text-violet-600 flex items-center justify-center">
                 <BookOpen className="w-5 h-5" />
               </div>
               <div>
@@ -287,14 +287,14 @@ export default function CampaignReportPage() {
 
           {/* Cout total */}
           <div className="group relative p-4 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-white">
-            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-pink-500 to-violet-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center">
                 <Wallet className="w-5 h-5" />
               </div>
               <div>
                 <p className="text-xl font-bold text-gray-900">{totalCost.toLocaleString()}</p>
-                <p className="text-xs text-gray-500">Cout total (FCFA)</p>
+                <p className="text-xs text-gray-500">Cout total (EUR)</p>
               </div>
             </div>
           </div>
@@ -304,7 +304,7 @@ export default function CampaignReportPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {/* Delivery Rate */}
           <div className="group relative p-5 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-white">
-            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-lg bg-green-50 text-green-600 flex items-center justify-center">
@@ -319,7 +319,7 @@ export default function CampaignReportPage() {
             </div>
             <div className="w-full bg-gray-100 rounded-full h-2.5">
               <div
-                className="bg-gradient-to-r from-green-500 to-emerald-500 h-2.5 rounded-full transition-all duration-500"
+                className="bg-gradient-to-r from-green-500 to-violet-500 h-2.5 rounded-full transition-all duration-500"
                 style={{ width: `${deliveryRate}%` }}
               />
             </div>
@@ -327,10 +327,10 @@ export default function CampaignReportPage() {
 
           {/* Read Rate */}
           <div className="group relative p-5 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-white">
-            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-lg bg-violet-50 text-violet-600 flex items-center justify-center">
                   <BarChart3 className="w-5 h-5" />
                 </div>
                 <div>
@@ -338,11 +338,11 @@ export default function CampaignReportPage() {
                   <p className="text-xs text-gray-500">Lus / Delivres</p>
                 </div>
               </div>
-              <span className="text-2xl font-bold text-emerald-600">{readRate}%</span>
+              <span className="text-2xl font-bold text-violet-600">{readRate}%</span>
             </div>
             <div className="w-full bg-gray-100 rounded-full h-2.5">
               <div
-                className="bg-gradient-to-r from-emerald-500 to-teal-500 h-2.5 rounded-full transition-all duration-500"
+                className="bg-gradient-to-r from-violet-500 to-pink-500 h-2.5 rounded-full transition-all duration-500"
                 style={{ width: `${readRate}%` }}
               />
             </div>
@@ -351,11 +351,11 @@ export default function CampaignReportPage() {
 
         {/* Messages Table */}
         <div className="group relative border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-white">
-          <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+          <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
 
           <div className="p-4 border-b border-gray-100">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center">
                 <Users className="w-5 h-5" />
               </div>
               <div>
@@ -410,7 +410,7 @@ export default function CampaignReportPage() {
                         </span>
                       </td>
                       <td className="px-4 py-2.5">
-                        <span className="text-xs font-medium text-gray-700">{msg.cost_fcfa || 0} FCFA</span>
+                        <span className="text-xs font-medium text-gray-700">{msg.cost_eur || 0} EUR</span>
                       </td>
                     </tr>
                   ))

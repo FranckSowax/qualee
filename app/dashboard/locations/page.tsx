@@ -117,7 +117,7 @@ export default function LocationsPage() {
     return (
       <DashboardLayout merchant={merchant}>
         <div className="flex items-center justify-center h-64">
-          <Loader2 className="w-8 h-8 animate-spin text-teal-600" />
+          <Loader2 className="w-8 h-8 animate-spin text-pink-600" />
         </div>
       </DashboardLayout>
     );
@@ -141,7 +141,7 @@ export default function LocationsPage() {
           <Button
             onClick={() => setShowModal(true)}
             disabled={isFree}
-            className="bg-teal-600 hover:bg-teal-700 text-white disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-pink-600 hover:bg-violet-700 text-white disabled:opacity-50 disabled:cursor-not-allowed"
             title={isFree ? 'Passez à un plan payant pour ajouter des établissements' : ''}
           >
             {isFree ? (
@@ -174,10 +174,10 @@ export default function LocationsPage() {
             </div>
           </Card>
         ) : (
-          <Card className="p-4 bg-teal-50 border-teal-200">
+          <Card className="p-4 bg-pink-50 border-pink-200">
             <div className="flex items-center gap-3">
-              <AlertCircle className="w-5 h-5 text-teal-600 flex-shrink-0" />
-              <p className="text-sm text-teal-800">
+              <AlertCircle className="w-5 h-5 text-pink-600 flex-shrink-0" />
+              <p className="text-sm text-violet-800">
                 Votre plan <strong className="capitalize">{tier === 'sur-mesure' ? 'Sur mesure' : tier}</strong> vous autorise{' '}
                 <strong>{isUnlimited ? 'un nombre illimité d\'' : `${maxLocations} `}</strong>établissement(s) supplémentaire(s).
                 Vous en utilisez <strong>{childLocations.length}</strong>.
@@ -194,7 +194,7 @@ export default function LocationsPage() {
                 <div className="flex items-center gap-3">
                   <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
                     loc.is_headquarters
-                      ? 'bg-teal-100 text-teal-700'
+                      ? 'bg-pink-100 text-violet-700'
                       : 'bg-slate-100 text-slate-600'
                   }`}>
                     {loc.is_headquarters ? (
@@ -208,7 +208,7 @@ export default function LocationsPage() {
                       {loc.location_name || loc.business_name}
                     </h3>
                     {loc.is_headquarters && (
-                      <span className="text-xs font-medium text-teal-600 bg-teal-50 px-2 py-0.5 rounded-full">
+                      <span className="text-xs font-medium text-pink-600 bg-pink-50 px-2 py-0.5 rounded-full">
                         Siège principal
                       </span>
                     )}
@@ -278,7 +278,7 @@ export default function LocationsPage() {
                   value={formName}
                   onChange={(e) => setFormName(e.target.value)}
                   placeholder="Ex: Succursale Centre-Ville"
-                  className="w-full px-4 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none"
+                  className="w-full px-4 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-pink-500 outline-none"
                   required
                 />
               </div>
@@ -291,7 +291,7 @@ export default function LocationsPage() {
                   value={formAddress}
                   onChange={(e) => setFormAddress(e.target.value)}
                   placeholder="Ex: 12 Rue de la Paix, Paris"
-                  className="w-full px-4 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none"
+                  className="w-full px-4 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-pink-500 outline-none"
                 />
               </div>
               <div>
@@ -303,7 +303,7 @@ export default function LocationsPage() {
                   value={formEmail}
                   onChange={(e) => setFormEmail(e.target.value)}
                   placeholder="contact@succursale.com"
-                  className="w-full px-4 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none"
+                  className="w-full px-4 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-pink-500 outline-none"
                   required
                 />
               </div>
@@ -320,7 +320,7 @@ export default function LocationsPage() {
                 <Button
                   type="submit"
                   disabled={submitting}
-                  className="flex-1 bg-teal-600 hover:bg-teal-700 text-white"
+                  className="flex-1 bg-pink-600 hover:bg-violet-700 text-white"
                 >
                   {submitting ? (
                     <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Création...</>

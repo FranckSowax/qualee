@@ -75,7 +75,7 @@ export default function BillingPage() {
       <DashboardLayout merchant={merchant}>
         <div className="flex items-center justify-center h-96">
           <div className="text-center">
-            <div className="w-10 h-10 border-3 border-teal-600 border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
+            <div className="w-10 h-10 border-3 border-pink-600 border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
             <p className="text-sm text-gray-500">Chargement...</p>
           </div>
         </div>
@@ -97,7 +97,7 @@ export default function BillingPage() {
         {/* Header */}
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center">
               <Smartphone className="w-5 h-5" />
             </div>
             Facturation & Abonnement
@@ -107,12 +107,12 @@ export default function BillingPage() {
 
         {/* Current Plan */}
         <div className="group relative overflow-hidden rounded-xl border border-gray-200 transition-all duration-300 hover:border-gray-300 hover:shadow-md">
-          <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500" />
-          <div className="bg-gradient-to-br from-teal-50/80 to-emerald-50/80 p-6">
+          <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7]" />
+          <div className="bg-gradient-to-br from-pink-50/80 to-violet-50/80 p-6">
             <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
               <div>
                 <div className="flex items-center gap-2 mb-3">
-                  <Badge className="bg-teal-600 hover:bg-teal-700 text-white">Plan actuel</Badge>
+                  <Badge className="bg-pink-600 hover:bg-violet-700 text-white">Plan actuel</Badge>
                   {isActive && (
                     <Badge className="bg-green-100 text-green-700 hover:bg-green-100">
                       <CheckCircle2 className="w-3 h-3 mr-1" /> Actif
@@ -134,7 +134,7 @@ export default function BillingPage() {
                 </h2>
                 {currentPlan && (
                   <p className="text-gray-500 mt-1 text-sm">
-                    {currentPlan.price_xaf.toLocaleString('fr-FR')} XAF/mois
+                    {currentPlan.price_eur.toLocaleString('fr-FR')} EUR/mois
                   </p>
                 )}
               </div>
@@ -169,7 +169,7 @@ export default function BillingPage() {
               ].map((item, i) => (
                 <div key={i} className="bg-white/70 rounded-lg p-3 border border-gray-100">
                   <div className="flex items-center gap-2 mb-1">
-                    <item.icon className="w-4 h-4 text-teal-600" />
+                    <item.icon className="w-4 h-4 text-pink-600" />
                     <p className="text-xs text-gray-500">{item.label}</p>
                   </div>
                   <p className="text-lg font-bold text-gray-900">{item.value}</p>
@@ -181,9 +181,9 @@ export default function BillingPage() {
 
         {/* Renew / Subscribe CTA */}
         <div className="group relative p-6 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-white">
-          <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+          <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
           <div className="text-center py-8">
-            <div className="w-16 h-16 rounded-full bg-teal-50 text-teal-600 flex items-center justify-center mx-auto mb-4">
+            <div className="w-16 h-16 rounded-full bg-pink-50 text-pink-600 flex items-center justify-center mx-auto mb-4">
               <Smartphone className="w-8 h-8" />
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">
@@ -199,7 +199,7 @@ export default function BillingPage() {
             <button
               onClick={handleRenew}
               disabled={generatingToken}
-              className="inline-flex items-center gap-2 bg-teal-600 text-white font-medium py-3 px-6 rounded-lg hover:bg-teal-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="inline-flex items-center gap-2 bg-pink-600 text-white font-medium py-3 px-6 rounded-lg hover:bg-violet-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {generatingToken ? (
                 <>
@@ -240,7 +240,7 @@ export default function BillingPage() {
                         </td>
                         <td className="py-3 text-gray-700 capitalize">{p.tier}</td>
                         <td className="py-3 text-gray-900 font-medium">
-                          {p.amount_xaf?.toLocaleString('fr-FR')} XAF
+                          {p.amount_eur?.toLocaleString('fr-FR')} EUR
                         </td>
                         <td className="py-3">
                           <Badge className={p.payment_type === 'renewal' ? 'bg-blue-100 text-blue-700' : 'bg-green-100 text-green-700'}>

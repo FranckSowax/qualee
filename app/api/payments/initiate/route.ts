@@ -60,14 +60,14 @@ export async function POST(request: NextRequest) {
     const payerName = tokenData.business_name || merchant?.business_name || 'Marchand Qualee';
     const description = `Abonnement Qualee ${plan.name}`;
 
-    console.log('[PAYMENT] Initiating:', { tier, amount: plan.price_xaf, phone, externalReference });
+    console.log('[PAYMENT] Initiating:', { tier, amount: plan.price_eur, phone, externalReference });
 
     // ─── STEP 1: init.php (OBLIGATOIRE — TOUJOURS EN PREMIER) ──────────
     let initResult;
     try {
       initResult = await initTransaction({
         userId: tokenData.merchant_id,
-        amount: plan.price_xaf,
+        amount: plan.price_eur,
         phone,
         description,
         externalReference,
@@ -97,7 +97,7 @@ export async function POST(request: NextRequest) {
       ebillResult = await createEBill({
         email,
         phone,
-        amount: plan.price_xaf,
+        amount: plan.price_eur,
         description,
         externalReference,
         payerName,
@@ -128,7 +128,7 @@ export async function POST(request: NextRequest) {
       .insert({
         merchant_id: tokenData.merchant_id,
         tier,
-        amount_xaf: plan.price_xaf,
+        amount_eur: plan.price_eur,
         payment_type: paymentType,
         external_reference: externalReference,
         ebilling_bill_id: ebillResult.bill_id,

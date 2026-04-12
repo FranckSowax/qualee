@@ -138,7 +138,7 @@ export function DashboardLayout({ children, merchant }: DashboardLayoutProps) {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-emerald-50/20 relative">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-violet-50/20 relative">
       {/* Subscription expiry overlay — blocks dashboard until renewed */}
       {isSubscriptionExpired && merchant && (
         <SubscriptionOverlay merchant={merchant} />
@@ -157,7 +157,7 @@ export function DashboardLayout({ children, merchant }: DashboardLayoutProps) {
       }} />
 
       {/* Decorative gradient orbs */}
-      <div className="fixed top-20 right-20 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="fixed top-20 right-20 w-96 h-96 bg-violet-500/5 rounded-full blur-3xl pointer-events-none" />
       <div className="fixed bottom-20 left-20 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
 
       {/* Mobile sidebar backdrop */}
@@ -196,7 +196,7 @@ export function DashboardLayout({ children, merchant }: DashboardLayoutProps) {
           {merchant && (
             <div className="px-6 py-6 border-b border-slate-800/50 bg-[#0F172A]/50">
               <div className="flex items-center gap-4 p-3 rounded-xl bg-slate-800/50 border border-slate-700/50">
-                <div className="w-10 h-10 bg-gradient-to-br from-teal-500 to-emerald-600 rounded-lg flex items-center justify-center shadow-lg shadow-teal-900/20">
+                <div className="w-10 h-10 bg-gradient-to-br from-pink-500 to-violet-600 rounded-lg flex items-center justify-center shadow-lg shadow-violet-900/20">
                   <Store className="w-5 h-5 text-white" />
                 </div>
                 <div className="flex-1 min-w-0">
@@ -204,7 +204,7 @@ export function DashboardLayout({ children, merchant }: DashboardLayoutProps) {
                     {merchant.business_name || merchant.name}
                   </p>
                   <p className="text-xs text-slate-400 capitalize flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-violet-500 animate-pulse"></span>
                     {isExempt ? (
                       <span className="text-amber-400 font-semibold">Illimité</span>
                     ) : (
@@ -235,7 +235,7 @@ export function DashboardLayout({ children, merchant }: DashboardLayoutProps) {
                         className={`
                           group flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200
                           ${isActive
-                            ? 'bg-gradient-to-r from-teal-600 to-teal-700 text-white shadow-lg shadow-teal-900/20 border border-teal-500/20'
+                            ? 'bg-gradient-to-r from-pink-600 to-violet-700 text-white shadow-lg shadow-violet-900/20 border border-pink-500/20'
                             : 'text-white hover:bg-slate-800/50'
                           }
                         `}
@@ -289,7 +289,7 @@ export function DashboardLayout({ children, merchant }: DashboardLayoutProps) {
               {merchant && (
                 <button
                   onClick={() => setShowOnboarding(true)}
-                  className="p-2.5 rounded-full hover:bg-teal-50 text-slate-400 hover:text-teal-600 transition-colors"
+                  className="p-2.5 rounded-full hover:bg-pink-50 text-slate-400 hover:text-pink-600 transition-colors"
                   title="Guide de démarrage"
                 >
                   <HelpCircle className="w-5 h-5" />

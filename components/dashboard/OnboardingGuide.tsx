@@ -42,9 +42,9 @@ const STEPS = [
     ],
     cta: 'Aller à la Stratégie',
     href: '/dashboard/strategy',
-    color: 'from-teal-500 to-emerald-500',
-    bgLight: 'bg-teal-50',
-    textColor: 'text-teal-600',
+    color: 'from-[#EB1E99] to-[#7209B7]',
+    bgLight: 'bg-pink-50',
+    textColor: 'text-pink-600',
   },
   {
     icon: Gift,
@@ -69,7 +69,7 @@ const STEPS = [
     description: 'Vos clients reçoivent automatiquement une carte fidélité digitale. Configurez les points, ajoutez des récompenses, et laissez la magie opérer !',
     tips: [
       'Activez le programme dans l\'onglet Paramètres',
-      'Définissez le seuil d\'achat et les points par achat (ex: 1 point pour 5 000 FCFA)',
+      'Définissez le seuil d\'achat et les points par achat (ex: 1 point pour 10 EUR)',
       'Ajoutez des récompenses : café offert, -10%, dessert gratuit...',
       'Les clients reçoivent leur carte par WhatsApp automatiquement',
     ],
@@ -232,7 +232,7 @@ export function OnboardingGuide({ merchant, onClose }: OnboardingGuideProps) {
             ) : (
               <button
                 onClick={handleDismiss}
-                className="flex items-center gap-1 text-sm font-semibold text-teal-600 hover:text-teal-700 transition-colors"
+                className="flex items-center gap-1 text-sm font-semibold text-pink-600 hover:text-violet-700 transition-colors"
               >
                 Terminer
                 <Check className="w-4 h-4" />

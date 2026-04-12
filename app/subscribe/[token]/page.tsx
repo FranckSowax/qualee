@@ -84,7 +84,7 @@ export default function SubscribePage() {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
-          <Loader2 className="w-10 h-10 text-teal-600 animate-spin mx-auto mb-3" />
+          <Loader2 className="w-10 h-10 text-pink-600 animate-spin mx-auto mb-3" />
           <p className="text-gray-500">Chargement...</p>
         </div>
       </div>
@@ -114,7 +114,7 @@ export default function SubscribePage() {
       {/* Header */}
       <div className="border-b border-gray-100">
         <div className="max-w-5xl mx-auto px-4 py-8 text-center">
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-teal-50 text-teal-700 text-sm font-semibold mb-4">
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-pink-50 text-violet-700 text-sm font-semibold mb-4">
             Tarifs
           </span>
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900" style={{ fontFamily: 'Sora, system-ui, sans-serif' }}>
@@ -131,7 +131,7 @@ export default function SubscribePage() {
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mt-6">
             {['Essai gratuit 14 jours', 'Sans engagement', 'Mise en place en 24h', 'Données hébergées en sécurité'].map((f, i) => (
               <span key={i} className="flex items-center gap-1.5 text-sm text-gray-500">
-                <Check className="w-4 h-4 text-teal-500" />{f}
+                <Check className="w-4 h-4 text-pink-500" />{f}
               </span>
             ))}
           </div>
@@ -159,12 +159,12 @@ export default function SubscribePage() {
                 key={plan.key}
                 className={`relative flex flex-col p-7 rounded-2xl border transition-all duration-300 hover:-translate-y-1 ${
                   plan.popular
-                    ? 'bg-[#0A1A14] border-teal-500/30 shadow-2xl shadow-teal-900/20 text-white ring-2 ring-teal-500/20'
-                    : 'bg-white border-gray-200 hover:border-teal-200 hover:shadow-xl hover:shadow-teal-100/50'
+                    ? 'bg-[#1B1B1F] border-pink-500/30 shadow-2xl shadow-violet-900/20 text-white ring-2 ring-pink-500/20'
+                    : 'bg-white border-gray-200 hover:border-pink-200 hover:shadow-xl hover:shadow-pink-100/50'
                 }`}
               >
                 {plan.popular && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-teal-500 to-emerald-500 text-white text-xs font-bold shadow-lg">
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-[#EB1E99] to-[#7209B7] text-white text-xs font-bold shadow-lg">
                     Le plus populaire
                   </span>
                 )}
@@ -178,7 +178,7 @@ export default function SubscribePage() {
 
                 <div className="mt-6">
                   <span className={`text-3xl font-extrabold ${plan.popular ? 'text-white' : 'text-gray-900'}`} style={{ fontFamily: 'Sora, system-ui, sans-serif' }}>
-                    {plan.price_xaf.toLocaleString('fr-FR')}
+                    {plan.price_eur.toLocaleString('fr-FR')}
                   </span>
                   <span className={`ml-1 text-sm ${plan.popular ? 'text-white/40' : 'text-gray-400'}`}>
                     {plan.period}
@@ -188,7 +188,7 @@ export default function SubscribePage() {
                 <ul className="mt-7 space-y-3 flex-1">
                   {plan.features.map((feature, i) => (
                     <li key={i} className="flex items-start gap-2.5">
-                      <Check className={`w-4 h-4 mt-0.5 shrink-0 ${plan.popular ? 'text-emerald-400' : 'text-teal-500'}`} />
+                      <Check className={`w-4 h-4 mt-0.5 shrink-0 ${plan.popular ? 'text-violet-400' : 'text-pink-500'}`} />
                       <span className={`text-sm ${plan.popular ? 'text-white/70' : 'text-gray-600'}`}>
                         {feature}
                       </span>
@@ -201,7 +201,7 @@ export default function SubscribePage() {
                   disabled={!!processingTier}
                   className={`mt-8 block w-full text-center py-3 rounded-xl font-semibold text-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed ${
                     plan.popular
-                      ? 'bg-gradient-to-r from-teal-500 to-emerald-500 text-white hover:shadow-lg hover:shadow-teal-500/30'
+                      ? 'bg-gradient-to-r from-[#EB1E99] to-[#7209B7] text-white hover:shadow-lg hover:shadow-pink-500/30'
                       : 'bg-gray-900 text-white hover:bg-gray-800'
                   }`}
                 >
@@ -211,7 +211,7 @@ export default function SubscribePage() {
                       Redirection...
                     </span>
                   ) : (
-                    `Payer ${plan.price_xaf.toLocaleString('fr-FR')} FCFA`
+                    `Payer ${plan.price_eur.toLocaleString('fr-FR')} EUR`
                   )}
                 </button>
               </div>
@@ -220,7 +220,7 @@ export default function SubscribePage() {
 
           {/* Sur mesure card */}
           {surMesure && (
-            <div className="relative flex flex-col p-7 rounded-2xl border transition-all duration-300 hover:-translate-y-1 bg-gradient-to-br from-teal-600 to-emerald-600 border-transparent text-white shadow-xl shadow-teal-500/20">
+            <div className="relative flex flex-col p-7 rounded-2xl border transition-all duration-300 hover:-translate-y-1 bg-gradient-to-br from-pink-600 to-violet-600 border-transparent text-white shadow-xl shadow-pink-500/20">
               <h3 className="text-lg font-bold text-white" style={{ fontFamily: 'Sora, system-ui, sans-serif' }}>
                 {surMesure.name}
               </h3>
@@ -243,7 +243,7 @@ export default function SubscribePage() {
 
               <button
                 onClick={() => handlePayment('sur-mesure')}
-                className="mt-8 block w-full text-center py-3 rounded-xl font-semibold text-sm transition-all bg-white text-teal-700 hover:bg-white/90"
+                className="mt-8 block w-full text-center py-3 rounded-xl font-semibold text-sm transition-all bg-white text-violet-700 hover:bg-white/90"
               >
                 Nous contacter
               </button>
@@ -254,7 +254,7 @@ export default function SubscribePage() {
         {/* Guarantee */}
         <div className="mt-10 text-center">
           <p className="inline-flex items-center gap-2 text-sm text-gray-400">
-            <Shield className="w-4 h-4 text-teal-500" />
+            <Shield className="w-4 h-4 text-pink-500" />
             14 jours satisfait ou remboursé — Annulez en un clic
           </p>
         </div>

@@ -71,7 +71,7 @@ export async function initTransaction(params: InitParams): Promise<InitResult> {
       phone_number: formatPhoneNumber(params.phone),
       payment_system: 'ebilling',
       transaction_type: 'deposit',
-      currency: 'XAF',
+      currency: 'EUR',
       description: params.description.substring(0, 100),
       external_reference: params.externalReference,
     }),
@@ -119,7 +119,7 @@ export async function createEBill(params: EBillParams): Promise<EBillResult> {
       external_reference: params.externalReference,
       payer_name: params.payerName,
       expiry_period: 60,
-      currency: 'XAF',
+      currency: 'EUR',
     }),
   });
 

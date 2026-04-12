@@ -81,7 +81,7 @@ export const StarRating: React.FC<StarRatingProps> = ({ onRate, maxStars = 5, su
         transition={{ duration: 0.2 }}
         className={`w-full py-3.5 rounded-xl font-semibold text-white transition-all shadow-lg ${
           selectedStar
-            ? 'bg-teal-600 hover:bg-teal-700 hover:shadow-xl active:scale-[0.98] cursor-pointer'
+            ? 'bg-pink-600 hover:bg-violet-700 hover:shadow-xl active:scale-[0.98] cursor-pointer'
             : 'bg-gray-300 cursor-not-allowed'
         }`}
       >

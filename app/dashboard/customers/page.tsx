@@ -36,13 +36,13 @@ function CustomerDetailsModal({ customer, onClose, isFr }: CustomerDetailsModalP
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4" onClick={onClose}>
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden" onClick={(e) => e.stopPropagation()}>
         {/* Header */}
-        <div className="relative bg-gradient-to-r from-teal-600 to-emerald-600 text-white p-6">
+        <div className="relative bg-gradient-to-r from-pink-600 to-violet-600 text-white p-6">
           <div className="flex justify-between items-start">
             <div className="flex items-center gap-4">
               <div className={`w-14 h-14 rounded-xl flex items-center justify-center text-xl font-bold shadow-lg ${
                 customer.email || customer.phone
-                  ? 'bg-white text-teal-600'
-                  : 'bg-teal-500 text-white'
+                  ? 'bg-white text-pink-600'
+                  : 'bg-pink-500 text-white'
               }`}>
                 {customer.email ? customer.email[0].toUpperCase() : customer.phone ? '📱' : '?'}
               </div>
@@ -50,7 +50,7 @@ function CustomerDetailsModal({ customer, onClose, isFr }: CustomerDetailsModalP
                 <h2 className="text-lg font-bold">
                   {customer.email || customer.phone || (isFr ? 'Client Anonyme' : 'Anonymous Customer')}
                 </h2>
-                <p className="text-teal-100 text-sm font-mono">
+                <p className="text-pink-100 text-sm font-mono">
                   ID: {customer.user_token.substring(0, 12)}...
                 </p>
               </div>
@@ -300,7 +300,7 @@ export default function CustomersPage() {
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
             <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center">
                 <Users className="w-5 h-5" />
               </div>
               {isFr ? 'Clients' : 'Customers'}
@@ -316,22 +316,22 @@ export default function CustomersPage() {
         {/* Stats Grid - compact 4-col */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {[
-            { label: isFr ? 'Clients Totaux' : 'Total Customers', value: totalCustomers, icon: Users, color: 'teal' },
-            { label: isFr ? 'Emails Collectés' : 'Emails Collected', value: totalEmails, icon: Mail, color: 'emerald' },
-            { label: isFr ? 'WhatsApp Collectés' : 'WhatsApp Collected', value: totalPhones, icon: Phone, color: 'teal' },
+            { label: isFr ? 'Clients Totaux' : 'Total Customers', value: totalCustomers, icon: Users, color: 'pink' },
+            { label: isFr ? 'Emails Collectés' : 'Emails Collected', value: totalEmails, icon: Mail, color: 'violet' },
+            { label: isFr ? 'WhatsApp Collectés' : 'WhatsApp Collected', value: totalPhones, icon: Phone, color: 'pink' },
             {
               label: isFr ? 'Avis Moyen/Client' : 'Avg Reviews/Customer',
               value: totalCustomers > 0
                 ? (([...webCustomers, ...whatsappCustomers].reduce((sum, c) => sum + c.total_reviews, 0)) / totalCustomers).toFixed(1)
                 : '0',
               icon: Star,
-              color: 'emerald'
+              color: 'violet'
             },
           ].map((stat, i) => (
             <div key={i} className="group relative p-4 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-white">
-              <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+              <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
               <div className="flex items-center gap-3">
-                <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${stat.color === 'teal' ? 'bg-teal-50 text-teal-600' : 'bg-emerald-50 text-emerald-600'}`}>
+                <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${stat.color === 'pink' ? 'bg-pink-50 text-pink-600' : 'bg-violet-50 text-violet-600'}`}>
                   <stat.icon className="w-5 h-5" />
                 </div>
                 <div className="min-w-0">
@@ -349,7 +349,7 @@ export default function CustomersPage() {
             onClick={() => { setActiveTab('web'); setSearchQuery(''); }}
             className={`flex items-center gap-2 px-5 py-2.5 text-sm font-medium transition-all border-b-2 -mb-px ${
               activeTab === 'web'
-                ? 'text-teal-600 border-teal-600'
+                ? 'text-pink-600 border-pink-600'
                 : 'text-gray-500 border-transparent hover:text-gray-700 hover:border-gray-300'
             }`}
           >
@@ -373,7 +373,7 @@ export default function CustomersPage() {
 
         {/* Customer Table Card */}
         <div className="group relative border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-white">
-          <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+          <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
 
           {/* Search in card header */}
           <div className="p-4 border-b border-gray-100">
@@ -384,7 +384,7 @@ export default function CustomersPage() {
                 placeholder={activeTab === 'web' ? (isFr ? 'Rechercher par email...' : 'Search by email...') : (isFr ? 'Rechercher par numéro WhatsApp...' : 'Search by WhatsApp number...')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 focus:bg-teal-50/30 transition-all duration-200"
+                className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500/20 focus:border-pink-500 focus:bg-pink-50/30 transition-all duration-200"
               />
             </div>
           </div>
@@ -408,16 +408,16 @@ export default function CustomersPage() {
               <tbody className="divide-y divide-gray-100">
                 {filteredCustomers.length > 0 ? (
                   filteredCustomers.map((customer) => (
-                    <tr key={customer.user_token} className="hover:bg-teal-50/30 transition-colors">
+                    <tr key={customer.user_token} className="hover:bg-pink-50/30 transition-colors">
                       <td className="px-5 py-3 whitespace-nowrap">
                         <div className="flex items-center gap-3">
                           <div className={`w-9 h-9 rounded-lg flex items-center justify-center text-sm font-bold ${
                             activeTab === 'web'
                               ? customer.email
-                                ? 'bg-teal-50 text-teal-600'
+                                ? 'bg-pink-50 text-pink-600'
                                 : 'bg-gray-100 text-gray-400'
                               : customer.phone
-                                ? 'bg-emerald-50 text-emerald-600'
+                                ? 'bg-violet-50 text-violet-600'
                                 : 'bg-gray-100 text-gray-400'
                           }`}>
                             {activeTab === 'web'
@@ -461,7 +461,7 @@ export default function CustomersPage() {
                       </td>
                       <td className="px-5 py-3 whitespace-nowrap">
                         {customer.total_reviews > 1 ? (
-                          <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-teal-50 text-teal-700">
+                          <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-pink-50 text-violet-700">
                             {isFr ? 'Habitué' : 'Regular'}
                           </span>
                         ) : (
@@ -492,7 +492,7 @@ export default function CustomersPage() {
                         <Button
                           variant="ghost"
                           size="sm"
-                          className="text-teal-600 hover:text-teal-700 hover:bg-teal-50 text-xs"
+                          className="text-pink-600 hover:text-violet-700 hover:bg-pink-50 text-xs"
                           onClick={() => setSelectedCustomer(customer)}
                         >
                           {isFr ? 'Détails' : 'Details'}
@@ -548,7 +548,7 @@ export default function CustomersPage() {
 function Loader2Spinner({ isFr }: { isFr: boolean }) {
   return (
     <div className="text-center">
-      <div className="w-10 h-10 border-3 border-teal-600 border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
+      <div className="w-10 h-10 border-3 border-pink-600 border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
       <p className="text-sm text-gray-500">{isFr ? 'Chargement de vos clients...' : 'Loading your customers...'}</p>
     </div>
   );

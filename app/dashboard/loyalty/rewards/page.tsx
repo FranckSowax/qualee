@@ -59,10 +59,10 @@ const typeIcons: Record<RewardType, typeof Percent> = {
 };
 
 const typeColors: Record<RewardType, { bg: string; text: string; accent: string }> = {
-  discount: { bg: 'bg-teal-50', text: 'text-teal-700', accent: 'text-teal-600' },
-  product: { bg: 'bg-emerald-50', text: 'text-emerald-700', accent: 'text-emerald-600' },
-  service: { bg: 'bg-teal-50', text: 'text-teal-700', accent: 'text-teal-600' },
-  cashback: { bg: 'bg-emerald-50', text: 'text-emerald-700', accent: 'text-emerald-600' }
+  discount: { bg: 'bg-pink-50', text: 'text-violet-700', accent: 'text-pink-600' },
+  product: { bg: 'bg-violet-50', text: 'text-violet-700', accent: 'text-violet-600' },
+  service: { bg: 'bg-pink-50', text: 'text-violet-700', accent: 'text-pink-600' },
+  cashback: { bg: 'bg-violet-50', text: 'text-violet-700', accent: 'text-violet-600' }
 };
 
 export default function RewardsPage() {
@@ -211,13 +211,13 @@ export default function RewardsPage() {
     }
   };
 
-  const inputClass = "w-full px-3 py-2.5 border border-gray-300 rounded-lg bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 focus:bg-teal-50/30 transition-all duration-200";
+  const inputClass = "w-full px-3 py-2.5 border border-gray-300 rounded-lg bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500/20 focus:border-pink-500 focus:bg-pink-50/30 transition-all duration-200";
 
   if (loading) {
     return (
       <DashboardLayout merchant={merchant}>
         <div className="flex items-center justify-center h-96">
-          <Loader2 className="w-8 h-8 animate-spin text-teal-600" />
+          <Loader2 className="w-8 h-8 animate-spin text-pink-600" />
         </div>
       </DashboardLayout>
     );
@@ -230,14 +230,14 @@ export default function RewardsPage() {
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center">
                 <Award className="w-5 h-5" />
               </div>
               {t('loyalty.title')}
             </h1>
             <p className="text-gray-500 mt-1 ml-[52px]">{t('loyalty.subtitle')}</p>
           </div>
-          <Button onClick={openAddModal} className="bg-teal-600 hover:bg-teal-700 text-white">
+          <Button onClick={openAddModal} className="bg-pink-600 hover:bg-violet-700 text-white">
             <Plus className="w-4 h-4 mr-2" />
             {t('loyalty.rewards.add')}
           </Button>
@@ -260,7 +260,7 @@ export default function RewardsPage() {
             {t('loyalty.clients.title')}
           </Link>
           <button
-            className="flex items-center gap-2 px-5 py-2.5 text-sm font-medium transition-all border-b-2 -mb-px text-teal-600 border-teal-600"
+            className="flex items-center gap-2 px-5 py-2.5 text-sm font-medium transition-all border-b-2 -mb-px text-pink-600 border-pink-600"
           >
             <Gift className="w-4 h-4" />
             {t('loyalty.rewards.title')}
@@ -270,9 +270,9 @@ export default function RewardsPage() {
         {/* Rewards Grid */}
         {rewards.length === 0 ? (
           <div className="group relative p-12 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-white text-center">
-            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-            <div className="w-14 h-14 bg-teal-50 rounded-full flex items-center justify-center mx-auto mb-3">
-              <Gift className="w-7 h-7 text-teal-500" />
+            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+            <div className="w-14 h-14 bg-pink-50 rounded-full flex items-center justify-center mx-auto mb-3">
+              <Gift className="w-7 h-7 text-pink-500" />
             </div>
             <h3 className="text-base font-medium text-gray-900 mb-1">
               {t('loyalty.rewards.noRewards')}
@@ -280,7 +280,7 @@ export default function RewardsPage() {
             <p className="text-sm text-gray-500 mb-5">
               {t('loyalty.rewards.noRewardsDesc')}
             </p>
-            <Button onClick={openAddModal} className="bg-teal-600 hover:bg-teal-700 text-white">
+            <Button onClick={openAddModal} className="bg-pink-600 hover:bg-violet-700 text-white">
               <Plus className="w-4 h-4 mr-2" />
               {t('loyalty.rewards.add')}
             </Button>
@@ -295,7 +295,7 @@ export default function RewardsPage() {
                   key={reward.id}
                   className={`group relative border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-white ${!reward.is_active ? 'opacity-60' : ''}`}
                 >
-                  <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                  <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                   <div className="p-5">
                     <div className="flex items-start justify-between mb-3">
                       <div className={`w-10 h-10 rounded-lg ${colors.bg} ${colors.accent} flex items-center justify-center`}>
@@ -306,7 +306,7 @@ export default function RewardsPage() {
                           variant="ghost"
                           size="sm"
                           onClick={() => openEditModal(reward)}
-                          className="text-gray-400 hover:text-teal-600 h-8 w-8 p-0"
+                          className="text-gray-400 hover:text-pink-600 h-8 w-8 p-0"
                         >
                           <Edit2 className="w-4 h-4" />
                         </Button>
@@ -332,7 +332,7 @@ export default function RewardsPage() {
 
                     <div className="flex items-center justify-between pt-3 border-t border-gray-100">
                       <div className="flex items-center gap-1.5">
-                        <Star className="w-3.5 h-3.5 text-teal-500" />
+                        <Star className="w-3.5 h-3.5 text-pink-500" />
                         <span className="text-sm font-semibold text-gray-900">{reward.points_cost}</span>
                         <span className="text-xs text-gray-500">{t('loyalty.clients.points')}</span>
                       </div>
@@ -342,7 +342,7 @@ export default function RewardsPage() {
                             {reward.quantity_available} {t('loyalty.rewards.quantity').toLowerCase()}
                           </span>
                         ) : (
-                          <span className="text-emerald-600">{t('loyalty.rewards.quantityUnlimited')}</span>
+                          <span className="text-violet-600">{t('loyalty.rewards.quantityUnlimited')}</span>
                         )}
                       </div>
                     </div>
@@ -430,12 +430,12 @@ export default function RewardsPage() {
                         onClick={() => setForm({ ...form, type })}
                         className={`p-2.5 rounded-lg border-2 transition-all flex items-center gap-2.5 ${
                           form.type === type
-                            ? 'border-teal-500 bg-teal-50'
+                            ? 'border-pink-500 bg-pink-50'
                             : 'border-gray-200 hover:border-gray-300'
                         }`}
                       >
-                        <Icon className={`w-4 h-4 ${form.type === type ? 'text-teal-600' : 'text-gray-400'}`} />
-                        <span className={`text-sm font-medium ${form.type === type ? 'text-teal-700' : 'text-gray-600'}`}>
+                        <Icon className={`w-4 h-4 ${form.type === type ? 'text-pink-600' : 'text-gray-400'}`} />
+                        <span className={`text-sm font-medium ${form.type === type ? 'text-violet-700' : 'text-gray-600'}`}>
                           {t(`loyalty.rewards.type${type.charAt(0).toUpperCase() + type.slice(1)}`)}
                         </span>
                       </button>
@@ -491,7 +491,7 @@ export default function RewardsPage() {
                 <button
                   type="button"
                   onClick={() => setForm({ ...form, is_active: !form.is_active })}
-                  className={`relative w-12 h-6 rounded-full transition-colors ${form.is_active ? 'bg-teal-600' : 'bg-gray-300'}`}
+                  className={`relative w-12 h-6 rounded-full transition-colors ${form.is_active ? 'bg-pink-600' : 'bg-gray-300'}`}
                 >
                   <div className={`absolute top-0.5 w-5 h-5 bg-white rounded-full shadow-sm transition-transform ${form.is_active ? 'left-[26px]' : 'left-0.5'}`} />
                 </button>
@@ -512,7 +512,7 @@ export default function RewardsPage() {
                 </Button>
                 <Button
                   type="submit"
-                  className="flex-1 bg-teal-600 hover:bg-teal-700 text-white"
+                  className="flex-1 bg-pink-600 hover:bg-violet-700 text-white"
                   disabled={saving}
                 >
                   {saving ? (

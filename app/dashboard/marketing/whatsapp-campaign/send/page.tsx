@@ -63,7 +63,7 @@ interface SendResult {
 
 export default function SendCampaignPageWrapper() {
   return (
-    <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="w-10 h-10 border-3 border-teal-600 border-t-transparent rounded-full animate-spin" /></div>}>
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="w-10 h-10 border-3 border-pink-600 border-t-transparent rounded-full animate-spin" /></div>}>
       <SendCampaignPage />
     </Suspense>
   );
@@ -577,7 +577,7 @@ function SendCampaignPage() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
-          <div className="w-12 h-12 border-3 border-teal-600 border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
+          <div className="w-12 h-12 border-3 border-pink-600 border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
           <p className="text-sm text-gray-500">{t('dashboard.common.loading')}</p>
         </div>
       </div>
@@ -631,7 +631,7 @@ function SendCampaignPage() {
           </div>
           <button
             onClick={() => setShowOnboarding(true)}
-            className="inline-flex items-center gap-1.5 text-sm text-teal-600 hover:text-teal-700 font-medium transition-colors"
+            className="inline-flex items-center gap-1.5 text-sm text-pink-600 hover:text-violet-700 font-medium transition-colors"
           >
             <HelpCircle className="w-4 h-4" />
             Guide
@@ -640,16 +640,16 @@ function SendCampaignPage() {
 
         {/* Campaign Summary Banner */}
         {isTemplateMode ? (
-          <div className="group relative p-4 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-gradient-to-r from-teal-50 to-emerald-50">
-            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+          <div className="group relative p-4 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-gradient-to-r from-pink-50 to-violet-50">
+            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-teal-100 text-teal-600 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-lg bg-pink-100 text-pink-600 flex items-center justify-center">
                   <LayoutTemplate className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-teal-900">{templateName}</p>
-                  <p className="text-xs text-teal-700">Template {templateLanguage} - Meta Cloud API</p>
+                  <p className="text-sm font-semibold text-violet-900">{templateName}</p>
+                  <p className="text-xs text-violet-700">Template {templateLanguage} - Meta Cloud API</p>
                 </div>
               </div>
               <Button
@@ -667,8 +667,8 @@ function SendCampaignPage() {
             </div>
           </div>
         ) : campaignData ? (
-          <div className="group relative p-4 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-gradient-to-r from-green-50 to-emerald-50">
-            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+          <div className="group relative p-4 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-gradient-to-r from-green-50 to-violet-50">
+            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-lg bg-green-100 text-green-600 flex items-center justify-center">
@@ -815,9 +815,9 @@ function SendCampaignPage() {
         {/* Stats Row */}
         <div className={`grid gap-3 ${isTemplateMode ? 'grid-cols-2 sm:grid-cols-4' : 'grid-cols-3'}`}>
           <div className="group relative p-4 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-white">
-            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center">
                 <Users className="w-5 h-5" />
               </div>
               <div>
@@ -828,9 +828,9 @@ function SendCampaignPage() {
           </div>
 
           <div className="group relative p-4 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-white">
-            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center">
                 <Check className="w-5 h-5" />
               </div>
               <div>
@@ -842,9 +842,9 @@ function SendCampaignPage() {
 
           {isTemplateMode && (
             <div className="group relative p-4 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-white">
-              <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+              <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-lg bg-violet-50 text-violet-600 flex items-center justify-center">
                   <Wallet className="w-5 h-5" />
                 </div>
                 <div>
@@ -856,7 +856,7 @@ function SendCampaignPage() {
           )}
 
           <div className="group relative p-4 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-white">
-            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center">
                 <Star className="w-5 h-5" />
@@ -873,16 +873,16 @@ function SendCampaignPage() {
 
         {/* Cost Estimate Card (template mode) */}
         {isTemplateMode && selectedCustomers.size > 0 && (
-          <div className="group relative p-4 border border-emerald-200 rounded-xl overflow-hidden bg-gradient-to-r from-emerald-50 to-teal-50">
-            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-emerald-500 to-teal-500" />
+          <div className="group relative p-4 border border-violet-200 rounded-xl overflow-hidden bg-gradient-to-r from-violet-50 to-pink-50">
+            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-violet-500 to-pink-500" />
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-lg bg-violet-100 text-violet-600 flex items-center justify-center">
                   <TrendingUp className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-emerald-900">Estimation du cout</p>
-                  <p className="text-xs text-emerald-700">
+                  <p className="text-sm font-semibold text-violet-900">Estimation du cout</p>
+                  <p className="text-xs text-violet-700">
                     {selectedCustomers.size} destinataire{selectedCustomers.size > 1 ? 's' : ''} = <span className="font-bold">{creditsNeeded} crédit{creditsNeeded > 1 ? 's' : ''}</span>
                     {!hasEnoughCredits && (
                       <span className="block text-red-500 mt-1">Crédits insuffisants ({credits} disponible{credits > 1 ? 's' : ''}). <a href="/dashboard/marketing/whatsapp-campaign" className="underline font-semibold">Acheter un forfait</a></span>
@@ -897,15 +897,15 @@ function SendCampaignPage() {
         {/* Send Progress */}
         {isSending && (
           <div className="group relative p-4 border border-gray-200 rounded-xl overflow-hidden bg-white">
-            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500" />
+            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7]" />
             <div className="flex items-center gap-3 mb-2">
-              <Loader2 className="w-4 h-4 text-teal-600 animate-spin" />
+              <Loader2 className="w-4 h-4 text-pink-600 animate-spin" />
               <p className="text-sm font-medium text-gray-900">Envoi en cours...</p>
               <span className="text-xs text-gray-500 ml-auto">{sendProgress}%</span>
             </div>
             <div className="w-full bg-gray-100 rounded-full h-2">
               <div
-                className="bg-gradient-to-r from-teal-500 to-emerald-500 h-2 rounded-full transition-all duration-300"
+                className="bg-gradient-to-r from-[#EB1E99] to-[#7209B7] h-2 rounded-full transition-all duration-300"
                 style={{ width: `${sendProgress}%` }}
               />
             </div>
@@ -915,7 +915,7 @@ function SendCampaignPage() {
         {/* Results */}
         {showResults && (
           <div className="group relative p-5 border border-gray-200 rounded-xl overflow-hidden bg-white">
-            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500" />
+            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7]" />
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-sm font-semibold text-gray-900">Resultats de l&apos;envoi</h3>
               <div className="flex gap-2">
@@ -954,7 +954,7 @@ function SendCampaignPage() {
             {isTemplateMode && (
               <div className="p-3 bg-gray-50 rounded-lg mb-4">
                 <p className="text-xs text-gray-600">
-                  Crédits utilisés : <span className="font-bold text-gray-900">{successCount}</span> — Solde restant : <span className="font-bold text-teal-600">{Math.max(0, credits - successCount)}</span>
+                  Crédits utilisés : <span className="font-bold text-gray-900">{successCount}</span> — Solde restant : <span className="font-bold text-pink-600">{Math.max(0, credits - successCount)}</span>
                 </p>
               </div>
             )}
@@ -973,7 +973,7 @@ function SendCampaignPage() {
 
         {/* Customer Table Card */}
         <div className="group relative border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-white">
-          <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+          <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
 
           {/* Card Header with Search */}
           <div className="p-4 border-b border-gray-100">
@@ -985,7 +985,7 @@ function SendCampaignPage() {
                   placeholder={isTemplateMode ? 'Rechercher par telephone ou nom...' : t('marketing.whatsappCampaign.searchByPhone')}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-9 pr-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  className="w-full pl-9 pr-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-pink-500"
                 />
               </div>
               <div className="flex gap-2">
@@ -1013,7 +1013,7 @@ function SendCampaignPage() {
                       type="checkbox"
                       checked={selectedCustomers.size === filteredCustomers.length && filteredCustomers.length > 0}
                       onChange={toggleSelectAll}
-                      className="w-4 h-4 rounded border-gray-300 text-teal-600 focus:ring-teal-500"
+                      className="w-4 h-4 rounded border-gray-300 text-pink-600 focus:ring-pink-500"
                     />
                   </th>
                   <th className="px-4 py-2.5 text-left text-[10px] font-semibold text-gray-500 uppercase tracking-wider">{t('marketing.whatsappCampaign.phoneNumber')}</th>
@@ -1034,7 +1034,7 @@ function SendCampaignPage() {
                     <tr
                       key={customer.phone}
                       className={`hover:bg-gray-50 cursor-pointer transition-colors ${
-                        selectedCustomers.has(customer.phone) ? 'bg-teal-50/50' : ''
+                        selectedCustomers.has(customer.phone) ? 'bg-pink-50/50' : ''
                       }`}
                       onClick={() => toggleCustomer(customer.phone)}
                     >
@@ -1044,7 +1044,7 @@ function SendCampaignPage() {
                           checked={selectedCustomers.has(customer.phone)}
                           onChange={() => toggleCustomer(customer.phone)}
                           onClick={(e) => e.stopPropagation()}
-                          className="w-4 h-4 rounded border-gray-300 text-teal-600 focus:ring-teal-500"
+                          className="w-4 h-4 rounded border-gray-300 text-pink-600 focus:ring-pink-500"
                         />
                       </td>
                       <td className="px-4 py-2.5">
@@ -1111,7 +1111,7 @@ function SendCampaignPage() {
           <div className="sticky bottom-4 z-10">
             <div className="bg-white border border-gray-200 rounded-xl shadow-lg p-3 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center">
                   <Send className="w-4 h-4" />
                 </div>
                 <div>
@@ -1126,7 +1126,7 @@ function SendCampaignPage() {
               <Button
                 onClick={sendCampaign}
                 disabled={isTemplateMode ? !templateId : !campaignData}
-                className="bg-teal-600 hover:bg-teal-700 gap-1.5"
+                className="bg-pink-600 hover:bg-violet-700 gap-1.5"
               >
                 <Send className="w-4 h-4" />
                 Envoyer ({selectedCustomers.size})

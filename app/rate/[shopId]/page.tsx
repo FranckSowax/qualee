@@ -270,7 +270,7 @@ export default function RatingPage() {
 
   if (!isClient || fetching) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-teal-600 to-teal-700">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-600 to-violet-700">
         <div className="bg-white/10 backdrop-blur-lg rounded-3xl shadow-2xl p-8">
           <div className="w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin mx-auto"></div>
         </div>
@@ -280,7 +280,7 @@ export default function RatingPage() {
 
   if (!merchant) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-teal-600 to-teal-700 p-4">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-600 to-violet-700 p-4">
         <div className="bg-white rounded-3xl shadow-2xl p-8 text-center max-w-md w-full">
           <h1 className="text-2xl font-bold text-gray-900 mb-4">Commerce introuvable</h1>
           <p className="text-gray-600 mb-6">Désolé, nous n'avons pas pu trouver ce commerce. Veuillez vérifier le lien.</p>
@@ -306,7 +306,7 @@ export default function RatingPage() {
           <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
         </>
       ) : (
-        <div className="absolute inset-0 bg-gradient-to-br from-teal-600 to-teal-700"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-pink-600 to-violet-700"></div>
       )}
 
       {/* Content */}
@@ -328,7 +328,7 @@ export default function RatingPage() {
         {/* Rating Card */}
         <div className="bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl p-8 border border-white/20">
           <div className="flex items-center justify-center gap-2 mb-4">
-            <Star className="w-6 h-6 text-teal-600 fill-teal-600" />
+            <Star className="w-6 h-6 text-pink-600 fill-pink-600" />
             <h1 className="text-2xl font-bold text-gray-900">
               {merchant.business_name || merchant.name}
             </h1>
@@ -370,7 +370,7 @@ export default function RatingPage() {
                   onChange={(e) => setFeedback(e.target.value)}
                   placeholder={isFr ? 'Qu\'est-ce qui pourrait être amélioré ?' : 'What could be improved?'}
                   rows={3}
-                  className="w-full p-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all resize-none text-sm"
+                  className="w-full p-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-500/20 focus:border-pink-500 transition-all resize-none text-sm"
                 />
               </div>
 
@@ -399,7 +399,7 @@ export default function RatingPage() {
               ) : (
                 <div className="space-y-2">
                   <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
-                    <Mail className="w-4 h-4 text-teal-600" />
+                    <Mail className="w-4 h-4 text-pink-600" />
                     {t('form.yourEmail')} <span className="text-red-500">*</span>
                   </label>
                   <div className="relative">
@@ -412,7 +412,7 @@ export default function RatingPage() {
                       }}
                       placeholder={t('form.emailPlaceholder')}
                       className={`w-full p-4 pl-11 border-2 ${
-                        emailError ? 'border-red-300 focus:ring-red-500' : 'border-gray-200 focus:ring-teal-500'
+                        emailError ? 'border-red-300 focus:ring-red-500' : 'border-gray-200 focus:ring-pink-500'
                       } rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all`}
                       required
                     />
@@ -430,7 +430,7 @@ export default function RatingPage() {
               <Button
                 onClick={handleFeedbackSubmit}
                 disabled={loading}
-                className="w-full bg-teal-600 hover:bg-teal-700 text-white py-3 rounded-xl font-semibold transition-all shadow-lg hover:shadow-xl"
+                className="w-full bg-pink-600 hover:bg-violet-700 text-white py-3 rounded-xl font-semibold transition-all shadow-lg hover:shadow-xl"
               >
                 {loading ? t('common.loading') : (isFr ? 'Envoyer mon avis' : 'Send my feedback')}
               </Button>
@@ -468,7 +468,7 @@ export default function RatingPage() {
                 // Web Mode - Email Input
                 <div className="space-y-2">
                   <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
-                    <Mail className="w-4 h-4 text-teal-600" />
+                    <Mail className="w-4 h-4 text-pink-600" />
                     {t('form.yourEmail')} <span className="text-red-500">*</span>
                   </label>
                   <div className="relative">
@@ -481,7 +481,7 @@ export default function RatingPage() {
                       }}
                       placeholder={t('form.emailPlaceholder')}
                       className={`w-full p-4 pl-11 border-2 ${
-                        emailError ? 'border-red-300 focus:ring-red-500' : 'border-gray-200 focus:ring-teal-500'
+                        emailError ? 'border-red-300 focus:ring-red-500' : 'border-gray-200 focus:ring-pink-500'
                       } rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all`}
                       required
                     />
@@ -499,7 +499,7 @@ export default function RatingPage() {
               <Button
                 onClick={handleFeedbackSubmit}
                 disabled={loading}
-                className="w-full bg-teal-600 hover:bg-teal-700 text-white py-3 rounded-xl font-semibold transition-all shadow-lg hover:shadow-xl"
+                className="w-full bg-pink-600 hover:bg-violet-700 text-white py-3 rounded-xl font-semibold transition-all shadow-lg hover:shadow-xl"
               >
                 {loading ? t('common.loading') : t('common.submit')}
               </Button>

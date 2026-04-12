@@ -187,7 +187,7 @@ export default function AnalyticsPage() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-teal-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-16 h-16 border-4 border-pink-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-lg text-gray-600">{t('common.loading')}</p>
         </div>
       </div>
@@ -201,9 +201,9 @@ export default function AnalyticsPage() {
       icon: BarChart3,
       trend: reviewsTrend,
       trendLabel: t('dashboardAnalytics.thisMonth'),
-      iconBg: 'bg-teal-50',
-      iconColor: 'text-teal-600',
-      trendPositiveColor: 'text-teal-600',
+      iconBg: 'bg-pink-50',
+      iconColor: 'text-pink-600',
+      trendPositiveColor: 'text-pink-600',
     },
     {
       label: t('dashboardAnalytics.positiveReviews'),
@@ -211,9 +211,9 @@ export default function AnalyticsPage() {
       icon: ThumbsUp,
       trend: positiveTrend,
       trendLabel: t('dashboardAnalytics.thisMonth'),
-      iconBg: 'bg-emerald-50',
-      iconColor: 'text-emerald-600',
-      trendPositiveColor: 'text-emerald-600',
+      iconBg: 'bg-violet-50',
+      iconColor: 'text-violet-600',
+      trendPositiveColor: 'text-violet-600',
     },
     {
       label: t('dashboardAnalytics.negativeReviews'),
@@ -242,7 +242,7 @@ export default function AnalyticsPage() {
       <div className="space-y-5">
         {/* Page header */}
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center">
+          <div className="w-10 h-10 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center">
             <Activity className="w-5 h-5" />
           </div>
           <div>
@@ -258,14 +258,14 @@ export default function AnalyticsPage() {
               key={idx}
               className="group relative p-5 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md"
             >
-              <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+              <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
               <div className="flex items-center justify-between mb-3">
                 <div className={`w-10 h-10 rounded-lg ${card.iconBg} ${card.iconColor} flex items-center justify-center`}>
                   <card.icon className="w-5 h-5" />
                 </div>
                 {card.trend ? (
                   card.trend.isPositive ? (
-                    <TrendingUp className="w-4 h-4 text-teal-600" />
+                    <TrendingUp className="w-4 h-4 text-pink-600" />
                   ) : (
                     <TrendingDown className="w-4 h-4 text-red-500" />
                   )
@@ -288,7 +288,7 @@ export default function AnalyticsPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           {/* Rating distribution */}
           <div className="group relative p-6 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md">
-            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
             <div className="flex items-center gap-2 mb-4">
               <div className="w-10 h-10 rounded-lg bg-amber-50 text-amber-500 flex items-center justify-center">
                 <Star className="w-5 h-5" />
@@ -299,7 +299,7 @@ export default function AnalyticsPage() {
               {[5, 4, 3, 2, 1].map((rating) => {
                 const count = ratingDistribution[rating] || 0;
                 const percentage = stats.totalReviews > 0 ? (count / stats.totalReviews) * 100 : 0;
-                const barColor = rating >= 4 ? 'bg-emerald-500' : rating === 3 ? 'bg-amber-500' : 'bg-red-500';
+                const barColor = rating >= 4 ? 'bg-violet-500' : rating === 3 ? 'bg-amber-500' : 'bg-red-500';
                 return (
                   <div key={rating} className="flex items-center gap-2">
                     <span className="text-xs font-medium text-gray-600 w-6 text-right">{rating}</span>
@@ -325,9 +325,9 @@ export default function AnalyticsPage() {
 
           {/* Conversion metrics */}
           <div className="group relative p-6 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md">
-            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center">
                 <BarChart3 className="w-5 h-5" />
               </div>
               <h3 className="text-sm font-semibold text-gray-900">{t('dashboardAnalytics.conversionMetrics')}</h3>
@@ -338,8 +338,8 @@ export default function AnalyticsPage() {
                   <p className="text-xs text-gray-500">{t('dashboardAnalytics.satisfactionRate')}</p>
                   <p className="text-xl font-bold text-gray-900">{stats.conversionRate}%</p>
                 </div>
-                <div className="w-9 h-9 bg-teal-100 rounded-lg flex items-center justify-center">
-                  <TrendingUp className="w-4 h-4 text-teal-600" />
+                <div className="w-9 h-9 bg-pink-100 rounded-lg flex items-center justify-center">
+                  <TrendingUp className="w-4 h-4 text-pink-600" />
                 </div>
               </div>
               <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
@@ -366,7 +366,7 @@ export default function AnalyticsPage() {
 
         {/* Recent reviews - compact table */}
         <div className="group relative border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md">
-          <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+          <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
 
           <div className="flex items-center gap-2 px-6 py-4 border-b border-gray-100">
             <div className="w-10 h-10 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center">
@@ -423,7 +423,7 @@ export default function AnalyticsPage() {
                       </td>
                       <td className="px-4 py-2.5 whitespace-nowrap">
                         {feedback.is_positive ? (
-                          <span className="inline-flex items-center gap-1 px-1.5 py-0.5 bg-emerald-50 text-emerald-700 rounded-full text-xs font-medium">
+                          <span className="inline-flex items-center gap-1 px-1.5 py-0.5 bg-violet-50 text-violet-700 rounded-full text-xs font-medium">
                             <ThumbsUp className="w-2.5 h-2.5" />
                             {t('dashboardAnalytics.positiveLabel')}
                           </span>

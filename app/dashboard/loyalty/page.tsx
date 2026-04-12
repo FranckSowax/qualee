@@ -52,7 +52,7 @@ function LoyaltyPageContent() {
   const [loyaltyEnabled, setLoyaltyEnabled] = useState(false);
   const [pointsPerPurchase, setPointsPerPurchase] = useState(10);
   const [purchaseThreshold, setPurchaseThreshold] = useState(1000);
-  const [loyaltyCurrency, setLoyaltyCurrency] = useState<'XAF'>('XAF');
+  const [loyaltyCurrency, setLoyaltyCurrency] = useState<'EUR'>('EUR');
   const [welcomePoints, setWelcomePoints] = useState(50);
   const [loyaltyCardFile, setLoyaltyCardFile] = useState<File | null>(null);
   const [loyaltyCardPreview, setLoyaltyCardPreview] = useState<string>('');
@@ -87,7 +87,7 @@ function LoyaltyPageContent() {
       setLoyaltyEnabled(merchantData?.loyalty_enabled || false);
       setPointsPerPurchase(merchantData?.points_per_purchase || 10);
       setPurchaseThreshold(merchantData?.purchase_amount_threshold || 1000);
-      setLoyaltyCurrency('XAF');
+      setLoyaltyCurrency('EUR');
       setWelcomePoints(merchantData?.welcome_points || 50);
       if (merchantData?.loyalty_card_image_url) setLoyaltyCardPreview(merchantData.loyalty_card_image_url);
 
@@ -234,13 +234,13 @@ function LoyaltyPageContent() {
     return (
       <DashboardLayout merchant={merchant}>
         <div className="flex items-center justify-center h-96">
-          <Loader2 className="w-8 h-8 animate-spin text-teal-600" />
+          <Loader2 className="w-8 h-8 animate-spin text-pink-600" />
         </div>
       </DashboardLayout>
     );
   }
 
-  const inputClass = "w-full px-3 py-2.5 border border-gray-300 rounded-lg bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 focus:bg-teal-50/30 transition-all duration-200";
+  const inputClass = "w-full px-3 py-2.5 border border-gray-300 rounded-lg bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500/20 focus:border-pink-500 focus:bg-pink-50/30 transition-all duration-200";
 
   return (
     <DashboardLayout merchant={merchant}>
@@ -249,7 +249,7 @@ function LoyaltyPageContent() {
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center">
                 <Award className="w-5 h-5" />
               </div>
               {t('loyalty.title')}
@@ -260,13 +260,13 @@ function LoyaltyPageContent() {
 
         {/* Message */}
         {message && (
-          <div className={`p-4 rounded-lg flex items-center gap-3 ${message.type === 'success' ? 'bg-teal-50 border border-teal-200' : 'bg-red-50 border border-red-200'}`}>
+          <div className={`p-4 rounded-lg flex items-center gap-3 ${message.type === 'success' ? 'bg-pink-50 border border-pink-200' : 'bg-red-50 border border-red-200'}`}>
             {message.type === 'success' ? (
-              <Check className="w-5 h-5 text-teal-600 flex-shrink-0" />
+              <Check className="w-5 h-5 text-pink-600 flex-shrink-0" />
             ) : (
               <X className="w-5 h-5 text-red-600 flex-shrink-0" />
             )}
-            <p className={`text-sm font-medium ${message.type === 'success' ? 'text-teal-700' : 'text-red-700'}`}>
+            <p className={`text-sm font-medium ${message.type === 'success' ? 'text-violet-700' : 'text-red-700'}`}>
               {message.text}
             </p>
           </div>
@@ -276,15 +276,15 @@ function LoyaltyPageContent() {
         {loyaltyEnabled && (
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { label: t('loyalty.overview.totalClients'), value: stats?.total_clients || 0, icon: Users, color: 'teal' },
-              { label: t('loyalty.overview.totalPoints'), value: stats?.total_points_issued?.toLocaleString() || 0, icon: Star, color: 'emerald' },
-              { label: t('loyalty.overview.totalRewards'), value: stats?.total_rewards_redeemed || 0, icon: Gift, color: 'teal' },
-              { label: t('loyalty.overview.activeCards'), value: stats?.active_clients || 0, icon: CreditCard, color: 'emerald' },
+              { label: t('loyalty.overview.totalClients'), value: stats?.total_clients || 0, icon: Users, color: 'pink' },
+              { label: t('loyalty.overview.totalPoints'), value: stats?.total_points_issued?.toLocaleString() || 0, icon: Star, color: 'violet' },
+              { label: t('loyalty.overview.totalRewards'), value: stats?.total_rewards_redeemed || 0, icon: Gift, color: 'pink' },
+              { label: t('loyalty.overview.activeCards'), value: stats?.active_clients || 0, icon: CreditCard, color: 'violet' },
             ].map((stat, i) => (
               <div key={i} className="group relative p-4 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-white">
-                <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                 <div className="flex items-center gap-3">
-                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${stat.color === 'teal' ? 'bg-teal-50 text-teal-600' : 'bg-emerald-50 text-emerald-600'}`}>
+                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${stat.color === 'pink' ? 'bg-pink-50 text-pink-600' : 'bg-violet-50 text-violet-600'}`}>
                     <stat.icon className="w-5 h-5" />
                   </div>
                   <div className="min-w-0">
@@ -304,7 +304,7 @@ function LoyaltyPageContent() {
               onClick={() => setActiveTab('config')}
               className={`flex items-center gap-2 px-5 py-2.5 text-sm font-medium transition-all border-b-2 -mb-px ${
                 activeTab === 'config'
-                  ? 'text-teal-600 border-teal-600'
+                  ? 'text-pink-600 border-pink-600'
                   : 'text-gray-500 border-transparent hover:text-gray-700 hover:border-gray-300'
               }`}
             >
@@ -315,7 +315,7 @@ function LoyaltyPageContent() {
               onClick={() => setActiveTab('clients')}
               className={`flex items-center gap-2 px-5 py-2.5 text-sm font-medium transition-all border-b-2 -mb-px ${
                 activeTab === 'clients'
-                  ? 'text-teal-600 border-teal-600'
+                  ? 'text-pink-600 border-pink-600'
                   : 'text-gray-500 border-transparent hover:text-gray-700 hover:border-gray-300'
               }`}
             >
@@ -340,10 +340,10 @@ function LoyaltyPageContent() {
           <div className="space-y-6">
             {/* Enable Toggle Card */}
             <div className="group relative p-6 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-white">
-              <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+              <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${loyaltyEnabled ? 'bg-teal-50 text-teal-600' : 'bg-gray-100 text-gray-400'}`}>
+                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${loyaltyEnabled ? 'bg-pink-50 text-pink-600' : 'bg-gray-100 text-gray-400'}`}>
                     <Star className="w-5 h-5" />
                   </div>
                   <div>
@@ -354,7 +354,7 @@ function LoyaltyPageContent() {
                 <button
                   type="button"
                   onClick={() => setLoyaltyEnabled(!loyaltyEnabled)}
-                  className={`relative w-12 h-6 rounded-full transition-colors ${loyaltyEnabled ? 'bg-teal-600' : 'bg-gray-300'}`}
+                  className={`relative w-12 h-6 rounded-full transition-colors ${loyaltyEnabled ? 'bg-pink-600' : 'bg-gray-300'}`}
                 >
                   <div className={`absolute top-0.5 w-5 h-5 bg-white rounded-full shadow-sm transition-transform ${loyaltyEnabled ? 'left-[26px]' : 'left-0.5'}`} />
                 </button>
@@ -366,9 +366,9 @@ function LoyaltyPageContent() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   {/* Points Configuration */}
                   <div className="group relative p-6 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-white">
-                    <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                    <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                     <div className="flex items-center gap-3 mb-5">
-                      <div className="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center">
+                      <div className="w-10 h-10 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center">
                         <Coins className="w-5 h-5" />
                       </div>
                       <h3 className="font-semibold text-gray-900">{t('loyalty.settings.pointsPerPurchase')}</h3>
@@ -401,9 +401,9 @@ function LoyaltyPageContent() {
 
                   {/* Currency & Welcome Points */}
                   <div className="group relative p-6 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-white">
-                    <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                    <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                     <div className="flex items-center gap-3 mb-5">
-                      <div className="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center">
+                      <div className="w-10 h-10 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center">
                         <Star className="w-5 h-5" />
                       </div>
                       <h3 className="font-semibold text-gray-900">{t('loyalty.settings.currency')}</h3>
@@ -413,7 +413,7 @@ function LoyaltyPageContent() {
                         <label className="block text-sm font-medium text-gray-700 mb-1.5">{t('loyalty.settings.currency')}</label>
                         <p className="text-xs text-gray-500 mb-2">{t('loyalty.settings.currencyDesc')}</p>
                         <div className={`${inputClass} flex items-center bg-gray-100 text-gray-700`}>
-                          FCFA (XAF)
+                          EUR
                         </div>
                       </div>
                       <div>
@@ -433,10 +433,10 @@ function LoyaltyPageContent() {
 
                 {/* Loyalty Card Image */}
                 <div className="group relative p-6 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-white">
-                  <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                  <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                   <div className="flex items-center justify-between mb-5">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center">
+                      <div className="w-10 h-10 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center">
                         <ImageIcon className="w-5 h-5" />
                       </div>
                       <div>
@@ -444,7 +444,7 @@ function LoyaltyPageContent() {
                         <p className="text-sm text-gray-500">{t('loyalty.settings.cardImageDesc')}</p>
                       </div>
                     </div>
-                    <Badge variant="outline" className="border-teal-200 text-teal-700">16:9</Badge>
+                    <Badge variant="outline" className="border-pink-200 text-violet-700">16:9</Badge>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -470,22 +470,22 @@ function LoyaltyPageContent() {
                 </div>
 
                 {/* Points Preview */}
-                <div className="group relative p-6 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-gradient-to-br from-teal-50/50 to-emerald-50/50">
-                  <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                <div className="group relative p-6 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-gradient-to-br from-pink-50/50 to-violet-50/50">
+                  <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                   <h3 className="font-semibold text-gray-900 mb-4">Exemple de calcul des points</h3>
                   <div className="flex items-center justify-center gap-4 text-center">
                     <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
-                      <p className="text-2xl font-bold text-teal-600">{purchaseThreshold.toLocaleString()} FCFA</p>
+                      <p className="text-2xl font-bold text-pink-600">{purchaseThreshold.toLocaleString()} EUR</p>
                       <p className="text-sm text-gray-500">Montant d'achat</p>
                     </div>
-                    <div className="text-2xl text-teal-500 font-bold">=</div>
+                    <div className="text-2xl text-pink-500 font-bold">=</div>
                     <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
-                      <p className="text-2xl font-bold text-teal-600">{pointsPerPurchase}</p>
+                      <p className="text-2xl font-bold text-pink-600">{pointsPerPurchase}</p>
                       <p className="text-sm text-gray-500">Points gagnés</p>
                     </div>
                   </div>
                   <p className="text-center text-sm text-gray-500 mt-4">
-                    Exemple : achat de {(purchaseThreshold * 5).toLocaleString()} FCFA = {pointsPerPurchase * 5} points
+                    Exemple : achat de {(purchaseThreshold * 5).toLocaleString()} EUR = {pointsPerPurchase * 5} points
                   </p>
                 </div>
               </>
@@ -496,7 +496,7 @@ function LoyaltyPageContent() {
               <Button
                 onClick={handleSaveLoyalty}
                 disabled={savingLoyalty}
-                className="bg-teal-600 hover:bg-teal-700 text-white"
+                className="bg-pink-600 hover:bg-violet-700 text-white"
               >
                 {savingLoyalty ? (
                   <>
@@ -517,13 +517,13 @@ function LoyaltyPageContent() {
         {/* Tab: Clients */}
         {activeTab === 'clients' && loyaltyEnabled && (
           <div className="group relative border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-white">
-            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
 
             {/* Card Header with Search */}
             <div className="p-5 border-b border-gray-100">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center">
                     <Users className="w-5 h-5" />
                   </div>
                   <h2 className="text-lg font-semibold text-gray-900">
@@ -536,7 +536,7 @@ function LoyaltyPageContent() {
                     placeholder={t('loyalty.clients.search')}
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pl-10 pr-4 py-2 w-full sm:w-64 border border-gray-300 rounded-lg bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all duration-200"
+                    className="pl-10 pr-4 py-2 w-full sm:w-64 border border-gray-300 rounded-lg bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500/20 focus:border-pink-500 transition-all duration-200"
                   />
                 </div>
               </div>
@@ -581,9 +581,9 @@ function LoyaltyPageContent() {
                   </thead>
                   <tbody className="divide-y divide-gray-100">
                     {filteredClients.map((client) => (
-                      <tr key={client.id} className="hover:bg-teal-50/30 transition-colors">
+                      <tr key={client.id} className="hover:bg-pink-50/30 transition-colors">
                         <td className="px-5 py-3 whitespace-nowrap">
-                          <span className="font-mono text-xs text-teal-700 bg-teal-50 px-2 py-1 rounded-md">
+                          <span className="font-mono text-xs text-violet-700 bg-pink-50 px-2 py-1 rounded-md">
                             {client.card_id}
                           </span>
                         </td>
@@ -599,7 +599,7 @@ function LoyaltyPageContent() {
                         </td>
                         <td className="px-5 py-3 whitespace-nowrap">
                           <div className="flex items-center gap-1.5">
-                            <Star className="w-3.5 h-3.5 text-teal-500" />
+                            <Star className="w-3.5 h-3.5 text-pink-500" />
                             <span className="text-sm font-semibold text-gray-900">{client.points}</span>
                           </div>
                         </td>
@@ -612,7 +612,7 @@ function LoyaltyPageContent() {
                         <td className="px-5 py-3 whitespace-nowrap">
                           <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${
                             client.status === 'active'
-                              ? 'bg-emerald-50 text-emerald-700'
+                              ? 'bg-violet-50 text-violet-700'
                               : client.status === 'suspended'
                               ? 'bg-red-50 text-red-700'
                               : 'bg-gray-100 text-gray-600'
@@ -623,11 +623,11 @@ function LoyaltyPageContent() {
                         <td className="px-5 py-3 whitespace-nowrap text-right">
                           <div className="flex items-center justify-end gap-1">
                             <Link href={`/card/${client.qr_code_data}`} target="_blank">
-                              <Button variant="ghost" size="sm" className="text-gray-400 hover:text-teal-600 h-8 w-8 p-0">
+                              <Button variant="ghost" size="sm" className="text-gray-400 hover:text-pink-600 h-8 w-8 p-0">
                                 <Eye className="w-4 h-4" />
                               </Button>
                             </Link>
-                            <Button variant="ghost" size="sm" className="text-gray-400 hover:text-teal-600 h-8 w-8 p-0">
+                            <Button variant="ghost" size="sm" className="text-gray-400 hover:text-pink-600 h-8 w-8 p-0">
                               <History className="w-4 h-4" />
                             </Button>
                           </div>
@@ -645,24 +645,24 @@ function LoyaltyPageContent() {
         {loyaltyEnabled && activeTab === 'config' && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Link href="/dashboard/loyalty/rewards" className="block">
-              <div className="group relative p-5 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-gradient-to-br from-teal-600 to-teal-700 text-white">
+              <div className="group relative p-5 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-gradient-to-br from-pink-600 to-violet-700 text-white">
                 <div className="flex items-center justify-between">
                   <div>
                     <Gift className="w-7 h-7 mb-2 opacity-90" />
                     <h3 className="font-semibold">{t('loyalty.rewards.title')}</h3>
-                    <p className="text-teal-100 text-sm mt-0.5">{t('loyalty.rewards.subtitle')}</p>
+                    <p className="text-pink-100 text-sm mt-0.5">{t('loyalty.rewards.subtitle')}</p>
                   </div>
                   <ChevronRight className="w-5 h-5 opacity-70" />
                 </div>
               </div>
             </Link>
             <Link href="/dashboard/scan" className="block">
-              <div className="group relative p-5 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-gradient-to-br from-emerald-600 to-emerald-700 text-white">
+              <div className="group relative p-5 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-gradient-to-br from-violet-600 to-violet-700 text-white">
                 <div className="flex items-center justify-between">
                   <div>
                     <CreditCard className="w-7 h-7 mb-2 opacity-90" />
                     <h3 className="font-semibold">{t('dashboard.nav.scanner')}</h3>
-                    <p className="text-emerald-100 text-sm mt-0.5">{t('loyalty.scan.loyaltyCardDetected')}</p>
+                    <p className="text-violet-100 text-sm mt-0.5">{t('loyalty.scan.loyaltyCardDetected')}</p>
                   </div>
                   <ChevronRight className="w-5 h-5 opacity-70" />
                 </div>
@@ -679,7 +679,7 @@ export default function LoyaltyPage() {
   return (
     <Suspense fallback={
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <Loader2 className="w-8 h-8 animate-spin text-teal-600" />
+        <Loader2 className="w-8 h-8 animate-spin text-pink-600" />
       </div>
     }>
       <LoyaltyPageContent />

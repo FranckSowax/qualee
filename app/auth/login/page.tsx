@@ -10,7 +10,7 @@ function AuthBackground() {
   return (
     <>
       <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: 'url(/bg-pattern-1.jpg)' }} />
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0F766E]/85 to-[#059669]/80 backdrop-blur-[2px]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#EB1E99]/85 to-[#7209B7]/80 backdrop-blur-[2px]" />
     </>
   );
 }
@@ -215,7 +215,7 @@ function LoginLoading() {
   return (
     <div className="min-h-screen relative flex items-center justify-center p-4">
       <div className="bg-white rounded-3xl shadow-2xl p-8 max-w-md w-full text-center">
-        <div className="w-12 h-12 border-4 border-gray-300 border-t-teal-600 rounded-full animate-spin mx-auto mb-4"></div>
+        <div className="w-12 h-12 border-4 border-gray-300 border-t-pink-600 rounded-full animate-spin mx-auto mb-4"></div>
         <p className="text-gray-600">Chargement...</p>
       </div>
     </div>

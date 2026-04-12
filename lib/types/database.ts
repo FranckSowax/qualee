@@ -31,7 +31,7 @@ export interface Merchant {
   loyalty_card_image_url?: string | null;
   points_per_purchase?: number;
   purchase_amount_threshold?: number;
-  loyalty_currency?: 'XAF';
+  loyalty_currency?: 'EUR';
   welcome_points?: number;
   loyalty_message_template?: string | null;
   // Subscription fields
@@ -113,7 +113,7 @@ export interface SubscriptionPayment {
   id: string;
   merchant_id: string;
   tier: string;
-  amount_xaf: number;
+  amount_eur: number;
   payment_type: SubscriptionPaymentType;
   external_reference: string;
   ebilling_bill_id: string | null;

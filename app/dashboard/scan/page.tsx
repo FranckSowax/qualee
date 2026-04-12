@@ -226,7 +226,7 @@ export default function ScanPage() {
           action: 'earn',
           points: pointsToAdd,
           purchaseAmount: parseFloat(purchaseAmount) || 0,
-          description: isFr ? `Achat de ${purchaseAmount} FCFA` : `Purchase of ${purchaseAmount} FCFA`
+          description: isFr ? `Achat de ${purchaseAmount} EUR` : `Purchase of ${purchaseAmount} EUR`
         })
       });
 
@@ -440,7 +440,7 @@ export default function ScanPage() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
-          <div className="w-12 h-12 border-3 border-teal-600 border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
+          <div className="w-12 h-12 border-3 border-pink-600 border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
           <p className="text-sm text-gray-500">Loading...</p>
         </div>
       </div>
@@ -458,18 +458,18 @@ export default function ScanPage() {
 
         {/* Scanner Card */}
         <div className="group relative border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-white">
-          <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+          <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
           <div className="p-5">
 
             {/* Idle State */}
             {scanStatus === 'idle' && (
               <div className="text-center py-8">
-                <div className="w-14 h-14 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center mx-auto mb-4">
+                <div className="w-14 h-14 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center mx-auto mb-4">
                   <ScanLine className="w-7 h-7" />
                 </div>
                 <h3 className="text-sm font-semibold text-gray-900 mb-1">{isFr ? 'Pret a scanner' : 'Ready to scan'}</h3>
                 <p className="text-xs text-gray-500 mb-5">{isFr ? 'Coupon, carte fidelite ou code de redemption' : 'Coupon, loyalty card or redemption code'}</p>
-                <Button onClick={startScanning} className="bg-teal-600 hover:bg-teal-700 gap-2">
+                <Button onClick={startScanning} className="bg-pink-600 hover:bg-violet-700 gap-2">
                   <ScanLine className="w-4 h-4" />
                   {isFr ? 'Lancer le scan' : 'Start scanning'}
                 </Button>
@@ -489,7 +489,7 @@ export default function ScanPage() {
             {/* Verifying State */}
             {scanStatus === 'verifying' && (
               <div className="text-center py-8">
-                <div className="w-10 h-10 border-3 border-teal-600 border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
+                <div className="w-10 h-10 border-3 border-pink-600 border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
                 <p className="text-sm font-medium text-gray-700">{isFr ? 'Verification du code...' : 'Verifying code...'}</p>
               </div>
             )}
@@ -539,12 +539,12 @@ export default function ScanPage() {
             {/* Redeemed Coupon Success */}
             {scanStatus === 'redeemed' && (
               <div className="text-center py-6">
-                <div className="w-14 h-14 bg-teal-50 text-teal-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-14 h-14 bg-pink-50 text-pink-600 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Gift className="w-7 h-7" />
                 </div>
                 <h2 className="text-lg font-bold text-gray-900 mb-1">{isFr ? 'Prix Valide' : 'Prize Validated'}</h2>
                 <p className="text-sm text-gray-500 mb-5">{isFr ? 'Le coupon a ete marque comme utilise.' : 'The coupon has been marked as used.'}</p>
-                <Button onClick={startScanning} className="bg-teal-600 hover:bg-teal-700 gap-1.5" size="sm">
+                <Button onClick={startScanning} className="bg-pink-600 hover:bg-violet-700 gap-1.5" size="sm">
                   <ScanLine className="w-3.5 h-3.5" />
                   {isFr ? 'Scanner un autre client' : 'Scan another client'}
                 </Button>
@@ -583,7 +583,7 @@ export default function ScanPage() {
                     <div className="space-y-3">
                       <div>
                         <label className="block text-xs font-medium text-gray-700 mb-1.5">
-                          {t('loyalty.scan.enterAmount')} (FCFA)
+                          {t('loyalty.scan.enterAmount')} (EUR)
                         </label>
                         <Input
                           type="number"
@@ -603,7 +603,7 @@ export default function ScanPage() {
                             <span className="text-2xl font-bold text-amber-600">+{pointsToAdd}</span>
                           </div>
                           <p className="text-[10px] text-amber-600 mt-1">
-                            {merchant?.purchase_amount_threshold || 1000} FCFA = {merchant?.points_per_purchase || 10} points
+                            {merchant?.purchase_amount_threshold || 1000} EUR = {merchant?.points_per_purchase || 10} points
                           </p>
                         </div>
                       )}
@@ -644,7 +644,7 @@ export default function ScanPage() {
                       </div>
                       <p className="text-xs text-gray-600 mt-1">{loyaltyClient.name || 'Client'}</p>
                     </div>
-                    <Button onClick={startScanning} className="bg-teal-600 hover:bg-teal-700 gap-1.5" size="sm">
+                    <Button onClick={startScanning} className="bg-pink-600 hover:bg-violet-700 gap-1.5" size="sm">
                       <ScanLine className="w-3.5 h-3.5" />
                       {isFr ? 'Scanner un autre client' : 'Scan another client'}
                     </Button>
@@ -743,7 +743,7 @@ export default function ScanPage() {
                   <span className="font-semibold">{redemptionDetails?.reward_name}</span> {isFr ? 'remise à' : 'delivered to'} {redemptionDetails?.loyalty_clients?.name || 'client'}.
                 </p>
                 <p className="text-xs text-gray-400 mb-5 font-mono">{redemptionDetails?.redemption_code}</p>
-                <Button onClick={startScanning} className="bg-teal-600 hover:bg-teal-700 gap-1.5" size="sm">
+                <Button onClick={startScanning} className="bg-pink-600 hover:bg-violet-700 gap-1.5" size="sm">
                   <ScanLine className="w-3.5 h-3.5" />
                   {isFr ? 'Scanner un autre client' : 'Scan another client'}
                 </Button>
@@ -755,13 +755,13 @@ export default function ScanPage() {
         {/* Session History - Collapsible */}
         {sessionHistory.length > 0 && (
           <div className="group relative border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-white">
-            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
             <button
               onClick={() => setHistoryOpen(!historyOpen)}
               className="w-full flex items-center justify-between p-4 text-left"
             >
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center">
                   <Ticket className="w-5 h-5" />
                 </div>
                 <div>

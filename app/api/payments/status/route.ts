@@ -31,7 +31,7 @@ export async function GET(request: NextRequest) {
     // Check payment exists for this merchant
     const { data: payment } = await supabaseAdmin
       .from('subscription_payments')
-      .select('id, merchant_id, tier, status, amount_xaf')
+      .select('id, merchant_id, tier, status, amount_eur')
       .eq('external_reference', externalReference)
       .eq('merchant_id', tokenData.merchant_id)
       .single();

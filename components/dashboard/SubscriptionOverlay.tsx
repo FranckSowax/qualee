@@ -15,7 +15,7 @@ interface SubscriptionOverlayProps {
 }
 
 const PLAN_COLORS: Record<string, { accent: string; badge: string }> = {
-  starter: { accent: 'text-teal-600', badge: 'bg-teal-600' },
+  starter: { accent: 'text-pink-600', badge: 'bg-pink-600' },
   pro: { accent: 'text-indigo-600', badge: 'bg-indigo-600' },
   'multi-shop': { accent: 'text-amber-600', badge: 'bg-amber-600' },
 };
@@ -112,7 +112,7 @@ export function SubscriptionOverlay({ merchant }: SubscriptionOverlayProps) {
                   </div>
                   <p className="font-semibold text-gray-900 text-sm">{plan.name}</p>
                   <p className="text-xs text-gray-500 mt-1">
-                    <span className="font-bold text-gray-900">{plan.price_xaf.toLocaleString('fr-FR')}</span> XAF/mois
+                    <span className="font-bold text-gray-900">{plan.price_eur.toLocaleString('fr-FR')}</span> EUR/mois
                   </p>
                 </button>
               );
@@ -123,7 +123,7 @@ export function SubscriptionOverlay({ merchant }: SubscriptionOverlayProps) {
           <button
             onClick={handleRenew}
             disabled={loading}
-            className="w-full flex items-center justify-center gap-2 bg-teal-600 text-white font-semibold py-3.5 px-6 rounded-xl hover:bg-teal-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full flex items-center justify-center gap-2 bg-pink-600 text-white font-semibold py-3.5 px-6 rounded-xl hover:bg-violet-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading ? (
               <>

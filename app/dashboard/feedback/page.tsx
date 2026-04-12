@@ -111,7 +111,7 @@ export default function FeedbackPage() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-teal-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-16 h-16 border-4 border-pink-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-lg text-gray-600">{t('common.loading')}</p>
         </div>
       </div>
@@ -124,7 +124,7 @@ export default function FeedbackPage() {
         {/* Page header */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center">
               <MessageSquare className="w-5 h-5" />
             </div>
             <div>
@@ -141,10 +141,10 @@ export default function FeedbackPage() {
             <span className="text-gray-600">{t('dashboardFeedback.total')}:</span>
             <span className="font-semibold text-gray-900">{feedback.length}</span>
           </div>
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-50 border border-emerald-200 rounded-full text-sm">
-            <ThumbsUp className="w-3.5 h-3.5 text-emerald-600" />
-            <span className="text-emerald-700">{t('dashboardFeedback.positivePercent')}:</span>
-            <span className="font-semibold text-emerald-800">{positivePercent}%</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-violet-50 border border-violet-200 rounded-full text-sm">
+            <ThumbsUp className="w-3.5 h-3.5 text-violet-600" />
+            <span className="text-violet-700">{t('dashboardFeedback.positivePercent')}:</span>
+            <span className="font-semibold text-violet-800">{positivePercent}%</span>
           </div>
           <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-amber-50 border border-amber-200 rounded-full text-sm">
             <Star className="w-3.5 h-3.5 text-amber-500" />
@@ -160,7 +160,7 @@ export default function FeedbackPage() {
             onClick={() => setFilter('all')}
             className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
               filter === 'all'
-                ? 'bg-teal-600 text-white shadow-sm'
+                ? 'bg-pink-600 text-white shadow-sm'
                 : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
             }`}
           >
@@ -170,7 +170,7 @@ export default function FeedbackPage() {
             onClick={() => setFilter('positive')}
             className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
               filter === 'positive'
-                ? 'bg-emerald-600 text-white shadow-sm'
+                ? 'bg-violet-600 text-white shadow-sm'
                 : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
             }`}
           >
@@ -191,7 +191,7 @@ export default function FeedbackPage() {
         {/* Feedback list card */}
         {filteredFeedback.length > 0 ? (
           <div className="group relative border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md">
-            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
 
             {/* Table header */}
             <div className="hidden md:grid md:grid-cols-[150px_140px_minmax(0,1fr)_100px_100px_140px] gap-4 px-6 py-3 bg-gray-50 border-b border-gray-200 text-xs font-semibold text-gray-500 uppercase tracking-wider">
@@ -251,7 +251,7 @@ export default function FeedbackPage() {
                           className={`w-2 h-2 rounded-full ${
                             star <= f.rating
                               ? f.rating >= 4
-                                ? 'bg-emerald-500'
+                                ? 'bg-violet-500'
                                 : f.rating === 3
                                   ? 'bg-amber-500'
                                   : 'bg-red-500'
@@ -265,7 +265,7 @@ export default function FeedbackPage() {
                     {/* Sentiment */}
                     <div className="flex justify-center">
                       {f.is_positive ? (
-                        <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-emerald-50 text-emerald-700 rounded-full text-xs font-medium">
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-violet-50 text-violet-700 rounded-full text-xs font-medium">
                           <ThumbsUp className="w-3 h-3" />
                           {t('dashboardFeedback.positive')}
                         </span>
@@ -308,7 +308,7 @@ export default function FeedbackPage() {
           </div>
         ) : (
           <div className="group relative p-6 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md">
-            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+            <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
             <div className="text-center py-8">
               <div className="w-14 h-14 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <MessageSquare className="w-7 h-7 text-gray-400" />

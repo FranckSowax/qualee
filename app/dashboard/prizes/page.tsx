@@ -58,12 +58,12 @@ export default function PrizesPage() {
     {
       name: isFr ? 'Qualee Pink' : 'Qualee Pink',
       colors: [
-        { bg: '#0D9488', text: '#FFFFFF' },
-        { bg: '#14B8A6', text: '#FFFFFF' },
+        { bg: '#EB1E99', text: '#FFFFFF' },
+        { bg: '#7209B7', text: '#FFFFFF' },
         { bg: '#2DD4BF', text: '#333333' },
-        { bg: '#10B981', text: '#FFFFFF' },
+        { bg: '#7209B7', text: '#FFFFFF' },
         { bg: '#34D399', text: '#333333' },
-        { bg: '#059669', text: '#FFFFFF' },
+        { bg: '#7209B7', text: '#FFFFFF' },
         { bg: '#DC2626', text: '#FFFFFF' },
         { bg: '#F59E0B', text: '#FFFFFF' },
       ]
@@ -73,10 +73,10 @@ export default function PrizesPage() {
       colors: [
         { bg: '#0EA5E9', text: '#FFFFFF' },
         { bg: '#06B6D4', text: '#FFFFFF' },
-        { bg: '#14B8A6', text: '#FFFFFF' },
+        { bg: '#7209B7', text: '#FFFFFF' },
         { bg: '#0284C7', text: '#FFFFFF' },
         { bg: '#22D3EE', text: '#333333' },
-        { bg: '#0D9488', text: '#FFFFFF' },
+        { bg: '#EB1E99', text: '#FFFFFF' },
         { bg: '#DC2626', text: '#FFFFFF' },
         { bg: '#F59E0B', text: '#FFFFFF' },
       ]
@@ -84,11 +84,11 @@ export default function PrizesPage() {
     {
       name: isFr ? 'Vibrant' : 'Vibrant',
       colors: [
-        { bg: '#0D9488', text: '#FFFFFF' },
+        { bg: '#EB1E99', text: '#FFFFFF' },
         { bg: '#F59E0B', text: '#333333' },
         { bg: '#EC4899', text: '#FFFFFF' },
         { bg: '#8B5CF6', text: '#FFFFFF' },
-        { bg: '#10B981', text: '#FFFFFF' },
+        { bg: '#7209B7', text: '#FFFFFF' },
         { bg: '#EF4444', text: '#FFFFFF' },
         { bg: '#DC2626', text: '#FFFFFF' },
         { bg: '#F59E0B', text: '#FFFFFF' },
@@ -404,7 +404,7 @@ export default function PrizesPage() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-teal-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-16 h-16 border-4 border-pink-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-lg text-gray-600">{isFr ? 'Chargement...' : 'Loading...'}</p>
         </div>
       </div>
@@ -439,7 +439,7 @@ export default function PrizesPage() {
           </div>
           {/* Summary badges */}
           <div className="flex items-center gap-2">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-teal-50 text-teal-700 text-xs font-medium border border-teal-200">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-pink-50 text-violet-700 text-xs font-medium border border-pink-200">
               <Gift className="w-3.5 h-3.5" />
               {prizes.length} {isFr ? 'prix' : 'prizes'}
             </span>
@@ -467,15 +467,15 @@ export default function PrizesPage() {
               className={`
                 relative flex items-center gap-2 px-5 py-3 text-sm font-medium transition-all duration-300 rounded-t-lg whitespace-nowrap
                 ${activeTab === tab.id
-                  ? 'text-teal-600'
-                  : 'text-gray-500 hover:text-teal-700 hover:bg-teal-50/50'
+                  ? 'text-pink-600'
+                  : 'text-gray-500 hover:text-violet-700 hover:bg-pink-50/50'
                 }
               `}
             >
               {tab.icon}
               <span>{tab.label}</span>
               <span
-                className={`absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-teal-500 to-emerald-500 transition-transform duration-300 origin-left ${
+                className={`absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#EB1E99] to-[#7209B7] transition-transform duration-300 origin-left ${
                   activeTab === tab.id ? 'scale-x-100' : 'scale-x-0'
                 }`}
               />
@@ -493,7 +493,7 @@ export default function PrizesPage() {
               <div className="flex justify-end">
                 <Button
                   onClick={() => showForm ? handleCancel() : setShowForm(true)}
-                  className={`gap-2 ${showForm ? 'bg-red-100 text-red-600 hover:bg-red-200' : 'bg-teal-600 hover:bg-teal-700 text-white'}`}
+                  className={`gap-2 ${showForm ? 'bg-red-100 text-red-600 hover:bg-red-200' : 'bg-pink-600 hover:bg-violet-700 text-white'}`}
                   variant={showForm ? 'outline' : 'default'}
                   size="sm"
                 >
@@ -514,9 +514,9 @@ export default function PrizesPage() {
               {/* Inline Add/Edit Form */}
               {showForm && (
                 <Card className="group relative p-6 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md">
-                  <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                  <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                   <h3 className="text-base font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                    <div className="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center">
                       {editingId ? <Pencil className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
                     </div>
                     {editingId ? (isFr ? 'Modifier le Prix' : 'Edit Prize') : (isFr ? 'Nouveau Prix' : 'New Prize')}
@@ -538,7 +538,7 @@ export default function PrizesPage() {
                             </button>
                           </div>
                         ) : (
-                          <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-teal-500 transition-colors h-36 flex flex-col items-center justify-center">
+                          <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-pink-500 transition-colors h-36 flex flex-col items-center justify-center">
                             <input
                               type="file"
                               id="prize-image"
@@ -549,7 +549,7 @@ export default function PrizesPage() {
                             <label htmlFor="prize-image" className="cursor-pointer">
                               <ImageIcon className="w-8 h-8 text-gray-400 mx-auto mb-2" />
                               <p className="text-xs text-gray-600">
-                                <span className="text-teal-600 font-semibold">{isFr ? 'Cliquez' : 'Click'}</span> {isFr ? 'pour uploader' : 'to upload'}
+                                <span className="text-pink-600 font-semibold">{isFr ? 'Cliquez' : 'Click'}</span> {isFr ? 'pour uploader' : 'to upload'}
                               </p>
                               <p className="text-xs text-gray-400">PNG, JPG</p>
                             </label>
@@ -567,7 +567,7 @@ export default function PrizesPage() {
                             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                             placeholder={isFr ? 'R\u00E9duction de 10%' : '10% discount'}
                             required
-                            className="w-full px-3 py-2.5 border border-gray-300 rounded-lg bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 focus:bg-teal-50/30 transition-all duration-200"
+                            className="w-full px-3 py-2.5 border border-gray-300 rounded-lg bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500/20 focus:border-pink-500 focus:bg-pink-50/30 transition-all duration-200"
                           />
                         </div>
                         <div>
@@ -577,14 +577,14 @@ export default function PrizesPage() {
                             value={formData.description}
                             onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                             placeholder={isFr ? 'Obtenez 10% de r\u00E9duction...' : 'Get 10% off...'}
-                            className="w-full px-3 py-2.5 border border-gray-300 rounded-lg bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 focus:bg-teal-50/30 transition-all duration-200"
+                            className="w-full px-3 py-2.5 border border-gray-300 rounded-lg bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500/20 focus:border-pink-500 focus:bg-pink-50/30 transition-all duration-200"
                           />
                         </div>
                         <div>
                           <div className="flex items-center justify-between mb-1">
                             <label className="block text-sm font-medium text-gray-700">{isFr ? 'Probabilit\u00E9' : 'Probability'}</label>
                             <div className="flex items-center gap-1.5">
-                              <span className="text-lg font-bold text-teal-600">{formData.probability}%</span>
+                              <span className="text-lg font-bold text-pink-600">{formData.probability}%</span>
                               <span className={`text-xs px-1.5 py-0.5 rounded-full ${getChanceDescription(formData.probability).bg} ${getChanceDescription(formData.probability).color} font-medium`}>
                                 {getChanceDescription(formData.probability).text}
                               </span>
@@ -597,7 +597,7 @@ export default function PrizesPage() {
                             step="1"
                             value={formData.probability}
                             onChange={(e) => setFormData({ ...formData, probability: parseFloat(e.target.value) })}
-                            className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-teal-600"
+                            className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-pink-600"
                           />
                           <div className="flex justify-between text-xs text-gray-400 mt-1">
                             <span>1%</span>
@@ -615,7 +615,7 @@ export default function PrizesPage() {
                         type="submit"
                         disabled={loading || uploading}
                         size="sm"
-                        className="bg-teal-600 hover:bg-teal-700 text-white px-6"
+                        className="bg-pink-600 hover:bg-violet-700 text-white px-6"
                       >
                         {uploading ? (isFr ? 'Upload...' : 'Uploading...') : loading ? (isFr ? 'Sauvegarde...' : 'Saving...') : (editingId ? (isFr ? 'Mettre \u00E0 jour' : 'Update') : (isFr ? 'Cr\u00E9er le Prix' : 'Create Prize'))}
                       </Button>
@@ -631,23 +631,23 @@ export default function PrizesPage() {
                     const quantity = prizeQuantities[prize.id] || 0;
                     return (
                       <Card key={prize.id} className="group relative p-0 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md">
-                        <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left z-10" />
+                        <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left z-10" />
 
                         {/* Image / Placeholder */}
                         {prize.image_url ? (
-                          <div className="relative h-28 bg-gradient-to-br from-teal-100 to-emerald-50">
+                          <div className="relative h-28 bg-gradient-to-br from-pink-100 to-violet-50">
                             <img src={prize.image_url} alt={prize.name} className="w-full h-full object-cover" />
                             <div className="absolute top-2 right-2">
-                              <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold shadow ${quantity > 0 ? 'bg-teal-600 text-white' : 'bg-gray-200 text-gray-600'}`}>
+                              <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold shadow ${quantity > 0 ? 'bg-pink-600 text-white' : 'bg-gray-200 text-gray-600'}`}>
                                 x{quantity}
                               </span>
                             </div>
                           </div>
                         ) : (
-                          <div className="relative h-28 bg-gradient-to-br from-teal-50 to-emerald-50 flex items-center justify-center">
-                            <Gift className="w-10 h-10 text-teal-300" />
+                          <div className="relative h-28 bg-gradient-to-br from-pink-50 to-violet-50 flex items-center justify-center">
+                            <Gift className="w-10 h-10 text-pink-300" />
                             <div className="absolute top-2 right-2">
-                              <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold shadow ${quantity > 0 ? 'bg-teal-600 text-white' : 'bg-gray-200 text-gray-600'}`}>
+                              <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold shadow ${quantity > 0 ? 'bg-pink-600 text-white' : 'bg-gray-200 text-gray-600'}`}>
                                 x{quantity}
                               </span>
                             </div>
@@ -667,17 +667,17 @@ export default function PrizesPage() {
                               disabled={quantity <= 0}
                               variant="outline"
                               size="sm"
-                              className="w-7 h-7 rounded-full p-0 border-teal-300 text-teal-600 hover:bg-teal-50 disabled:opacity-50"
+                              className="w-7 h-7 rounded-full p-0 border-pink-300 text-pink-600 hover:bg-pink-50 disabled:opacity-50"
                             >
                               -
                             </Button>
-                            <span className="text-lg font-bold text-teal-600 w-6 text-center">{quantity}</span>
+                            <span className="text-lg font-bold text-pink-600 w-6 text-center">{quantity}</span>
                             <Button
                               onClick={() => updatePrizeQuantity(prize.id, 1)}
                               disabled={totalSegments >= MAX_SEGMENTS}
                               variant="outline"
                               size="sm"
-                              className="w-7 h-7 rounded-full p-0 border-teal-300 text-teal-600 hover:bg-teal-50 disabled:opacity-50"
+                              className="w-7 h-7 rounded-full p-0 border-pink-300 text-pink-600 hover:bg-pink-50 disabled:opacity-50"
                             >
                               +
                             </Button>
@@ -710,16 +710,16 @@ export default function PrizesPage() {
                 </div>
               ) : !showForm ? (
                 <Card className="group relative p-10 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md">
-                  <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                  <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                   <div className="text-center">
-                    <div className="w-14 h-14 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center mx-auto mb-3">
+                    <div className="w-14 h-14 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center mx-auto mb-3">
                       <Gift className="w-7 h-7" />
                     </div>
                     <h3 className="text-lg font-bold text-gray-900 mb-1">{isFr ? 'Aucun prix configur\u00E9' : 'No prizes configured'}</h3>
                     <p className="text-gray-500 text-sm mb-4">
                       {isFr ? 'Ajoutez votre premier prix pour configurer la roue.' : 'Add your first prize to configure the wheel.'}
                     </p>
-                    <Button onClick={() => setShowForm(true)} className="gap-2 bg-teal-600 hover:bg-teal-700 text-white" size="sm">
+                    <Button onClick={() => setShowForm(true)} className="gap-2 bg-pink-600 hover:bg-violet-700 text-white" size="sm">
                       <Plus className="w-4 h-4" />
                       {isFr ? 'Ajouter mon Premier Prix' : 'Add my First Prize'}
                     </Button>
@@ -729,9 +729,9 @@ export default function PrizesPage() {
 
               {/* Wheel Composition Stats */}
               <Card className="group relative p-4 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md">
-                <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center flex-shrink-0">
+                  <div className="w-10 h-10 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center flex-shrink-0">
                     <BarChart3 className="w-5 h-5" />
                   </div>
                   <div className="flex-1">
@@ -747,7 +747,7 @@ export default function PrizesPage() {
                           className={`w-3 h-6 rounded-sm transition-colors ${
                             i < totalSegments
                               ? i < totalPrizeSegments
-                                ? 'bg-teal-500'
+                                ? 'bg-pink-500'
                                 : i < totalPrizeSegments + unluckyQuantity
                                 ? 'bg-red-500'
                                 : 'bg-yellow-500'
@@ -757,7 +757,7 @@ export default function PrizesPage() {
                       ))}
                     </div>
                     <span className={`text-sm font-bold ${
-                      totalSegments === MAX_SEGMENTS ? 'text-green-600' : totalSegments > MAX_SEGMENTS ? 'text-red-600' : 'text-teal-600'
+                      totalSegments === MAX_SEGMENTS ? 'text-green-600' : totalSegments > MAX_SEGMENTS ? 'text-red-600' : 'text-pink-600'
                     }`}>
                       {totalSegments}/{MAX_SEGMENTS}
                     </span>
@@ -784,9 +784,9 @@ export default function PrizesPage() {
             <div className="space-y-5">
               {/* Special Segments - Compact inline */}
               <Card className="group relative p-6 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md">
-                <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center">
                     <Lock className="w-5 h-5" />
                   </div>
                   <div>
@@ -871,9 +871,9 @@ export default function PrizesPage() {
 
               {/* Wheel Themes */}
               <Card className="group relative p-6 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md">
-                <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center">
                     <Sparkles className="w-5 h-5" />
                   </div>
                   <div>
@@ -891,11 +891,11 @@ export default function PrizesPage() {
                         onClick={() => applyTheme(index)}
                         className={`p-4 rounded-xl border-2 cursor-pointer transition-all text-left ${
                           isActive
-                            ? 'border-teal-500 bg-teal-50'
+                            ? 'border-pink-500 bg-pink-50'
                             : 'border-gray-200 hover:border-gray-300'
                         }`}
                       >
-                        <p className={`text-sm font-semibold mb-2 ${isActive ? 'text-teal-700' : 'text-gray-700'}`}>
+                        <p className={`text-sm font-semibold mb-2 ${isActive ? 'text-violet-700' : 'text-gray-700'}`}>
                           {theme.name}
                         </p>
                         <div className="flex gap-1.5">
@@ -917,9 +917,9 @@ export default function PrizesPage() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
                 {/* Wheel Preview */}
                 <Card className="group relative p-6 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md">
-                  <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                  <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center">
                       <Settings2 className="w-5 h-5" />
                     </div>
                     <div>
@@ -938,7 +938,7 @@ export default function PrizesPage() {
                     />
                   </div>
                   <div className="mt-4 flex flex-wrap gap-2 justify-center">
-                    <span className="inline-flex items-center gap-1 px-2 py-1 bg-teal-50 text-teal-700 rounded-full text-xs font-medium border border-teal-200">
+                    <span className="inline-flex items-center gap-1 px-2 py-1 bg-pink-50 text-violet-700 rounded-full text-xs font-medium border border-pink-200">
                       {isFr ? 'Prix' : 'Prizes'}: {totalPrizeSegments}
                     </span>
                     <span className="inline-flex items-center gap-1 px-2 py-1 bg-red-50 text-red-700 rounded-full text-xs font-medium border border-red-200">
@@ -952,9 +952,9 @@ export default function PrizesPage() {
 
                 {/* Segment Colors */}
                 <Card className="group relative p-6 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md">
-                  <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                  <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center">
                       <Palette className="w-5 h-5" />
                     </div>
                     <div>
@@ -1011,9 +1011,9 @@ export default function PrizesPage() {
 
               {/* Configuration Summary */}
               <Card className="group relative p-6 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md">
-                <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center">
                     <BarChart3 className="w-5 h-5" />
                   </div>
                   <div>
@@ -1022,13 +1022,13 @@ export default function PrizesPage() {
                   </div>
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                  <div className="rounded-lg bg-teal-50 border border-teal-200 p-3 text-center">
-                    <p className="text-2xl font-bold text-teal-600">{totalSegments}</p>
-                    <p className="text-xs text-teal-700 font-medium">{isFr ? 'Segments totaux' : 'Total Segments'}</p>
+                  <div className="rounded-lg bg-pink-50 border border-pink-200 p-3 text-center">
+                    <p className="text-2xl font-bold text-pink-600">{totalSegments}</p>
+                    <p className="text-xs text-violet-700 font-medium">{isFr ? 'Segments totaux' : 'Total Segments'}</p>
                   </div>
-                  <div className="rounded-lg bg-emerald-50 border border-emerald-200 p-3 text-center">
-                    <p className="text-2xl font-bold text-emerald-600">{totalPrizeSegments}</p>
-                    <p className="text-xs text-emerald-700 font-medium">{isFr ? 'Segments prix' : 'Prize Segments'}</p>
+                  <div className="rounded-lg bg-violet-50 border border-violet-200 p-3 text-center">
+                    <p className="text-2xl font-bold text-violet-600">{totalPrizeSegments}</p>
+                    <p className="text-xs text-violet-700 font-medium">{isFr ? 'Segments prix' : 'Prize Segments'}</p>
                   </div>
                   <div className="rounded-lg bg-red-50 border border-red-200 p-3 text-center">
                     <p className="text-2xl font-bold text-red-600">{unluckyQuantity + retryQuantity}</p>

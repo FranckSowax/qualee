@@ -12,7 +12,7 @@ export default function OfflinePage() {
         height={60}
         className="mb-8"
       />
-      <h1 className="text-2xl font-bold text-teal-700 mb-3">
+      <h1 className="text-2xl font-bold text-violet-700 mb-3">
         Vous êtes hors ligne
       </h1>
       <p className="text-gray-500 text-center mb-8 max-w-sm">
@@ -20,7 +20,7 @@ export default function OfflinePage() {
       </p>
       <button
         onClick={() => window.location.reload()}
-        className="px-6 py-3 rounded-lg bg-teal-600 hover:bg-teal-700 text-white font-medium transition-colors"
+        className="px-6 py-3 rounded-lg bg-pink-600 hover:bg-violet-700 text-white font-medium transition-colors"
       >
         Réessayer
       </button>

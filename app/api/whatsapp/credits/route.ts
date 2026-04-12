@@ -8,10 +8,10 @@ const supabaseAdmin = createClient(
 
 // Forfaits disponibles
 export const CREDIT_PACKS = [
-  { id: 'pack_100', name: '100 crédits', credits: 100, price: 8000, pricePerMsg: 80 },
-  { id: 'pack_500', name: '500 crédits', credits: 500, price: 30000, pricePerMsg: 60 },
-  { id: 'pack_1000', name: '1 000 crédits', credits: 1000, price: 50000, pricePerMsg: 50 },
-  { id: 'pack_5000', name: '5 000 crédits', credits: 5000, price: 200000, pricePerMsg: 40 },
+  { id: 'pack_100', name: '100 crédits', credits: 100, price: 12, pricePerMsg: 0.12 },
+  { id: 'pack_500', name: '500 crédits', credits: 500, price: 45, pricePerMsg: 0.09 },
+  { id: 'pack_1000', name: '1 000 crédits', credits: 1000, price: 75, pricePerMsg: 0.075 },
+  { id: 'pack_5000', name: '5 000 crédits', credits: 5000, price: 300, pricePerMsg: 0.06 },
 ];
 
 // GET — Solde de crédits + forfaits disponibles + historique

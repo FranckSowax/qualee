@@ -1,7 +1,7 @@
 export interface SubscriptionPlan {
   key: string;
   name: string;
-  price_xaf: number;
+  price_eur: number;
   period: string;
   description: string;
   max_locations: number;
@@ -14,8 +14,8 @@ export const PLANS: Record<string, SubscriptionPlan> = {
   essentiel: {
     key: 'essentiel',
     name: 'Essentiel',
-    price_xaf: 10000,
-    period: 'FCFA / mois',
+    price_eur: 15,
+    period: 'EUR / mois',
     description: 'Le plus choisi par nos clients',
     max_locations: 1,
     popular: true,
@@ -31,8 +31,8 @@ export const PLANS: Record<string, SubscriptionPlan> = {
   premium: {
     key: 'premium',
     name: 'Premium',
-    price_xaf: 25000,
-    period: 'FCFA / mois',
+    price_eur: 39,
+    period: 'EUR / mois',
     description: 'Performance maximale',
     max_locations: 3,
     features: [
@@ -47,7 +47,7 @@ export const PLANS: Record<string, SubscriptionPlan> = {
   'sur-mesure': {
     key: 'sur-mesure',
     name: 'Sur mesure',
-    price_xaf: 0,
+    price_eur: 0,
     period: '',
     description: 'Réseaux multi-sites',
     max_locations: -1,
@@ -67,6 +67,6 @@ export function getPlan(tier: string): SubscriptionPlan | undefined {
   return PLANS[tier];
 }
 
-export function getPlanPriceXAF(tier: string): number {
-  return PLANS[tier]?.price_xaf ?? 0;
+export function getPlanPriceEUR(tier: string): number {
+  return PLANS[tier]?.price_eur ?? 0;
 }

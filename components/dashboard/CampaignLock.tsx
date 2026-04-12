@@ -16,7 +16,7 @@ export function CampaignLock({ currentClients, required = 100, onOpenGuide }: Ca
     <div className="max-w-2xl mx-auto">
       <div className="relative overflow-hidden bg-white rounded-2xl border border-gray-200 shadow-sm">
         {/* Decorative gradient header */}
-        <div className="bg-gradient-to-br from-green-500 via-emerald-500 to-teal-500 px-8 py-10 text-white relative overflow-hidden">
+        <div className="bg-gradient-to-br from-green-500 via-violet-500 to-pink-500 px-8 py-10 text-white relative overflow-hidden">
           <div className="absolute top-0 right-0 w-48 h-48 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2" />
           <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2" />
 
@@ -46,7 +46,7 @@ export function CampaignLock({ currentClients, required = 100, onOpenGuide }: Ca
             </div>
             <div className="w-full h-3 bg-gray-100 rounded-full overflow-hidden">
               <div
-                className="h-full bg-gradient-to-r from-green-500 to-emerald-500 rounded-full transition-all duration-500"
+                className="h-full bg-gradient-to-r from-green-500 to-violet-500 rounded-full transition-all duration-500"
                 style={{ width: `${progress}%` }}
               />
             </div>
@@ -78,9 +78,9 @@ export function CampaignLock({ currentClients, required = 100, onOpenGuide }: Ca
 
           {/* Tips */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div className="p-4 rounded-xl bg-teal-50 border border-teal-100">
+            <div className="p-4 rounded-xl bg-pink-50 border border-pink-100">
               <div className="flex items-center gap-2 mb-1.5">
-                <TrendingUp className="w-4 h-4 text-teal-600" />
+                <TrendingUp className="w-4 h-4 text-pink-600" />
                 <p className="font-semibold text-sm text-gray-900">Augmentez vos clients</p>
               </div>
               <p className="text-xs text-gray-600">
@@ -102,7 +102,7 @@ export function CampaignLock({ currentClients, required = 100, onOpenGuide }: Ca
           {onOpenGuide && (
             <button
               onClick={onOpenGuide}
-              className="w-full flex items-center justify-center gap-2 text-sm font-medium text-teal-600 hover:text-teal-700 transition-colors py-2"
+              className="w-full flex items-center justify-center gap-2 text-sm font-medium text-pink-600 hover:text-violet-700 transition-colors py-2"
             >
               <HelpCircle className="w-4 h-4" />
               En savoir plus sur les campagnes WhatsApp

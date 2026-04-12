@@ -151,7 +151,7 @@ function LivePreview({
             bodyText.split(/(\{\{\d+\}\})/).map((part, i) => {
               const varLabels: Record<string, string> = { '{{1}}': 'Prénom', '{{2}}': 'Commerce', '{{3}}': 'Offre', '{{4}}': 'Date', '{{5}}': 'Points' };
               if (/^\{\{\d+\}\}$/.test(part)) {
-                return <span key={i} className="inline-block px-1.5 py-0.5 mx-0.5 rounded bg-teal-100 text-teal-700 text-xs font-semibold">{varLabels[part] || part}</span>;
+                return <span key={i} className="inline-block px-1.5 py-0.5 mx-0.5 rounded bg-pink-100 text-violet-700 text-xs font-semibold">{varLabels[part] || part}</span>;
               }
               return <span key={i}>{part}</span>;
             })
@@ -178,7 +178,7 @@ function LivePreview({
               .map((btn, i) => (
                 <div
                   key={i}
-                  className="text-center py-2 text-sm text-teal-600 font-medium border-b border-gray-100 last:border-b-0 flex items-center justify-center gap-1"
+                  className="text-center py-2 text-sm text-pink-600 font-medium border-b border-gray-100 last:border-b-0 flex items-center justify-center gap-1"
                 >
                   {btn.type === 'URL' && <LinkIcon className="w-3 h-3" />}
                   {btn.type === 'PHONE_NUMBER' && <Phone className="w-3 h-3" />}
@@ -454,7 +454,7 @@ export default function WhatsAppTemplatesPage() {
     return (
       <DashboardLayout>
         <div className="flex items-center justify-center min-h-[60vh]">
-          <Loader2 className="w-8 h-8 animate-spin text-teal-600" />
+          <Loader2 className="w-8 h-8 animate-spin text-pink-600" />
         </div>
       </DashboardLayout>
     );
@@ -488,7 +488,7 @@ export default function WhatsAppTemplatesPage() {
         <div className="flex justify-end">
           <button
             onClick={() => setShowOnboarding(true)}
-            className="inline-flex items-center gap-1.5 text-sm text-teal-600 hover:text-teal-700 font-medium transition-colors"
+            className="inline-flex items-center gap-1.5 text-sm text-pink-600 hover:text-violet-700 font-medium transition-colors"
           >
             <HelpCircle className="w-4 h-4" />
             Guide des templates
@@ -500,7 +500,7 @@ export default function WhatsAppTemplatesPage() {
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-              <FileText className="w-7 h-7 text-teal-600" />
+              <FileText className="w-7 h-7 text-pink-600" />
               Templates WhatsApp
             </h1>
             <p className="text-sm text-gray-500 mt-1">
@@ -513,14 +513,14 @@ export default function WhatsAppTemplatesPage() {
               variant="outline"
               onClick={syncTemplates}
               disabled={syncing}
-              className="border-teal-300 text-teal-700 hover:bg-teal-50"
+              className="border-pink-300 text-violet-700 hover:bg-pink-50"
             >
               <RefreshCw className={`w-4 h-4 mr-2 ${syncing ? 'animate-spin' : ''}`} />
               {syncing ? 'Synchronisation...' : 'Synchroniser depuis Meta'}
             </Button>
             <Button
               onClick={() => setShowCreateForm((v) => !v)}
-              className="bg-teal-600 hover:bg-teal-700 text-white"
+              className="bg-pink-600 hover:bg-violet-700 text-white"
             >
               {showCreateForm ? (
                 <>
@@ -558,7 +558,7 @@ export default function WhatsAppTemplatesPage() {
           <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
             <div className="p-6 border-b border-gray-100">
               <h2 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-                <Plus className="w-5 h-5 text-teal-600" />
+                <Plus className="w-5 h-5 text-pink-600" />
                 Creer un nouveau template
               </h2>
             </div>
@@ -576,7 +576,7 @@ export default function WhatsAppTemplatesPage() {
                     value={formName}
                     onChange={(e) => handleNameChange(e.target.value)}
                     placeholder="mon_template_promo"
-                    className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                    className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
                   />
                   <p className="text-xs text-gray-400 mt-1">Minuscules et underscores uniquement</p>
                 </div>
@@ -591,7 +591,7 @@ export default function WhatsAppTemplatesPage() {
                     <select
                       value={formLanguage}
                       onChange={(e) => setFormLanguage(e.target.value)}
-                      className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
+                      className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500"
                     >
                       <option value="fr">Francais</option>
                       <option value="en">Anglais</option>
@@ -605,7 +605,7 @@ export default function WhatsAppTemplatesPage() {
                     <select
                       value={formCategory}
                       onChange={(e) => setFormCategory(e.target.value as 'MARKETING' | 'UTILITY')}
-                      className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
+                      className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500"
                     >
                       <option value="MARKETING">Marketing</option>
                       <option value="UTILITY">Utilitaire</option>
@@ -627,8 +627,8 @@ export default function WhatsAppTemplatesPage() {
                         }}
                         className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors ${
                           formHeaderType === ht
-                            ? 'bg-teal-600 text-white border-teal-600'
-                            : 'bg-white text-gray-600 border-gray-300 hover:border-teal-400'
+                            ? 'bg-pink-600 text-white border-pink-600'
+                            : 'bg-white text-gray-600 border-gray-300 hover:border-pink-400'
                         }`}
                       >
                         {ht === 'none' && 'Aucun'}
@@ -644,7 +644,7 @@ export default function WhatsAppTemplatesPage() {
                       value={formHeaderContent}
                       onChange={(e) => setFormHeaderContent(e.target.value)}
                       placeholder="Texte de l'en-tete"
-                      className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
+                      className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500"
                     />
                   )}
                   {(formHeaderType === 'image' || formHeaderType === 'video') && (
@@ -653,7 +653,7 @@ export default function WhatsAppTemplatesPage() {
                       value={formHeaderContent}
                       onChange={(e) => setFormHeaderContent(e.target.value)}
                       placeholder={formHeaderType === 'image' ? "URL de l'image" : 'URL de la video'}
-                      className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
+                      className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500"
                     />
                   )}
                 </div>
@@ -669,16 +669,16 @@ export default function WhatsAppTemplatesPage() {
                     onChange={(e) => setFormBody(e.target.value)}
                     rows={5}
                     placeholder={"Bonjour {{1}},\n\nDecouvrez notre offre speciale : {{2}} !\n\nA bientot."}
-                    className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 resize-none"
+                    className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500 resize-none"
                   />
 
                   {/* ─── Variables Module ─── */}
-                  <div className="mt-3 p-4 rounded-xl bg-teal-50/50 border border-teal-100">
+                  <div className="mt-3 p-4 rounded-xl bg-pink-50/50 border border-pink-100">
                     <div className="flex items-start gap-2 mb-3">
-                      <AlertCircle className="w-4 h-4 text-teal-600 mt-0.5 shrink-0" />
+                      <AlertCircle className="w-4 h-4 text-pink-600 mt-0.5 shrink-0" />
                       <div>
-                        <p className="text-xs font-semibold text-teal-800">Variables dynamiques</p>
-                        <p className="text-xs text-teal-600 mt-0.5">
+                        <p className="text-xs font-semibold text-violet-800">Variables dynamiques</p>
+                        <p className="text-xs text-pink-600 mt-0.5">
                           Les variables sont des champs remplacés automatiquement par les vraies infos lors de l'envoi.
                           Cliquez sur une variable pour l'insérer dans votre message.
                         </p>
@@ -712,9 +712,9 @@ export default function WhatsAppTemplatesPage() {
                               setFormBody(formBody + v.tag);
                             }
                           }}
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-teal-200 text-xs font-medium text-teal-700 hover:bg-teal-100 hover:border-teal-300 transition-all cursor-pointer"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-pink-200 text-xs font-medium text-violet-700 hover:bg-pink-100 hover:border-pink-300 transition-all cursor-pointer"
                         >
-                          <span className="font-mono font-bold text-teal-500">{v.tag}</span>
+                          <span className="font-mono font-bold text-pink-500">{v.tag}</span>
                           {v.label}
                         </button>
                       ))}
@@ -722,25 +722,25 @@ export default function WhatsAppTemplatesPage() {
 
                     {/* Correspondence table */}
                     <details className="group">
-                      <summary className="text-xs font-medium text-teal-700 cursor-pointer flex items-center gap-1 hover:text-teal-900">
+                      <summary className="text-xs font-medium text-violet-700 cursor-pointer flex items-center gap-1 hover:text-violet-900">
                         <ChevronDown className="w-3 h-3 group-open:rotate-180 transition-transform" />
                         Comment ça marche ?
                       </summary>
-                      <div className="mt-2 rounded-lg bg-white border border-teal-100 overflow-hidden">
+                      <div className="mt-2 rounded-lg bg-white border border-pink-100 overflow-hidden">
                         <table className="w-full text-xs">
                           <thead>
-                            <tr className="bg-teal-50">
-                              <th className="text-left px-3 py-2 text-teal-700 font-semibold">Variable</th>
-                              <th className="text-left px-3 py-2 text-teal-700 font-semibold">Correspond à</th>
-                              <th className="text-left px-3 py-2 text-teal-700 font-semibold">Exemple</th>
+                            <tr className="bg-pink-50">
+                              <th className="text-left px-3 py-2 text-violet-700 font-semibold">Variable</th>
+                              <th className="text-left px-3 py-2 text-violet-700 font-semibold">Correspond à</th>
+                              <th className="text-left px-3 py-2 text-violet-700 font-semibold">Exemple</th>
                             </tr>
                           </thead>
-                          <tbody className="divide-y divide-teal-50">
-                            <tr><td className="px-3 py-1.5 font-mono text-teal-600">{'{{1}}'}</td><td className="px-3 py-1.5 text-gray-600">Prénom du client</td><td className="px-3 py-1.5 text-gray-400">Amadou</td></tr>
-                            <tr><td className="px-3 py-1.5 font-mono text-teal-600">{'{{2}}'}</td><td className="px-3 py-1.5 text-gray-600">Nom de votre commerce</td><td className="px-3 py-1.5 text-gray-400">Le Baobab</td></tr>
-                            <tr><td className="px-3 py-1.5 font-mono text-teal-600">{'{{3}}'}</td><td className="px-3 py-1.5 text-gray-600">Offre ou promotion</td><td className="px-3 py-1.5 text-gray-400">-20% ce weekend</td></tr>
-                            <tr><td className="px-3 py-1.5 font-mono text-teal-600">{'{{4}}'}</td><td className="px-3 py-1.5 text-gray-600">Date ou horaire</td><td className="px-3 py-1.5 text-gray-400">15 avril 2026</td></tr>
-                            <tr><td className="px-3 py-1.5 font-mono text-teal-600">{'{{5}}'}</td><td className="px-3 py-1.5 text-gray-600">Points de fidélité</td><td className="px-3 py-1.5 text-gray-400">150 points</td></tr>
+                          <tbody className="divide-y divide-pink-50">
+                            <tr><td className="px-3 py-1.5 font-mono text-pink-600">{'{{1}}'}</td><td className="px-3 py-1.5 text-gray-600">Prénom du client</td><td className="px-3 py-1.5 text-gray-400">Amadou</td></tr>
+                            <tr><td className="px-3 py-1.5 font-mono text-pink-600">{'{{2}}'}</td><td className="px-3 py-1.5 text-gray-600">Nom de votre commerce</td><td className="px-3 py-1.5 text-gray-400">Le Baobab</td></tr>
+                            <tr><td className="px-3 py-1.5 font-mono text-pink-600">{'{{3}}'}</td><td className="px-3 py-1.5 text-gray-600">Offre ou promotion</td><td className="px-3 py-1.5 text-gray-400">-20% ce weekend</td></tr>
+                            <tr><td className="px-3 py-1.5 font-mono text-pink-600">{'{{4}}'}</td><td className="px-3 py-1.5 text-gray-600">Date ou horaire</td><td className="px-3 py-1.5 text-gray-400">15 avril 2026</td></tr>
+                            <tr><td className="px-3 py-1.5 font-mono text-pink-600">{'{{5}}'}</td><td className="px-3 py-1.5 text-gray-600">Points de fidélité</td><td className="px-3 py-1.5 text-gray-400">150 points</td></tr>
                           </tbody>
                         </table>
                         <div className="px-3 py-2 bg-amber-50 border-t border-amber-100">
@@ -765,7 +765,7 @@ export default function WhatsAppTemplatesPage() {
                     value={formFooter}
                     onChange={(e) => setFormFooter(e.target.value)}
                     placeholder="Ex: Repondez STOP pour vous desabonner"
-                    className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
+                    className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500"
                   />
                 </div>
 
@@ -779,7 +779,7 @@ export default function WhatsAppTemplatesPage() {
                       <button
                         type="button"
                         onClick={addButton}
-                        className="text-xs text-teal-600 hover:text-teal-700 font-medium flex items-center gap-1"
+                        className="text-xs text-pink-600 hover:text-violet-700 font-medium flex items-center gap-1"
                       >
                         <Plus className="w-3 h-3" /> Ajouter
                       </button>
@@ -806,7 +806,7 @@ export default function WhatsAppTemplatesPage() {
                               onChange={(e) =>
                                 updateButton(i, { type: e.target.value as TemplateButton['type'] })
                               }
-                              className="w-full rounded-md border border-gray-300 px-2 py-1.5 text-xs focus:outline-none focus:ring-2 focus:ring-teal-500"
+                              className="w-full rounded-md border border-gray-300 px-2 py-1.5 text-xs focus:outline-none focus:ring-2 focus:ring-pink-500"
                             >
                               <option value="URL">URL</option>
                               <option value="QUICK_REPLY">Reponse rapide</option>
@@ -821,7 +821,7 @@ export default function WhatsAppTemplatesPage() {
                               maxLength={25}
                               onChange={(e) => updateButton(i, { text: e.target.value })}
                               placeholder="Titre du bouton"
-                              className="w-full rounded-md border border-gray-300 px-2 py-1.5 text-xs focus:outline-none focus:ring-2 focus:ring-teal-500"
+                              className="w-full rounded-md border border-gray-300 px-2 py-1.5 text-xs focus:outline-none focus:ring-2 focus:ring-pink-500"
                             />
                           </div>
                         </div>
@@ -833,7 +833,7 @@ export default function WhatsAppTemplatesPage() {
                               value={btn.url || ''}
                               onChange={(e) => updateButton(i, { url: e.target.value })}
                               placeholder="https://example.com"
-                              className="w-full rounded-md border border-gray-300 px-2 py-1.5 text-xs focus:outline-none focus:ring-2 focus:ring-teal-500"
+                              className="w-full rounded-md border border-gray-300 px-2 py-1.5 text-xs focus:outline-none focus:ring-2 focus:ring-pink-500"
                             />
                           </div>
                         )}
@@ -845,7 +845,7 @@ export default function WhatsAppTemplatesPage() {
                               value={btn.phone_number || ''}
                               onChange={(e) => updateButton(i, { phone_number: e.target.value })}
                               placeholder="+33612345678"
-                              className="w-full rounded-md border border-gray-300 px-2 py-1.5 text-xs focus:outline-none focus:ring-2 focus:ring-teal-500"
+                              className="w-full rounded-md border border-gray-300 px-2 py-1.5 text-xs focus:outline-none focus:ring-2 focus:ring-pink-500"
                             />
                           </div>
                         )}
@@ -859,7 +859,7 @@ export default function WhatsAppTemplatesPage() {
                   <Button
                     onClick={submitTemplate}
                     disabled={submitting || !formName.trim() || !formBody.trim()}
-                    className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
+                    className="w-full bg-violet-600 hover:bg-violet-700 text-white"
                   >
                     {submitting ? (
                       <>
@@ -877,7 +877,7 @@ export default function WhatsAppTemplatesPage() {
               {/* Right: Live Preview */}
               <div className="p-6">
                 <h3 className="text-sm font-medium text-gray-700 mb-3 flex items-center gap-2">
-                  <Eye className="w-4 h-4 text-teal-600" />
+                  <Eye className="w-4 h-4 text-pink-600" />
                   Apercu en direct
                 </h3>
                 <LivePreview
@@ -898,7 +898,7 @@ export default function WhatsAppTemplatesPage() {
         <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
           <div className="p-6 border-b border-gray-100 flex items-center justify-between">
             <h2 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-              <FileText className="w-5 h-5 text-teal-600" />
+              <FileText className="w-5 h-5 text-pink-600" />
               Vos templates
               {templates.length > 0 && (
                 <span className="ml-2 text-xs bg-gray-100 text-gray-600 rounded-full px-2 py-0.5">
@@ -906,7 +906,7 @@ export default function WhatsAppTemplatesPage() {
                 </span>
               )}
             </h2>
-            {fetchingTemplates && <Loader2 className="w-4 h-4 animate-spin text-teal-600" />}
+            {fetchingTemplates && <Loader2 className="w-4 h-4 animate-spin text-pink-600" />}
           </div>
 
           {templates.length === 0 && !fetchingTemplates ? (

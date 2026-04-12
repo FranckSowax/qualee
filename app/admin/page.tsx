@@ -842,7 +842,7 @@ export default function AdminDashboard() {
             <CreditCard className="w-5 h-5" />
             <span className="font-medium">Cartes Fidélité</span>
             {loyaltyStats.totalCards > 0 && (
-              <span className="ml-auto bg-emerald-500/80 text-white text-xs px-2 py-0.5 rounded-full">
+              <span className="ml-auto bg-violet-500/80 text-white text-xs px-2 py-0.5 rounded-full">
                 {loyaltyStats.totalCards}
               </span>
             )}
@@ -1016,11 +1016,11 @@ export default function AdminDashboard() {
           </div>
 
           <div className="relative overflow-hidden bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-slate-700/50">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full blur-3xl"></div>
+            <div className="absolute top-0 right-0 w-32 h-32 bg-violet-500/10 rounded-full blur-3xl"></div>
             <div className="relative">
               <div className="flex items-center justify-between mb-4">
-                <div className="p-2.5 bg-emerald-500/20 rounded-xl">
-                  <DollarSign className="w-6 h-6 text-emerald-400" />
+                <div className="p-2.5 bg-violet-500/20 rounded-xl">
+                  <DollarSign className="w-6 h-6 text-violet-400" />
                 </div>
                 <div className="flex items-center gap-1 text-green-400 text-sm">
                   <TrendingUp className="w-4 h-4" />
@@ -1072,17 +1072,17 @@ export default function AdminDashboard() {
                   <p className="text-xs text-amber-400">+{loyaltyStats.cardsThisMonth} ce mois</p>
                 </div>
 
-                <div className="bg-gradient-to-br from-emerald-500/10 to-green-500/10 rounded-xl p-4 border border-emerald-500/20">
+                <div className="bg-gradient-to-br from-violet-500/10 to-green-500/10 rounded-xl p-4 border border-violet-500/20">
                   <div className="flex items-center gap-3 mb-2">
-                    <div className="p-2 bg-emerald-500/20 rounded-lg">
-                      <Coins className="w-5 h-5 text-emerald-400" />
+                    <div className="p-2 bg-violet-500/20 rounded-lg">
+                      <Coins className="w-5 h-5 text-violet-400" />
                     </div>
                     <div>
                       <p className="text-xs text-white/60">Points en circulation</p>
                       <p className="text-2xl font-bold text-white">{loyaltyStats.totalPoints.toLocaleString()}</p>
                     </div>
                   </div>
-                  <p className="text-xs text-emerald-400">{loyaltyStats.pointsDistributed.toLocaleString()} distribués</p>
+                  <p className="text-xs text-violet-400">{loyaltyStats.pointsDistributed.toLocaleString()} distribués</p>
                 </div>
 
                 <div className="bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-xl p-4 border border-blue-500/20">
@@ -1095,7 +1095,7 @@ export default function AdminDashboard() {
                       <p className="text-2xl font-bold text-white">{loyaltyStats.totalPurchases}</p>
                     </div>
                   </div>
-                  <p className="text-xs text-blue-400">{loyaltyStats.totalSpent.toLocaleString()} FCFA dépensés</p>
+                  <p className="text-xs text-blue-400">{loyaltyStats.totalSpent.toLocaleString()} EUR dépensés</p>
                 </div>
 
                 <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-xl p-4 border border-purple-500/20">
@@ -1362,7 +1362,7 @@ export default function AdminDashboard() {
                           <h3 className="text-lg font-semibold text-white">{merchant.business_name}</h3>
                           <Badge className="capitalize bg-slate-700 text-white border-slate-600">{merchant.subscription_tier}</Badge>
                           {merchant.is_active !== false ? (
-                            <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30">
+                            <Badge className="bg-violet-500/20 text-violet-400 border-violet-500/30">
                               <CheckCircle2 className="w-3 h-3 mr-1" />
                               Active
                             </Badge>
@@ -1383,7 +1383,7 @@ export default function AdminDashboard() {
                           </div>
                           <div className="bg-slate-900/50 rounded-xl p-3 border border-slate-700/50">
                             <p className="text-xs text-white/70">Positive</p>
-                            <p className="text-lg font-bold text-emerald-400">{stats.positiveReviews}</p>
+                            <p className="text-lg font-bold text-violet-400">{stats.positiveReviews}</p>
                           </div>
                           <div className="bg-slate-900/50 rounded-xl p-3 border border-slate-700/50">
                             <p className="text-xs text-white/70">Avg Rating</p>
@@ -1416,7 +1416,7 @@ export default function AdminDashboard() {
                           <Button
                             size="sm"
                             onClick={() => generateAndSaveQRCode(merchant.id, merchant.business_name)}
-                            className="gap-2 bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-400 border-emerald-500/30"
+                            className="gap-2 bg-violet-500/20 hover:bg-violet-500/30 text-violet-400 border-violet-500/30"
                           >
                             <QrCode className="w-4 h-4" />
                             Générer QR
@@ -1766,10 +1766,10 @@ export default function AdminDashboard() {
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-emerald-500/10 to-green-500/10 rounded-xl p-4 border border-emerald-500/20">
+              <div className="bg-gradient-to-br from-violet-500/10 to-green-500/10 rounded-xl p-4 border border-violet-500/20">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-emerald-500/20 rounded-lg">
-                    <CheckCircle2 className="w-5 h-5 text-emerald-400" />
+                  <div className="p-2 bg-violet-500/20 rounded-lg">
+                    <CheckCircle2 className="w-5 h-5 text-violet-400" />
                   </div>
                   <div>
                     <p className="text-xs text-white/60">Cartes Actives</p>
@@ -1797,7 +1797,7 @@ export default function AdminDashboard() {
                   </div>
                   <div>
                     <p className="text-xs text-white/60">Montant Total</p>
-                    <p className="text-2xl font-bold text-white">{loyaltyStats.totalSpent.toLocaleString()} FCFA</p>
+                    <p className="text-2xl font-bold text-white">{loyaltyStats.totalSpent.toLocaleString()} EUR</p>
                   </div>
                 </div>
               </div>
@@ -1904,12 +1904,12 @@ export default function AdminDashboard() {
                           <td className="px-6 py-4">
                             <div>
                               <p className="text-white">{client.total_purchases} achats</p>
-                              <p className="text-xs text-white/50">{Number(client.total_spent).toLocaleString()} FCFA</p>
+                              <p className="text-xs text-white/50">{Number(client.total_spent).toLocaleString()} EUR</p>
                             </div>
                           </td>
                           <td className="px-6 py-4">
                             <Badge className={`${
-                              client.status === 'active' ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30' :
+                              client.status === 'active' ? 'bg-violet-500/20 text-violet-400 border-violet-500/30' :
                               client.status === 'suspended' ? 'bg-amber-500/20 text-amber-400 border-amber-500/30' :
                               'bg-red-500/20 text-red-400 border-red-500/30'
                             }`}>
@@ -1961,13 +1961,13 @@ export default function AdminDashboard() {
           <>
             {waLoading ? (
               <div className="flex items-center justify-center py-20">
-                <div className="w-10 h-10 border-4 border-teal-500 border-t-transparent rounded-full animate-spin"></div>
+                <div className="w-10 h-10 border-4 border-pink-500 border-t-transparent rounded-full animate-spin"></div>
               </div>
             ) : (
               <div className="bg-slate-800/50 rounded-xl border border-slate-700/50 overflow-hidden">
                 <div className="px-6 py-4 border-b border-slate-700/50 flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <MessageCircle className="w-5 h-5 text-teal-400" />
+                    <MessageCircle className="w-5 h-5 text-pink-400" />
                     <h3 className="text-lg font-semibold text-white">Configurations WhatsApp</h3>
                   </div>
                   <Badge className="bg-slate-700 text-white border-slate-600">
@@ -1989,7 +1989,7 @@ export default function AdminDashboard() {
                       if (cfg) {
                         if (cfg.is_verified) {
                           statusLabel = 'Vérifié ✓';
-                          statusColor = 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30';
+                          statusColor = 'bg-violet-500/20 text-violet-300 border border-violet-500/30';
                         } else if (cfg.provider === 'meta') {
                           statusLabel = 'Meta Cloud';
                           statusColor = 'bg-blue-500/20 text-blue-300 border border-blue-500/30';
@@ -2002,8 +2002,8 @@ export default function AdminDashboard() {
                       return (
                         <div key={merchant.id} className="px-6 py-4 flex items-center justify-between hover:bg-slate-700/20 transition-colors">
                           <div className="flex items-center gap-4 flex-1 min-w-0">
-                            <div className="p-2 bg-teal-500/10 rounded-lg shrink-0">
-                              <Phone className="w-4 h-4 text-teal-400" />
+                            <div className="p-2 bg-pink-500/10 rounded-lg shrink-0">
+                              <Phone className="w-4 h-4 text-pink-400" />
                             </div>
                             <div className="min-w-0">
                               <p className="font-medium text-white truncate">{merchant.business_name}</p>
@@ -2017,7 +2017,7 @@ export default function AdminDashboard() {
                             <Button
                               size="sm"
                               onClick={() => openWaConfig(merchant)}
-                              className="gap-1.5 bg-teal-600 hover:bg-teal-500 text-white border-0"
+                              className="gap-1.5 bg-pink-600 hover:bg-pink-500 text-white border-0"
                             >
                               <Settings2 className="w-3.5 h-3.5" />
                               Configurer
@@ -2055,7 +2055,7 @@ export default function AdminDashboard() {
                       <select
                         value={waForm.provider}
                         onChange={(e) => setWaForm({ ...waForm, provider: e.target.value as 'meta' | 'whapi' })}
-                        className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:ring-2 focus:ring-teal-500/50"
+                        className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:ring-2 focus:ring-pink-500/50"
                       >
                         <option value="meta">Meta Cloud API</option>
                         <option value="whapi">Whapi (Legacy)</option>
@@ -2071,7 +2071,7 @@ export default function AdminDashboard() {
                             value={waForm.waba_id}
                             onChange={(e) => setWaForm({ ...waForm, waba_id: e.target.value })}
                             placeholder="WhatsApp Business Account ID"
-                            className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white text-sm placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-teal-500/50"
+                            className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white text-sm placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-pink-500/50"
                           />
                         </div>
                         <div>
@@ -2081,7 +2081,7 @@ export default function AdminDashboard() {
                             value={waForm.phone_number_id}
                             onChange={(e) => setWaForm({ ...waForm, phone_number_id: e.target.value })}
                             placeholder="Phone Number ID"
-                            className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white text-sm placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-teal-500/50"
+                            className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white text-sm placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-pink-500/50"
                           />
                         </div>
                         <div>
@@ -2091,7 +2091,7 @@ export default function AdminDashboard() {
                             value={waForm.access_token}
                             onChange={(e) => setWaForm({ ...waForm, access_token: e.target.value })}
                             placeholder="Permanent Access Token"
-                            className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white text-sm placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-teal-500/50"
+                            className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white text-sm placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-pink-500/50"
                           />
                         </div>
                         <div>
@@ -2101,7 +2101,7 @@ export default function AdminDashboard() {
                             value={waForm.display_phone}
                             onChange={(e) => setWaForm({ ...waForm, display_phone: e.target.value })}
                             placeholder="+33 6 12 34 56 78"
-                            className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white text-sm placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-teal-500/50"
+                            className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white text-sm placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-pink-500/50"
                           />
                         </div>
                       </>
@@ -2113,7 +2113,7 @@ export default function AdminDashboard() {
                           value={waForm.api_key}
                           onChange={(e) => setWaForm({ ...waForm, api_key: e.target.value })}
                           placeholder="Whapi API Key"
-                          className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white text-sm placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-teal-500/50"
+                          className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white text-sm placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-pink-500/50"
                         />
                       </div>
                     )}
@@ -2121,7 +2121,7 @@ export default function AdminDashboard() {
                     {/* Info forfaits */}
                     <div className="mt-4 p-4 bg-slate-700/30 rounded-xl border border-slate-600/50">
                       <p className="text-sm font-semibold text-white/90 mb-1">Système de forfaits crédits</p>
-                      <p className="text-xs text-white/40">Les merchants achètent des crédits campagne (1 crédit = 1 message). Forfaits : 100 crédits / 8 000 F, 500 / 30 000 F, 1 000 / 50 000 F, 5 000 / 200 000 F</p>
+                      <p className="text-xs text-white/40">Les merchants achètent des crédits campagne (1 crédit = 1 message). Forfaits : 100 crédits / 12 EUR, 500 / 45 EUR, 1 000 / 75 EUR, 5 000 / 300 EUR</p>
                     </div>
                   </div>
 
@@ -2144,7 +2144,7 @@ export default function AdminDashboard() {
                         size="sm"
                         onClick={verifyWaConfig}
                         disabled={waSaving}
-                        className="gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white border-0"
+                        className="gap-1.5 bg-violet-600 hover:bg-violet-500 text-white border-0"
                       >
                         <Shield className="w-3.5 h-3.5" />
                         Vérifier
@@ -2153,7 +2153,7 @@ export default function AdminDashboard() {
                         size="sm"
                         onClick={saveWaConfig}
                         disabled={waSaving}
-                        className="gap-1.5 bg-teal-600 hover:bg-teal-500 text-white border-0"
+                        className="gap-1.5 bg-pink-600 hover:bg-pink-500 text-white border-0"
                       >
                         {waSaving ? (
                           <div className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -2175,7 +2175,7 @@ export default function AdminDashboard() {
           <>
             {ordersLoading ? (
               <div className="flex items-center justify-center py-20">
-                <div className="w-10 h-10 border-4 border-teal-500 border-t-transparent rounded-full animate-spin"></div>
+                <div className="w-10 h-10 border-4 border-pink-500 border-t-transparent rounded-full animate-spin"></div>
               </div>
             ) : (
               <div className="space-y-4">
@@ -2199,8 +2199,8 @@ export default function AdminDashboard() {
                   </div>
                   <div className="bg-slate-800/50 rounded-xl border border-slate-700/50 p-4">
                     <p className="text-white/50 text-xs">Revenu total</p>
-                    <p className="text-2xl font-bold text-emerald-400 mt-1">
-                      {qrOrders.filter(o => o.status === 'delivered').reduce((s, o) => s + (o.amount_xaf || 0), 0).toLocaleString('fr-FR')}
+                    <p className="text-2xl font-bold text-violet-400 mt-1">
+                      {qrOrders.filter(o => o.status === 'delivered').reduce((s, o) => s + (o.amount_eur || 0), 0).toLocaleString('fr-FR')}
                     </p>
                   </div>
                 </div>
@@ -2209,7 +2209,7 @@ export default function AdminDashboard() {
                 <div className="bg-slate-800/50 rounded-xl border border-slate-700/50 overflow-hidden">
                   <div className="px-6 py-4 border-b border-slate-700/50 flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <ShoppingBag className="w-5 h-5 text-teal-400" />
+                      <ShoppingBag className="w-5 h-5 text-pink-400" />
                       <h3 className="text-lg font-semibold text-white">Commandes de supports QR</h3>
                     </div>
                     <Badge className="bg-slate-700 text-white border-slate-600">
@@ -2257,10 +2257,10 @@ export default function AdminDashboard() {
                                 </td>
                                 <td className="px-4 py-3 text-white text-sm">{order.quantity}</td>
                                 <td className="px-4 py-3 text-white text-sm font-medium">
-                                  {order.amount_xaf === 0 ? (
+                                  {order.amount_eur === 0 ? (
                                     <span className="text-green-400">Gratuit</span>
                                   ) : (
-                                    `${order.amount_xaf.toLocaleString('fr-FR')} FCFA`
+                                    `${order.amount_eur.toLocaleString('fr-FR')} EUR`
                                   )}
                                 </td>
                                 <td className="px-4 py-3 text-white/70 text-xs max-w-xs">
@@ -2271,7 +2271,7 @@ export default function AdminDashboard() {
                                   <select
                                     value={order.status}
                                     onChange={(e) => updateOrderStatus(order.id, e.target.value)}
-                                    className="bg-slate-700 border border-slate-600 rounded-lg px-2 py-1 text-white text-xs focus:outline-none focus:ring-2 focus:ring-teal-500/50"
+                                    className="bg-slate-700 border border-slate-600 rounded-lg px-2 py-1 text-white text-xs focus:outline-none focus:ring-2 focus:ring-pink-500/50"
                                   >
                                     <option value="pending">En attente</option>
                                     <option value="confirmed">Confirmée</option>

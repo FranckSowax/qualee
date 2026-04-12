@@ -69,19 +69,19 @@ export default function CookieConsent() {
             <div className="flex flex-wrap items-center gap-3">
               <button
                 onClick={handleAcceptAll}
-                className="px-5 py-2 bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold rounded-lg transition-colors"
+                className="px-5 py-2 bg-pink-600 hover:bg-violet-700 text-white text-sm font-semibold rounded-lg transition-colors"
               >
                 Accepter tout
               </button>
               <button
                 onClick={handleRefuse}
-                className="px-5 py-2 border border-teal-600 text-teal-700 hover:bg-teal-50 text-sm font-semibold rounded-lg transition-colors"
+                className="px-5 py-2 border border-pink-600 text-violet-700 hover:bg-pink-50 text-sm font-semibold rounded-lg transition-colors"
               >
                 Refuser
               </button>
               <button
                 onClick={() => setShowCustomize(true)}
-                className="px-3 py-2 text-teal-600 hover:text-teal-800 text-sm font-medium underline transition-colors"
+                className="px-3 py-2 text-pink-600 hover:text-violet-800 text-sm font-medium underline transition-colors"
               >
                 Personnaliser
               </button>
@@ -100,7 +100,7 @@ export default function CookieConsent() {
                   type="checkbox"
                   checked
                   disabled
-                  className="w-5 h-5 accent-teal-600 rounded cursor-not-allowed"
+                  className="w-5 h-5 accent-pink-600 rounded cursor-not-allowed"
                 />
               </label>
               {/* Analytics */}
@@ -110,7 +110,7 @@ export default function CookieConsent() {
                   type="checkbox"
                   checked={analytics}
                   onChange={(e) => setAnalytics(e.target.checked)}
-                  className="w-5 h-5 accent-teal-600 rounded cursor-pointer"
+                  className="w-5 h-5 accent-pink-600 rounded cursor-pointer"
                 />
               </label>
               {/* Marketing */}
@@ -120,14 +120,14 @@ export default function CookieConsent() {
                   type="checkbox"
                   checked={marketing}
                   onChange={(e) => setMarketing(e.target.checked)}
-                  className="w-5 h-5 accent-teal-600 rounded cursor-pointer"
+                  className="w-5 h-5 accent-pink-600 rounded cursor-pointer"
                 />
               </label>
             </div>
             <div className="flex items-center gap-3">
               <button
                 onClick={handleSaveCustom}
-                className="px-5 py-2 bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold rounded-lg transition-colors"
+                className="px-5 py-2 bg-pink-600 hover:bg-violet-700 text-white text-sm font-semibold rounded-lg transition-colors"
               >
                 Enregistrer
               </button>

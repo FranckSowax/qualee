@@ -182,7 +182,7 @@ export function PhoneInputWithCountry({
           value={phoneNumber}
           onChange={handlePhoneChange}
           placeholder={placeholder}
-          className="flex-1 px-4 py-2 border border-slate-200 rounded-r-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent text-sm"
+          className="flex-1 px-4 py-2 border border-slate-200 rounded-r-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent text-sm"
         />
       </div>
 
@@ -198,7 +198,7 @@ export function PhoneInputWithCountry({
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Rechercher un pays..."
-                className="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
+                className="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-pink-500"
                 autoFocus
               />
             </div>
@@ -213,7 +213,7 @@ export function PhoneInputWithCountry({
                   type="button"
                   onClick={() => handleCountrySelect(country)}
                   className={`w-full flex items-center gap-3 px-4 py-2.5 hover:bg-slate-50 transition-colors text-left ${
-                    selectedCountry.code === country.code ? 'bg-teal-50' : ''
+                    selectedCountry.code === country.code ? 'bg-pink-50' : ''
                   }`}
                 >
                   <span className="text-xl">{country.flag}</span>

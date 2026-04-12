@@ -166,7 +166,7 @@ function TemplatePreview({ template, variables }: { template: WhatsAppTemplate; 
             {buttons.buttons.map((btn, i) => (
               <div
                 key={i}
-                className="py-2 text-center text-xs font-medium text-teal-600 border-b border-gray-100 last:border-b-0 flex items-center justify-center gap-1"
+                className="py-2 text-center text-xs font-medium text-pink-600 border-b border-gray-100 last:border-b-0 flex items-center justify-center gap-1"
               >
                 {btn.type === 'URL' && <LinkIcon className="w-3 h-3" />}
                 {btn.type === 'PHONE_NUMBER' && <Hash className="w-3 h-3" />}
@@ -546,7 +546,7 @@ export default function WhatsAppCampaignPage() {
     return (
       <DashboardLayout>
         <div className="flex items-center justify-center h-96">
-          <Loader2 className="w-8 h-8 animate-spin text-teal-600" />
+          <Loader2 className="w-8 h-8 animate-spin text-pink-600" />
         </div>
       </DashboardLayout>
     );
@@ -584,7 +584,7 @@ export default function WhatsAppCampaignPage() {
           </div>
           <button
             onClick={() => setShowOnboarding(true)}
-            className="inline-flex items-center gap-1.5 text-sm text-teal-600 hover:text-teal-700 font-medium transition-colors self-start"
+            className="inline-flex items-center gap-1.5 text-sm text-pink-600 hover:text-violet-700 font-medium transition-colors self-start"
           >
             <HelpCircle className="w-4 h-4" />
             Guide
@@ -592,10 +592,10 @@ export default function WhatsAppCampaignPage() {
         </div>
 
         {/* ═══ Credit Balance Banner ═══ */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-5 rounded-2xl bg-gradient-to-r from-teal-50 to-emerald-50 border border-teal-100">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-5 rounded-2xl bg-gradient-to-r from-pink-50 to-violet-50 border border-pink-100">
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-xl bg-teal-100 flex items-center justify-center">
-              <Send className="w-6 h-6 text-teal-600" />
+            <div className="w-12 h-12 rounded-xl bg-pink-100 flex items-center justify-center">
+              <Send className="w-6 h-6 text-pink-600" />
             </div>
             <div>
               <p className="text-sm text-gray-500">Crédits campagne disponibles</p>
@@ -608,7 +608,7 @@ export default function WhatsAppCampaignPage() {
                 key={pack.id}
                 onClick={() => buyPack(pack.id)}
                 disabled={buyingPack === pack.id}
-                className="px-4 py-2 rounded-xl border border-teal-200 bg-white text-sm font-medium text-teal-700 hover:bg-teal-50 hover:border-teal-300 transition-all disabled:opacity-50"
+                className="px-4 py-2 rounded-xl border border-pink-200 bg-white text-sm font-medium text-violet-700 hover:bg-pink-50 hover:border-pink-300 transition-all disabled:opacity-50"
               >
                 {buyingPack === pack.id ? (
                   <Loader2 className="w-4 h-4 animate-spin inline mr-1" />
@@ -628,15 +628,15 @@ export default function WhatsAppCampaignPage() {
         {mode === 'template' && (
           <div className="space-y-6">
             {/* Template Info Banner */}
-            <div className="group relative p-4 border border-teal-200 rounded-xl overflow-hidden bg-gradient-to-r from-teal-50 to-emerald-50">
-              <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500" />
+            <div className="group relative p-4 border border-pink-200 rounded-xl overflow-hidden bg-gradient-to-r from-pink-50 to-violet-50">
+              <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7]" />
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-teal-100 text-teal-600 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-lg bg-pink-100 text-pink-600 flex items-center justify-center">
                   <LayoutTemplate className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-teal-900">Campagne Template (Meta Cloud API)</p>
-                  <p className="text-xs text-teal-700">
+                  <p className="text-sm font-semibold text-violet-900">Campagne Template (Meta Cloud API)</p>
+                  <p className="text-xs text-violet-700">
                     Envoyez des messages via des templates approuves par Meta. Fiable et conforme.
                   </p>
                 </div>
@@ -648,10 +648,10 @@ export default function WhatsAppCampaignPage() {
               <div className="lg:col-span-3 space-y-5">
                 {/* Step 1: Choisir un template */}
                 <div className="group relative p-6 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-white">
-                  <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                  <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center">
+                      <div className="w-10 h-10 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center">
                         <FileText className="w-5 h-5" />
                       </div>
                       <div>
@@ -675,7 +675,7 @@ export default function WhatsAppCampaignPage() {
 
                   {templatesLoading ? (
                     <div className="flex items-center justify-center py-10">
-                      <Loader2 className="w-6 h-6 animate-spin text-teal-600" />
+                      <Loader2 className="w-6 h-6 animate-spin text-pink-600" />
                     </div>
                   ) : templates.length === 0 ? (
                     <div className="text-center py-10 text-gray-500">
@@ -700,14 +700,14 @@ export default function WhatsAppCampaignPage() {
                           onClick={() => selectTemplate(tpl)}
                           className={`border rounded-lg p-3 cursor-pointer transition-all duration-200 ${
                             selectedTemplate?.id === tpl.id
-                              ? 'border-teal-500 bg-teal-50 ring-1 ring-teal-500'
-                              : 'border-gray-200 hover:border-teal-300 hover:bg-gray-50'
+                              ? 'border-pink-500 bg-pink-50 ring-1 ring-pink-500'
+                              : 'border-gray-200 hover:border-pink-300 hover:bg-gray-50'
                           }`}
                         >
                           <div className="flex items-start justify-between mb-1.5">
                             <h3 className="text-sm font-medium text-gray-900 line-clamp-1">{tpl.name}</h3>
                             {selectedTemplate?.id === tpl.id && (
-                              <div className="w-5 h-5 rounded-full bg-teal-600 text-white flex items-center justify-center shrink-0 ml-2">
+                              <div className="w-5 h-5 rounded-full bg-pink-600 text-white flex items-center justify-center shrink-0 ml-2">
                                 <Check className="w-3 h-3" />
                               </div>
                             )}
@@ -734,9 +734,9 @@ export default function WhatsAppCampaignPage() {
                 {/* Step 2: Variables */}
                 {selectedTemplate && (
                   <div className="group relative p-6 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-white">
-                    <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                    <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                     <div className="flex items-center gap-3 mb-4">
-                      <div className="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center">
+                      <div className="w-10 h-10 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center">
                         <Type className="w-5 h-5" />
                       </div>
                       <div>
@@ -789,7 +789,7 @@ export default function WhatsAppCampaignPage() {
                                         value={templateVariables[key] || ''}
                                         onChange={(e) => setTemplateVariables({ ...templateVariables, [key]: e.target.value })}
                                         placeholder={`Valeur pour {{${v[1]}}}`}
-                                        className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent text-sm"
+                                        className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent text-sm"
                                       />
                                     </div>
                                   );
@@ -835,9 +835,9 @@ export default function WhatsAppCampaignPage() {
                 {/* Template Preview */}
                 {selectedTemplate && (
                   <div className="group relative p-6 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-white">
-                    <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                    <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                     <div className="flex items-center gap-3 mb-4">
-                      <div className="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center">
+                      <div className="w-10 h-10 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center">
                         <Eye className="w-5 h-5" />
                       </div>
                       <h2 className="text-sm font-semibold text-gray-900">Apercu</h2>
@@ -847,19 +847,19 @@ export default function WhatsAppCampaignPage() {
                 )}
 
                 {/* Next Step CTA */}
-                <div className="group relative p-6 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-gradient-to-br from-teal-50 to-emerald-50">
-                  <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                <div className="group relative p-6 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-gradient-to-br from-pink-50 to-violet-50">
+                  <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                   <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 rounded-lg bg-teal-100 text-teal-600 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-lg bg-pink-100 text-pink-600 flex items-center justify-center">
                       <Send className="w-5 h-5" />
                     </div>
                     <div>
-                      <h3 className="text-sm font-semibold text-teal-900">Suivant</h3>
-                      <p className="text-xs text-teal-700">Choisir les destinataires et envoyer</p>
+                      <h3 className="text-sm font-semibold text-violet-900">Suivant</h3>
+                      <p className="text-xs text-violet-700">Choisir les destinataires et envoyer</p>
                     </div>
                   </div>
                   <Button
-                    className="w-full bg-teal-600 hover:bg-teal-700 gap-2"
+                    className="w-full bg-pink-600 hover:bg-violet-700 gap-2"
                     disabled={!selectedTemplate}
                     onClick={goToTemplateSend}
                   >
@@ -918,7 +918,7 @@ export default function WhatsAppCampaignPage() {
                 onClick={saveCampaign}
                 disabled={!campaignName.trim() || isSaving}
                 size="sm"
-                className="gap-1.5 bg-teal-600 hover:bg-teal-700"
+                className="gap-1.5 bg-pink-600 hover:bg-violet-700"
               >
                 {isSaving ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Save className="w-3.5 h-3.5" />}
                 {currentCampaignId ? t('marketing.whatsappCampaign.updateCampaign') : t('marketing.whatsappCampaign.saveCampaign')}
@@ -937,22 +937,22 @@ export default function WhatsAppCampaignPage() {
 
             {/* Wizard Steps Indicator */}
             <div className="flex items-center gap-2">
-              <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium ${step1Done ? 'bg-teal-50 text-teal-700' : 'bg-gray-100 text-gray-500'}`}>
-                <div className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${step1Done ? 'bg-teal-600 text-white' : 'bg-gray-300 text-white'}`}>
+              <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium ${step1Done ? 'bg-pink-50 text-violet-700' : 'bg-gray-100 text-gray-500'}`}>
+                <div className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${step1Done ? 'bg-pink-600 text-white' : 'bg-gray-300 text-white'}`}>
                   {step1Done ? <Check className="w-3 h-3" /> : '1'}
                 </div>
                 {t('marketing.whatsappCampaign.campaignDetails')}
               </div>
               <ChevronRight className="w-3.5 h-3.5 text-gray-300" />
-              <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium ${step2Done ? 'bg-teal-50 text-teal-700' : 'bg-gray-100 text-gray-500'}`}>
-                <div className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${step2Done ? 'bg-teal-600 text-white' : 'bg-gray-300 text-white'}`}>
+              <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium ${step2Done ? 'bg-pink-50 text-violet-700' : 'bg-gray-100 text-gray-500'}`}>
+                <div className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${step2Done ? 'bg-pink-600 text-white' : 'bg-gray-300 text-white'}`}>
                   {step2Done ? <Check className="w-3 h-3" /> : '2'}
                 </div>
                 {t('marketing.whatsappCampaign.carouselCards')}
               </div>
               <ChevronRight className="w-3.5 h-3.5 text-gray-300" />
-              <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium ${step3Done ? 'bg-teal-50 text-teal-700' : 'bg-gray-100 text-gray-500'}`}>
-                <div className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${step3Done ? 'bg-teal-600 text-white' : 'bg-gray-300 text-white'}`}>
+              <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium ${step3Done ? 'bg-pink-50 text-violet-700' : 'bg-gray-100 text-gray-500'}`}>
+                <div className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${step3Done ? 'bg-pink-600 text-white' : 'bg-gray-300 text-white'}`}>
                   {step3Done ? <Check className="w-3 h-3" /> : '3'}
                 </div>
                 {t('marketing.whatsappCampaign.selectRecipients')}
@@ -962,11 +962,11 @@ export default function WhatsAppCampaignPage() {
             {/* Saved Campaigns Panel - Collapsible */}
             {showSavedCampaigns && (
               <div className="group relative border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-white">
-                <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                 <div className="p-5">
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center">
+                      <div className="w-10 h-10 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center">
                         <FolderOpen className="w-5 h-5" />
                       </div>
                       <h2 className="text-sm font-semibold text-gray-900">{t('marketing.whatsappCampaign.savedCampaigns')}</h2>
@@ -992,8 +992,8 @@ export default function WhatsAppCampaignPage() {
                         .map((campaign) => (
                         <div
                           key={campaign.id}
-                          className={`border rounded-lg p-3 hover:border-teal-400 transition-colors cursor-pointer ${
-                            currentCampaignId === campaign.id ? 'border-teal-500 bg-teal-50' : 'border-gray-200'
+                          className={`border rounded-lg p-3 hover:border-pink-400 transition-colors cursor-pointer ${
+                            currentCampaignId === campaign.id ? 'border-pink-500 bg-pink-50' : 'border-gray-200'
                           }`}
                           onClick={() => loadCampaign(campaign)}
                         >
@@ -1034,7 +1034,7 @@ export default function WhatsAppCampaignPage() {
                             </span>
                           </div>
                           {campaign.send_count > 0 && (
-                            <div className="mt-1.5 text-[10px] text-teal-600 flex items-center gap-1">
+                            <div className="mt-1.5 text-[10px] text-pink-600 flex items-center gap-1">
                               <Send className="w-3 h-3" />
                               {t('marketing.whatsappCampaign.sentTimes', { count: campaign.send_count })}
                             </div>
@@ -1052,9 +1052,9 @@ export default function WhatsAppCampaignPage() {
               <div className="lg:col-span-3 space-y-5">
                 {/* Step 1: Campaign Details */}
                 <div className="group relative p-6 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-white">
-                  <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                  <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center">
                       <MessageSquare className="w-5 h-5" />
                     </div>
                     <h2 className="text-sm font-semibold text-gray-900">{t('marketing.whatsappCampaign.campaignDetails')}</h2>
@@ -1070,7 +1070,7 @@ export default function WhatsAppCampaignPage() {
                         value={campaignName}
                         onChange={(e) => setCampaignName(e.target.value)}
                         placeholder={t('marketing.whatsappCampaign.campaignNamePlaceholder')}
-                        className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent text-sm"
+                        className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent text-sm"
                       />
                     </div>
 
@@ -1083,7 +1083,7 @@ export default function WhatsAppCampaignPage() {
                         onChange={(e) => setMainMessage(e.target.value)}
                         placeholder={t('marketing.whatsappCampaign.mainMessagePlaceholder')}
                         rows={2}
-                        className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent resize-none text-sm"
+                        className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent resize-none text-sm"
                       />
                     </div>
                   </div>
@@ -1091,10 +1091,10 @@ export default function WhatsAppCampaignPage() {
 
                 {/* Step 2: Carousel Cards */}
                 <div className="group relative p-6 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-white">
-                  <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                  <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center">
+                      <div className="w-10 h-10 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center">
                         <ImageIcon className="w-5 h-5" />
                       </div>
                       <h2 className="text-sm font-semibold text-gray-900">
@@ -1169,10 +1169,10 @@ export default function WhatsAppCampaignPage() {
                           ) : (
                             <div
                               onClick={() => fileInputRefs.current[card.id]?.click()}
-                              className="w-full h-28 border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center cursor-pointer hover:border-teal-500 hover:bg-teal-50/50 transition-colors"
+                              className="w-full h-28 border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center cursor-pointer hover:border-pink-500 hover:bg-pink-50/50 transition-colors"
                             >
                               {uploadingCard === card.id ? (
-                                <Loader2 className="w-6 h-6 animate-spin text-teal-600" />
+                                <Loader2 className="w-6 h-6 animate-spin text-pink-600" />
                               ) : (
                                 <>
                                   <Upload className="w-5 h-5 text-gray-400 mb-1" />
@@ -1199,7 +1199,7 @@ export default function WhatsAppCampaignPage() {
                           onChange={(e) => updateCard(card.id, { text: e.target.value })}
                           placeholder={t('marketing.whatsappCampaign.cardTextPlaceholder')}
                           rows={2}
-                          className="w-full px-2.5 py-1.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent resize-none text-xs mb-3"
+                          className="w-full px-2.5 py-1.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent resize-none text-xs mb-3"
                         />
 
                         {/* Button Type Toggle */}
@@ -1208,7 +1208,7 @@ export default function WhatsAppCampaignPage() {
                             onClick={() => updateCard(card.id, { buttonType: 'url' })}
                             className={`flex-1 py-1.5 px-2 rounded text-[10px] font-medium flex items-center justify-center gap-1 transition-colors ${
                               card.buttonType === 'url'
-                                ? 'bg-teal-600 text-white'
+                                ? 'bg-pink-600 text-white'
                                 : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                             }`}
                           >
@@ -1219,7 +1219,7 @@ export default function WhatsAppCampaignPage() {
                             onClick={() => updateCard(card.id, { buttonType: 'quick_reply' })}
                             className={`flex-1 py-1.5 px-2 rounded text-[10px] font-medium flex items-center justify-center gap-1 transition-colors ${
                               card.buttonType === 'quick_reply'
-                                ? 'bg-teal-600 text-white'
+                                ? 'bg-pink-600 text-white'
                                 : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                             }`}
                           >
@@ -1234,7 +1234,7 @@ export default function WhatsAppCampaignPage() {
                           value={card.buttonTitle}
                           onChange={(e) => updateCard(card.id, { buttonTitle: e.target.value })}
                           placeholder={t('marketing.whatsappCampaign.buttonTitlePlaceholder')}
-                          className="w-full px-2.5 py-1.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent text-xs mb-2"
+                          className="w-full px-2.5 py-1.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent text-xs mb-2"
                         />
 
                         {/* Button URL (only for URL type) */}
@@ -1244,7 +1244,7 @@ export default function WhatsAppCampaignPage() {
                             value={card.buttonUrl}
                             onChange={(e) => updateCard(card.id, { buttonUrl: e.target.value })}
                             placeholder="https://example.com"
-                            className="w-full px-2.5 py-1.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent text-xs"
+                            className="w-full px-2.5 py-1.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent text-xs"
                           />
                         )}
                       </div>
@@ -1257,10 +1257,10 @@ export default function WhatsAppCampaignPage() {
               <div className="lg:col-span-2 space-y-5 lg:sticky lg:top-4 lg:self-start">
                 {/* WhatsApp Preview */}
                 <div className="group relative p-6 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-white">
-                  <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                  <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center">
+                      <div className="w-10 h-10 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center">
                         <Eye className="w-5 h-5" />
                       </div>
                       <h2 className="text-sm font-semibold text-gray-900">{t('marketing.whatsappCampaign.preview')}</h2>
@@ -1308,7 +1308,7 @@ export default function WhatsAppCampaignPage() {
                               <p className="text-[10px] text-gray-700 line-clamp-2 mb-1.5">
                                 {card.text || t('marketing.whatsappCampaign.cardTextPlaceholder')}
                               </p>
-                              <button className="w-full py-1 bg-gray-100 rounded text-[10px] font-medium text-teal-600 flex items-center justify-center gap-1">
+                              <button className="w-full py-1 bg-gray-100 rounded text-[10px] font-medium text-pink-600 flex items-center justify-center gap-1">
                                 {card.buttonType === 'url' ? <LinkIcon className="w-2.5 h-2.5" /> : <MessageSquare className="w-2.5 h-2.5" />}
                                 {card.buttonTitle || t('marketing.whatsappCampaign.buttonTitlePlaceholder')}
                               </button>
@@ -1321,19 +1321,19 @@ export default function WhatsAppCampaignPage() {
                 </div>
 
                 {/* Next Step CTA */}
-                <div className="group relative p-6 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-gradient-to-br from-teal-50 to-emerald-50">
-                  <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                <div className="group relative p-6 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-gray-300 hover:shadow-md bg-gradient-to-br from-pink-50 to-violet-50">
+                  <span className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#EB1E99] to-[#7209B7] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                   <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 rounded-lg bg-teal-100 text-teal-600 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-lg bg-pink-100 text-pink-600 flex items-center justify-center">
                       <Users className="w-5 h-5" />
                     </div>
                     <div>
-                      <h3 className="text-sm font-semibold text-teal-900">{t('marketing.whatsappCampaign.nextStep')}</h3>
-                      <p className="text-xs text-teal-700">{t('marketing.whatsappCampaign.nextStepDescription')}</p>
+                      <h3 className="text-sm font-semibold text-violet-900">{t('marketing.whatsappCampaign.nextStep')}</h3>
+                      <p className="text-xs text-violet-700">{t('marketing.whatsappCampaign.nextStepDescription')}</p>
                     </div>
                   </div>
                   <Button
-                    className="w-full bg-teal-600 hover:bg-teal-700 gap-2"
+                    className="w-full bg-pink-600 hover:bg-violet-700 gap-2"
                     disabled={!isCampaignValid()}
                     onClick={() => {
                       localStorage.setItem('whatsapp_campaign_draft', JSON.stringify({

@@ -90,8 +90,8 @@ export function ImageUpload({
       className={`
         relative cursor-pointer rounded-xl border-2 border-dashed transition-all duration-200
         ${isDragging
-          ? 'border-teal-500 bg-teal-50/50 scale-[1.01]'
-          : 'border-gray-300 hover:border-teal-400 hover:bg-teal-50/30'
+          ? 'border-pink-500 bg-pink-50/50 scale-[1.01]'
+          : 'border-gray-300 hover:border-pink-400 hover:bg-pink-50/30'
         }
         flex flex-col items-center justify-center gap-3 p-8
         ${className}
@@ -105,12 +105,12 @@ export function ImageUpload({
         className="hidden"
       />
       <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-colors ${
-        isDragging ? 'bg-teal-100 text-teal-600' : 'bg-gray-100 text-gray-400'
+        isDragging ? 'bg-pink-100 text-pink-600' : 'bg-gray-100 text-gray-400'
       }`}>
         <Upload className="w-6 h-6" />
       </div>
       <div className="text-center">
-        <p className={`text-sm font-medium ${isDragging ? 'text-teal-600' : 'text-gray-600'}`}>
+        <p className={`text-sm font-medium ${isDragging ? 'text-pink-600' : 'text-gray-600'}`}>
           {label}
         </p>
         {sublabel && (

@@ -76,7 +76,7 @@ export default function ConfirmationPage() {
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8 max-w-md w-full text-center">
         {status === 'polling' && (
           <>
-            <Loader2 className="w-16 h-16 text-teal-600 animate-spin mx-auto mb-4" />
+            <Loader2 className="w-16 h-16 text-pink-600 animate-spin mx-auto mb-4" />
             <h1 className="text-xl font-bold text-gray-900 mb-2">Vérification du paiement</h1>
             <p className="text-gray-500 text-sm mb-4">
               Nous vérifions votre paiement auprès de E-Billing...
@@ -87,7 +87,7 @@ export default function ConfirmationPage() {
             </div>
             <div className="mt-4 w-full bg-gray-100 rounded-full h-1.5">
               <div
-                className="bg-teal-600 h-1.5 rounded-full transition-all duration-300"
+                className="bg-pink-600 h-1.5 rounded-full transition-all duration-300"
                 style={{ width: `${Math.min((attempt / MAX_ATTEMPTS) * 100, 100)}%` }}
               />
             </div>
@@ -103,7 +103,7 @@ export default function ConfirmationPage() {
             </p>
             <a
               href="/dashboard/billing"
-              className="inline-block bg-teal-600 text-white font-medium py-3 px-6 rounded-lg hover:bg-teal-700 transition-colors"
+              className="inline-block bg-pink-600 text-white font-medium py-3 px-6 rounded-lg hover:bg-violet-700 transition-colors"
             >
               Accéder à mon dashboard
             </a>
@@ -119,7 +119,7 @@ export default function ConfirmationPage() {
             </p>
             <button
               onClick={() => window.history.back()}
-              className="inline-block bg-teal-600 text-white font-medium py-3 px-6 rounded-lg hover:bg-teal-700 transition-colors"
+              className="inline-block bg-pink-600 text-white font-medium py-3 px-6 rounded-lg hover:bg-violet-700 transition-colors"
             >
               Réessayer
             </button>
@@ -135,7 +135,7 @@ export default function ConfirmationPage() {
             </p>
             <a
               href="/dashboard/billing"
-              className="inline-block bg-teal-600 text-white font-medium py-3 px-6 rounded-lg hover:bg-teal-700 transition-colors"
+              className="inline-block bg-pink-600 text-white font-medium py-3 px-6 rounded-lg hover:bg-violet-700 transition-colors"
             >
               Retour au dashboard
             </a>
