@@ -69,7 +69,7 @@ export default function ContactPage() {
       <header className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-white/90 backdrop-blur-xl border-b border-gray-200/60 shadow-[0_1px_30px_rgba(0,0,0,0.04)]' : 'bg-white/60 backdrop-blur-md'}`}>
         <nav className="max-w-7xl mx-auto px-5 sm:px-8 flex items-center justify-between h-[72px]">
           <Link href="/">
-            <img src="/logo-cartelle.png" alt="Cartelle" className="h-9 w-auto" />
+            <img src="/Logo Qualee pink violet.png" alt="Qualee" className="h-9 w-auto" />
           </Link>
           <div className="hidden md:flex items-center gap-8">
             {NAV.map(l => (
@@ -114,7 +114,7 @@ export default function ContactPage() {
             {' '}<span className="bg-gradient-to-r from-teal-600 to-emerald-500 bg-clip-text text-transparent">projet</span>
           </h1>
           <p className="mt-5 text-lg text-gray-500 max-w-xl mx-auto leading-relaxed">
-            Une question, un besoin spécifique ou envie de découvrir Cartelle ? Notre équipe vous répond sous 24h.
+            Une question, un besoin spécifique ou envie de découvrir Qualee ? Notre équipe vous répond sous 24h.
           </p>
         </div>
       </section>
@@ -253,7 +253,7 @@ export default function ContactPage() {
                   <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center">
                     <Sparkles className="w-5 h-5 text-emerald-300" />
                   </div>
-                  <h3 className="text-lg font-bold" style={{ fontFamily: 'Sora, sans-serif' }}>Pourquoi Cartelle ?</h3>
+                  <h3 className="text-lg font-bold" style={{ fontFamily: 'Sora, sans-serif' }}>Pourquoi Qualee ?</h3>
                 </div>
                 <ul className="space-y-4">
                   {[
@@ -276,13 +276,13 @@ export default function ContactPage() {
               <div className="p-8 rounded-2xl bg-white border border-gray-200 shadow-sm">
                 <h3 className="font-bold text-gray-900 mb-5" style={{ fontFamily: 'Sora, sans-serif' }}>Contact direct</h3>
                 <div className="space-y-4">
-                  <a href="mailto:contact@cartelle.app" className="flex items-center gap-3 text-gray-500 hover:text-teal-600 transition-colors group">
+                  <a href="mailto:contact@qualee.fr" className="flex items-center gap-3 text-gray-500 hover:text-teal-600 transition-colors group">
                     <div className="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center group-hover:bg-teal-100 transition-colors">
                       <Mail className="w-5 h-5 text-teal-600" />
                     </div>
                     <div>
                       <p className="text-xs text-gray-400">Email</p>
-                      <p className="text-sm font-medium text-gray-700">contact@cartelle.app</p>
+                      <p className="text-sm font-medium text-gray-700">contact@qualee.fr</p>
                     </div>
                   </a>
                   <a href="https://wa.me/24177000000" className="flex items-center gap-3 text-gray-500 hover:text-green-600 transition-colors group">
@@ -325,8 +325,8 @@ export default function ContactPage() {
       <footer className="bg-[#0A1A14] border-t border-white/[0.05]">
         <div className="max-w-7xl mx-auto px-5 sm:px-8 py-12">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <img src="/logo-cartelle-white.png" alt="Cartelle" className="h-8 w-auto" />
-            <p className="text-white/30 text-xs">&copy; 2026 Cartelle. Tous droits réservés.</p>
+            <img src="/Logo Qualee wht.png" alt="Qualee" className="h-8 w-auto" />
+            <p className="text-white/30 text-xs">&copy; {new Date().getFullYear()} Qualee. Tous droits réservés.</p>
           </div>
         </div>
       </footer>

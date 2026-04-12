@@ -20,7 +20,7 @@ import {
 } from '../lib/supabase/mcp-helpers';
 
 async function testMCPSupabase() {
-  console.log('🧪 Test du MCP Supabase pour Cartelle\n');
+  console.log('🧪 Test du MCP Supabase pour Qualee\n');
   console.log('='.repeat(50));
 
   try {

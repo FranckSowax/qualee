@@ -89,17 +89,17 @@ export async function GET(request: NextRequest) {
     }
 
     // Créer les IDs uniques
-    const classId = `${googleIssuerId}.cartelle_loyalty_${merchant.id.replace(/-/g, '_')}`;
-    const objectId = `${googleIssuerId}.cartelle_card_${client.id.replace(/-/g, '_')}`;
+    const classId = `${googleIssuerId}.qualee_loyalty_${merchant.id.replace(/-/g, '_')}`;
+    const objectId = `${googleIssuerId}.qualee_card_${client.id.replace(/-/g, '_')}`;
 
     // LoyaltyClass (template pour tous les passes du merchant)
     const loyaltyClass = {
       id: classId,
-      issuerName: 'Cartelle',
+      issuerName: 'Qualee',
       programName: `${merchant.business_name} - Fidélité`,
       programLogo: {
         sourceUri: {
-          uri: merchant.logo_url || 'https://cartelle-production.up.railway.app/logo.png'
+          uri: merchant.logo_url || `${process.env.NEXT_PUBLIC_APP_URL || 'https://qualee.app'}/Logo Qualee pink violet.png`
         },
         contentDescription: {
           defaultValue: {
@@ -197,7 +197,7 @@ export async function GET(request: NextRequest) {
       linksModuleData: {
         uris: [
           {
-            uri: `https://cartelle-production.up.railway.app/card/${client.qr_code_data}`,
+            uri: `${process.env.NEXT_PUBLIC_APP_URL || 'https://qualee.app'}/card/${client.qr_code_data}`,
             description: 'Voir ma carte en ligne',
             id: 'card_link'
           }
@@ -209,7 +209,7 @@ export async function GET(request: NextRequest) {
     const claims = {
       iss: googleServiceAccountEmail,
       aud: 'google',
-      origins: ['https://cartelle-production.up.railway.app'],
+      origins: [process.env.NEXT_PUBLIC_APP_URL || 'https://qualee.app'],
       typ: 'savetowallet',
       payload: {
         loyaltyClasses: [loyaltyClass],

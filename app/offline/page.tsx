@@ -6,8 +6,8 @@ export default function OfflinePage() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-white px-6">
       <Image
-        src="/logo-cartelle.png"
-        alt="Cartelle"
+        src="/Logo Qualee pink violet.png"
+        alt="Qualee"
         width={180}
         height={60}
         className="mb-8"

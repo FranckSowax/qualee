@@ -1,7 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 import { NextRequest, NextResponse } from 'next/server';
 
-const SITE_URL = 'https://cartelle-production.up.railway.app';
+const SITE_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://qualee.app';
 
 /**
  * Custom email confirmation route.

@@ -55,7 +55,7 @@ export default function InstallPrompt() {
       <div className="mx-auto max-w-lg rounded-t-2xl bg-gradient-to-r from-teal-600 to-emerald-500 p-4 shadow-xl">
         <div className="flex items-center gap-3">
           <p className="flex-1 text-sm text-white">
-            Installez Cartelle sur votre appareil pour un accès rapide
+            Installez Qualee sur votre appareil pour un accès rapide
           </p>
           <button
             onClick={handleInstall}

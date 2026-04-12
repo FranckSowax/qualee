@@ -123,7 +123,7 @@ export async function notifySubscriptionExpiry(
     merchantId,
     type: 'subscription_expiry',
     title: 'Abonnement expiré',
-    message: `Votre abonnement ${tier} a expiré le ${expiryDate}. Renouvelez pour continuer à utiliser Cartelle.`,
+    message: `Votre abonnement ${tier} a expiré le ${expiryDate}. Renouvelez pour continuer à utiliser Qualee.`,
     data: { tier, expiresAt },
   });
 }

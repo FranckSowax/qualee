@@ -17,7 +17,7 @@ import QRCode from 'qrcode';
 
 function getBaseUrl() {
   if (typeof window !== 'undefined') return window.location.origin;
-  return 'https://cartelle-production.up.railway.app';
+  return process.env.NEXT_PUBLIC_APP_URL || 'https://qualee.app';
 }
 
 const SUPPORTS = [
@@ -122,7 +122,7 @@ export default function QRCodePage() {
   const downloadQR = () => {
     if (!qrCodeUrl) return;
     const link = document.createElement('a');
-    link.download = `cartelle-qr-${merchant?.business_name || 'code'}.png`;
+    link.download = `qualee-qr-${merchant?.business_name || 'code'}.png`;
     link.href = qrCodeUrl;
     link.click();
   };

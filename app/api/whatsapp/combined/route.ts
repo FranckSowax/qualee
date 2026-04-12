@@ -12,7 +12,7 @@ const NEW_CLIENT_MESSAGES: Record<string, { header: string; body: string; footer
   fr: {
     header: '🎉 Bienvenue !',
     body: 'Merci pour votre avis ! Votre carte fidélité a été créée avec des points de bienvenue offerts !\n\n🎰 Tournez la roue pour gagner un cadeau\n🎁 Consultez votre carte fidélité',
-    footer: 'Cartelle'
+    footer: 'Qualee'
   },
 };
 
@@ -21,7 +21,7 @@ const RETURNING_CLIENT_MESSAGES: Record<string, { header: string; body: (points:
   fr: {
     header: '👋 Bon retour !',
     body: (points) => `Merci pour votre visite ! Vous avez ${points} points sur votre carte fidélité.\n\n🎰 Tournez la roue pour gagner un cadeau\n🎁 Consultez votre solde et récompenses`,
-    footer: 'Cartelle'
+    footer: 'Qualee'
   },
 };
 
@@ -147,7 +147,7 @@ export async function POST(request: NextRequest) {
     }
 
     // 8. Generate URLs
-    const baseUrl = process.env.APP_URL || process.env.NEXT_PUBLIC_APP_URL || 'https://cartelle-production.up.railway.app';
+    const baseUrl = process.env.APP_URL || process.env.NEXT_PUBLIC_APP_URL || 'https://qualee.app';
     const spinUrl = `${baseUrl}/spin/${merchantId}?phone=${encodeURIComponent(phoneNumber)}&lang=${language}`;
     const cardUrl = `${baseUrl}/card/${cardQrCode}`;
 
@@ -156,7 +156,7 @@ export async function POST(request: NextRequest) {
 
     // 10. Get translated texts
     const buttonTexts = BUTTON_TEXTS[language] || BUTTON_TEXTS['fr'];
-    const businessName = merchant.business_name || 'Cartelle';
+    const businessName = merchant.business_name || 'Qualee';
 
     let headerText: string;
     let bodyText: string;

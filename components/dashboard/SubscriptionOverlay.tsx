@@ -82,7 +82,7 @@ export function SubscriptionOverlay({ merchant }: SubscriptionOverlayProps) {
         {/* Content */}
         <div className="p-6">
           <p className="text-gray-600 text-sm mb-6">
-            Pour continuer à utiliser Cartelle et accéder à votre dashboard, veuillez renouveler votre abonnement.
+            Pour continuer à utiliser Qualee et accéder à votre dashboard, veuillez renouveler votre abonnement.
             Choisissez le plan qui vous convient :
           </p>
 

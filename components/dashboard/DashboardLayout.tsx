@@ -55,7 +55,7 @@ export function DashboardLayout({ children, merchant }: DashboardLayoutProps) {
     // Auto-show onboarding for new merchants (< 7 days, not dismissed)
     if (merchant?.created_at) {
       const days = (Date.now() - new Date(merchant.created_at).getTime()) / (1000 * 60 * 60 * 24);
-      const dismissed = localStorage.getItem('cartelle_onboarding_dismissed');
+      const dismissed = localStorage.getItem('qualee_onboarding_dismissed');
       if (days < 7 && !dismissed) {
         setTimeout(() => setShowOnboarding(true), 800);
       }
@@ -148,7 +148,7 @@ export function DashboardLayout({ children, merchant }: DashboardLayoutProps) {
       {merchant && !isSubscriptionExpired && showOnboarding && (
         <OnboardingGuide merchant={merchant} onClose={() => {
           setShowOnboarding(false);
-          localStorage.setItem('cartelle_onboarding_dismissed', Date.now().toString());
+          localStorage.setItem('qualee_onboarding_dismissed', Date.now().toString());
         }} />
       )}
       {/* Subtle background pattern */}
@@ -179,8 +179,8 @@ export function DashboardLayout({ children, merchant }: DashboardLayoutProps) {
           <div className="flex items-center justify-between h-20 px-6 border-b border-slate-800/50 bg-[#0F172A]">
             <Link href="/dashboard" className="flex items-center gap-3">
               <img 
-                src="/logo-cartelle-white.png"
-                alt="Cartelle Logo"
+                src="/Logo Qualee wht.png"
+                alt="Qualee Logo"
                 className="h-8 w-auto transition-transform hover:scale-105"
               />
             </Link>

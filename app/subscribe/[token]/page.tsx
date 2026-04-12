@@ -66,7 +66,7 @@ export default function SubscribePage() {
         return;
       }
 
-      localStorage.setItem('cartelle_payment', JSON.stringify({
+      localStorage.setItem('qualee_payment', JSON.stringify({
         external_reference: data.external_reference,
         token,
         tier,
@@ -262,7 +262,7 @@ export default function SubscribePage() {
         {/* Footer */}
         <div className="mt-6 text-center text-xs text-gray-400">
           <p>Paiement sécurisé par E-Billing (Mobile Money & Carte bancaire)</p>
-          <p className="mt-1">En cas de problème, contactez-nous sur contact@cartelle.app</p>
+          <p className="mt-1">En cas de problème, contactez-nous sur contact@qualee.fr</p>
         </div>
       </div>
     </div>

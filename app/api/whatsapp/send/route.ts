@@ -254,7 +254,7 @@ export async function POST(request: NextRequest) {
     }
 
     // 8. Generate spin URL with phone number and language
-    const baseUrl = process.env.APP_URL || process.env.NEXT_PUBLIC_APP_URL || 'https://cartelle-production.up.railway.app';
+    const baseUrl = process.env.APP_URL || process.env.NEXT_PUBLIC_APP_URL || 'https://qualee.app';
     const spinUrl = `${baseUrl}/spin/${merchantId}?phone=${encodeURIComponent(phoneNumber)}&lang=${language}`;
     console.log('[WHATSAPP SEND] Base URL:', baseUrl, '| Spin URL:', spinUrl);
 
@@ -264,7 +264,7 @@ export async function POST(request: NextRequest) {
     // 10. Get translated texts
     const spinButtonText = SPIN_BUTTON_TEXTS[language] || SPIN_BUTTON_TEXTS['fr'];
     const cardButtonText = CARD_BUTTON_TEXTS[language] || CARD_BUTTON_TEXTS['fr'];
-    const businessName = merchant.business_name || 'Cartelle';
+    const businessName = merchant.business_name || 'Qualee';
 
     // Select body text based on context:
     // - If cardUrl provided + isNewClient: use NEW_CLIENT message (welcome + loyalty card)
@@ -356,7 +356,7 @@ export async function POST(request: NextRequest) {
         text: bodyText,
       },
       footer: {
-        text: 'Cartelle',
+        text: 'Qualee',
       },
       action: {
         buttons: actionButtons,
@@ -385,7 +385,7 @@ export async function POST(request: NextRequest) {
         textMessage += `\n\n🎁 *${cardButtonText}*\n${cardUrl}`;
       }
 
-      textMessage += '\n\n_Cartelle_';
+      textMessage += '\n\n_Qualee_';
 
       whapiResponse = await fetch(WHAPI_TEXT_URL, {
         method: 'POST',

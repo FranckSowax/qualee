@@ -180,9 +180,9 @@ const SEND_STEPS = [
 ];
 
 const STORAGE_KEYS = {
-  campaign: 'cartelle_campaign_onboarding_dismissed',
-  templates: 'cartelle_templates_onboarding_dismissed',
-  send: 'cartelle_send_onboarding_dismissed',
+  campaign: 'qualee_campaign_onboarding_dismissed',
+  templates: 'qualee_templates_onboarding_dismissed',
+  send: 'qualee_send_onboarding_dismissed',
 };
 
 const HEADERS = {

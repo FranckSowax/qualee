@@ -147,7 +147,7 @@ function SendCampaignPage() {
       setGateChecked(true);
 
       // Auto-show onboarding if never dismissed
-      const dismissed = localStorage.getItem('cartelle_send_onboarding_dismissed');
+      const dismissed = localStorage.getItem('qualee_send_onboarding_dismissed');
       if (!dismissed) {
         setTimeout(() => setShowOnboarding(true), 600);
       }

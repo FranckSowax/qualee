@@ -56,7 +56,7 @@ export default function PrizesPage() {
       ]
     },
     {
-      name: isFr ? 'Cartelle Teal' : 'Cartelle Teal',
+      name: isFr ? 'Qualee Pink' : 'Qualee Pink',
       colors: [
         { bg: '#0D9488', text: '#FFFFFF' },
         { bg: '#14B8A6', text: '#FFFFFF' },

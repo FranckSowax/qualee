@@ -227,7 +227,7 @@
     },
     "workflow": {
       "tag": "Comment ça marche",
-      "title": "Le Workflow Cartelle",
+      "title": "Le Workflow Qualee",
       "subtitle": "4 étapes simples pour transformer vos clients en ambassadeurs",
       "step1": "Scan QR Code",
       "step1Desc": "Le client scanne le QR code pour accéder instantanément à l'expérience",
@@ -238,11 +238,11 @@
       "step4": "Fidélisation",
       "step4Desc": "Le cadeau expire rapidement, incitant le client à revenir vite",
       "ctaTitle": "Prêt à booster votre réputation ?",
-      "ctaSubtitle": "Rejoignez les 100K+ commerces qui utilisent Cartelle",
+      "ctaSubtitle": "Rejoignez les 100K+ commerces qui utilisent Qualee",
       "ctaButton": "Démarrer l'essai gratuit"
     },
     "benefits": {
-      "tag": "Pourquoi Cartelle",
+      "tag": "Pourquoi Qualee",
       "title": "Adapté aux Zones Touristiques de Thaïlande",
       "subtitle": "Une solution pensée pour tous les commerces accueillant des touristes internationaux",
       "multilingual": "Multilingue",
@@ -262,7 +262,7 @@
     },
     "testimonials": {
       "tag": "Témoignages",
-      "title": "Ils ont boosté leur réputation avec Cartelle"
+      "title": "Ils ont boosté leur réputation avec Qualee"
     },
     "pricing": {
       "tag": "Tarification",
@@ -307,13 +307,13 @@
     "faq": {
       "tag": "FAQ",
       "title": "Questions Fréquentes",
-      "subtitle": "Tout ce que vous devez savoir sur Cartelle",
+      "subtitle": "Tout ce que vous devez savoir sur Qualee",
       "q1": "Comment ça marche concrètement ?",
       "a1": "Vous imprimez un QR code, le client le scanne, note son expérience. Si c'est positif (4-5★), il accède à la roue pour gagner un cadeau instantané.",
       "q2": "Que deviennent les avis négatifs ?",
       "a2": "Nous demandons au client de noter son expérience. Si la note est inférieure à 4 étoiles, il est redirigé vers un formulaire de feedback privé, lui permettant d'exprimer les raisons de son mécontentement. S'il le souhaite, il peut ensuite laisser une note sur la page Google.",
       "q3": "C'est compatible avec mon système de caisse ?",
-      "a3": "Cartelle fonctionne de manière autonome via QR code. Aucune intégration technique nécessaire.",
+      "a3": "Qualee fonctionne de manière autonome via QR code. Aucune intégration technique nécessaire.",
       "q4": "Combien coûtent les cadeaux ?",
       "a4": "Vous décidez ! Café offert, -10%, dessert gratuit... Vous contrôlez les lots et leur valeur.",
       "contactTitle": "Contactez-nous",
@@ -326,7 +326,7 @@
     "cta": {
       "tag": "Commencez maintenant",
       "title": "Prêt à transformer votre réputation en ligne ?",
-      "subtitle": "Rejoignez les milliers de commerces qui boostent leurs avis Google avec Cartelle",
+      "subtitle": "Rejoignez les milliers de commerces qui boostent leurs avis Google avec Qualee",
       "tryFree": "Essayer gratuitement 14 jours",
       "seeDemo": "Voir une démo",
       "noCommitment": "Sans engagement",
@@ -335,7 +335,7 @@
     },
     "demo": {
       "tag": "Voyez-le en action",
-      "title": "Découvrez Cartelle en 2 minutes",
+      "title": "Découvrez Qualee en 2 minutes",
       "subtitle": "Regardez comment notre solution transforme vos avis clients en notes positives",
       "feature1": "Démo en direct",
       "feature1Desc": "Voyez le parcours client complet",

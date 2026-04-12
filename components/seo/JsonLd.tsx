@@ -2,7 +2,7 @@ export function SoftwareApplicationJsonLd() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
-    name: 'Cartelle',
+    name: 'Qualee',
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'Web',
     description: 'Plateforme de fidélisation et gamification pour les commerces africains. Roue de la fortune, carte fidélité digitale, campagnes WhatsApp.',

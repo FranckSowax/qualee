@@ -54,7 +54,7 @@ export async function GET() {
       whatsapp_campaigns: whatsappCampaigns.data || [],
     };
 
-    const filename = `cartelle-export-${merchantId}-${Date.now()}.json`;
+    const filename = `qualee-export-${merchantId}-${Date.now()}.json`;
 
     return new NextResponse(JSON.stringify(exportData, null, 2), {
       status: 200,

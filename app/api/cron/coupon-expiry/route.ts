@@ -61,7 +61,7 @@ export async function GET(request: NextRequest) {
     const baseUrl =
       process.env.APP_URL ||
       process.env.NEXT_PUBLIC_APP_URL ||
-      'https://cartelle-production.up.railway.app';
+      'https://qualee.app';
 
     let sent = 0;
     let failed = 0;

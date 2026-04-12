@@ -1,15 +1,15 @@
 {
-  "name": "Cartelle - Gamification des avis clients",
-  "short_name": "Cartelle",
-  "description": "Transformez les avis clients en une expérience amusante et gratifiante",
+  "name": "Qualee - Boostez vos avis Google avec la gamification",
+  "short_name": "Qualee",
+  "description": "Transformez vos clients satisfaits en ambassadeurs avec notre roue de la fortune gamifiée.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#FFFFFF",
-  "theme_color": "#0F766E",
+  "theme_color": "#EB1E99",
   "orientation": "portrait",
   "icons": [
     {
-      "src": "/favicon-cartelle.png",
+      "src": "/favicon-qualee.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"

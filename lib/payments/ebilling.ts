@@ -15,7 +15,7 @@ const EBILLING_AUTH = Buffer.from('Sowax:ca492d78-cbeb-4513-9525-c23b8f0ce0c1').
 export function generateExternalReference(): string {
   const timestamp = Date.now();
   const random = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
-  return `CARTELLE_${timestamp}_${random}`;
+  return `QUALEE_${timestamp}_${random}`;
 }
 
 export function formatPhoneNumber(phone?: string | null): string {

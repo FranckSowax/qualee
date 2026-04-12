@@ -10,7 +10,7 @@ const supabaseAdmin = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 );
 
-const APP_URL = process.env.APP_URL || process.env.NEXT_PUBLIC_APP_URL || 'https://cartelle-production.up.railway.app';
+const APP_URL = process.env.APP_URL || process.env.NEXT_PUBLIC_APP_URL || 'https://qualee.app';
 
 /**
  * CRON: Send WhatsApp renewal reminders 1 day before subscription expiry.
@@ -71,11 +71,11 @@ export async function GET(request: NextRequest) {
 
         const result = await sendInteractiveMessage(config, {
           to: phone,
-          header: { text: 'Rappel de renouvellement Cartelle', type: 'text' },
+          header: { text: 'Rappel de renouvellement Qualee', type: 'text' },
           body: {
-            text: `Bonjour ${name} !\n\nVotre abonnement Cartelle (plan ${tier}) expire *demain*.\n\nRenouvelez maintenant pour ne pas interrompre votre service de fidélisation client.`,
+            text: `Bonjour ${name} !\n\nVotre abonnement Qualee (plan ${tier}) expire *demain*.\n\nRenouvelez maintenant pour ne pas interrompre votre service de fidélisation client.`,
           },
-          footer: { text: 'Cartelle - Fidélisation client' },
+          footer: { text: 'Qualee - Fidélisation client' },
           buttons: [{ type: 'url', title: 'Renouveler maintenant', url: subscribeUrl }],
         });
 

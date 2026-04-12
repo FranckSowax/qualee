@@ -50,7 +50,7 @@ export default function ConfirmationPage() {
   }, [token]);
 
   useEffect(() => {
-    const stored = localStorage.getItem('cartelle_payment');
+    const stored = localStorage.getItem('qualee_payment');
     if (!stored) {
       setStatus('error');
       return;
@@ -99,7 +99,7 @@ export default function ConfirmationPage() {
             <CheckCircle2 className="w-16 h-16 text-green-500 mx-auto mb-4" />
             <h1 className="text-xl font-bold text-gray-900 mb-2">Paiement confirmé !</h1>
             <p className="text-gray-500 text-sm mb-6">
-              Votre abonnement Cartelle{paymentInfo?.tier ? ` (${paymentInfo.tier})` : ''} est maintenant actif.
+              Votre abonnement Qualee{paymentInfo?.tier ? ` (${paymentInfo.tier})` : ''} est maintenant actif.
             </p>
             <a
               href="/dashboard/billing"
@@ -153,7 +153,7 @@ export default function ConfirmationPage() {
         )}
 
         <p className="mt-6 text-xs text-gray-400">
-          Besoin d'aide ? contact@cartelle.app
+          Besoin d'aide ? contact@qualee.fr
         </p>
       </div>
     </div>

@@ -202,7 +202,7 @@ export default function LandingPage() {
     { q: 'Puis-je changer de plan à tout moment ?', a: 'Oui, vous pouvez upgrader ou downgrader à tout moment. Le changement prend effet immédiatement et la facturation est ajustée au prorata.' },
     { q: 'L\'essai gratuit inclut-il toutes les fonctionnalités ?', a: 'Absolument ! Pendant 14 jours, vous avez accès à toutes les fonctionnalités du plan Essentiel sans aucune restriction ni carte bancaire requise.' },
     { q: 'Y a-t-il des frais cachés ?', a: 'Aucun. Le prix affiché est le prix final. Pas de frais de mise en service, pas de commission sur vos ventes, pas de surcoût.' },
-    { q: 'Combien de temps pour configurer Cartelle ?', a: '3 minutes. Créez votre compte, personnalisez votre roue et vos lots, imprimez votre QR code. Notre équipe vous accompagne gratuitement si besoin.' },
+    { q: 'Combien de temps pour configurer Qualee ?', a: '3 minutes. Créez votre compte, personnalisez votre roue et vos lots, imprimez votre QR code. Notre équipe vous accompagne gratuitement si besoin.' },
     { q: 'Mes clients ont besoin d\'une app ?', a: 'Non, zéro installation. Vos clients scannent un QR code avec l\'appareil photo de leur téléphone. Ça marche sur tous les smartphones.' },
     { q: 'Proposez-vous un accompagnement ?', a: 'Oui ! Notre équipe vous accompagne gratuitement pour la mise en place : configuration, personnalisation, déploiement des QR codes, formation de vos équipes.' },
   ];
@@ -222,7 +222,7 @@ export default function LandingPage() {
       <header className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-white/90 backdrop-blur-xl border-b border-gray-200/60 shadow-[0_1px_30px_rgba(0,0,0,0.04)]' : 'bg-white/60 backdrop-blur-md'}`}>
         <nav className="max-w-7xl mx-auto px-5 sm:px-8 flex items-center justify-between h-[72px]">
           <Link href="/" className="flex items-center group">
-            <img src="/logo-cartelle.png" alt="Cartelle" className="h-9 w-auto" />
+            <img src="/Logo Qualee pink violet.png" alt="Qualee" className="h-9 w-auto" />
           </Link>
 
           <div className="hidden md:flex items-center gap-8">
@@ -345,7 +345,7 @@ export default function LandingPage() {
                 className="mt-6 flex items-center gap-2 text-sm text-gray-400"
               >
                 <Flame className="w-4 h-4 text-orange-400" />
-                <span>12 commerces ont rejoint Cartelle cette semaine</span>
+                <span>12 commerces ont rejoint Qualee cette semaine</span>
               </motion.div>
             </div>
 
@@ -356,7 +356,7 @@ export default function LandingPage() {
               transition={{ duration: 1, delay: 0.3, ease: EASE }}
               className="relative flex items-center justify-center"
             >
-              <img src="/hero-cartelle.png" alt="Cartelle — Roue, carte fidélité, QR code, WhatsApp" className="w-full max-w-lg lg:max-w-xl xl:max-w-2xl drop-shadow-2xl animate-hero-float-product" />
+              <img src="/hero-cartelle.png" alt="Qualee — Roue, carte fidélité, QR code, WhatsApp" className="w-full max-w-lg lg:max-w-xl xl:max-w-2xl drop-shadow-2xl animate-hero-float-product" />
             </motion.div>
           </div>
         </motion.div>
@@ -431,7 +431,7 @@ export default function LandingPage() {
             <motion.div variants={fadeUp} custom={0} className="p-8 rounded-2xl bg-white border border-red-100">
               <div className="flex items-center gap-2 mb-6">
                 <div className="w-3 h-3 rounded-full bg-red-400" />
-                <span className="text-sm font-bold text-red-500 uppercase tracking-wide">Avant Cartelle</span>
+                <span className="text-sm font-bold text-red-500 uppercase tracking-wide">Avant Qualee</span>
               </div>
               <ul className="space-y-4">
                 {BEFORE_AFTER.before.map((item, i) => (
@@ -447,7 +447,7 @@ export default function LandingPage() {
             <motion.div variants={fadeUp} custom={1} className="p-8 rounded-2xl bg-white border border-teal-100 shadow-lg shadow-teal-50">
               <div className="flex items-center gap-2 mb-6">
                 <div className="w-3 h-3 rounded-full bg-teal-500" />
-                <span className="text-sm font-bold text-teal-600 uppercase tracking-wide">Avec Cartelle</span>
+                <span className="text-sm font-bold text-teal-600 uppercase tracking-wide">Avec Qualee</span>
               </div>
               <ul className="space-y-4">
                 {BEFORE_AFTER.after.map((item, i) => (
@@ -473,11 +473,11 @@ export default function LandingPage() {
               </span>
             </motion.div>
             <motion.h2 variants={fadeUp} custom={1} className="mt-5 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight" style={{ fontFamily: 'Sora, sans-serif' }}>
-              Cartelle travaille pour vous,
+              Qualee travaille pour vous,
               {' '}<span className="bg-gradient-to-r from-purple-600 to-teal-500 bg-clip-text text-transparent">même quand vous dormez</span>
             </motion.h2>
             <motion.p variants={fadeUp} custom={2} className="mt-5 text-lg text-gray-500 leading-relaxed">
-              Des messages automatiques envoyés au bon moment, au bon client. Vous configurez une fois, Cartelle s'occupe du reste.
+              Des messages automatiques envoyés au bon moment, au bon client. Vous configurez une fois, Qualee s'occupe du reste.
             </motion.p>
           </div>
 
@@ -502,7 +502,7 @@ export default function LandingPage() {
                 <div className="w-12 h-12 rounded-2xl bg-amber-50 flex items-center justify-center shrink-0 text-2xl">👋</div>
                 <div>
                   <h3 className="font-bold text-gray-900" style={{ fontFamily: 'Sora, sans-serif' }}>Rappel de visite</h3>
-                  <p className="mt-1.5 text-sm text-gray-500 leading-relaxed">Un client n'est pas revenu depuis 30 jours ? Cartelle lui envoie un message personnalisé pour le faire revenir avec ses points de fidélité.</p>
+                  <p className="mt-1.5 text-sm text-gray-500 leading-relaxed">Un client n'est pas revenu depuis 30 jours ? Qualee lui envoie un message personnalisé pour le faire revenir avec ses points de fidélité.</p>
                   <div className="mt-3 px-3 py-2 rounded-lg bg-gray-50 text-xs text-gray-400 italic">
                     "Vous nous manquez chez Afro Chic ! 💚 Vos 120 points vous attendent. Revenez en profiter !"
                   </div>
@@ -530,7 +530,7 @@ export default function LandingPage() {
                 <div className="w-12 h-12 rounded-2xl bg-red-50 flex items-center justify-center shrink-0 text-2xl">⏰</div>
                 <div>
                   <h3 className="font-bold text-gray-900" style={{ fontFamily: 'Sora, sans-serif' }}>Coupon qui expire</h3>
-                  <p className="mt-1.5 text-sm text-gray-500 leading-relaxed">Un client a gagné un coupon mais ne l'a pas utilisé ? 6 heures avant l'expiration, Cartelle lui envoie un rappel pour ne pas le perdre.</p>
+                  <p className="mt-1.5 text-sm text-gray-500 leading-relaxed">Un client a gagné un coupon mais ne l'a pas utilisé ? 6 heures avant l'expiration, Qualee lui envoie un rappel pour ne pas le perdre.</p>
                   <div className="mt-3 px-3 py-2 rounded-lg bg-gray-50 text-xs text-gray-400 italic">
                     "⏰ Votre coupon -20% chez Le Baobab expire bientôt ! Utilisez-le avant qu'il ne soit trop tard."
                   </div>
@@ -918,7 +918,7 @@ export default function LandingPage() {
               </span>
             </motion.div>
             <motion.h2 variants={fadeUp} custom={1} className="mt-5 text-3xl sm:text-4xl font-extrabold text-gray-900" style={{ fontFamily: 'Sora, sans-serif' }}>
-              Ils fidélisent avec Cartelle — à votre tour !
+              Ils fidélisent avec Qualee — à votre tour !
             </motion.h2>
           </div>
 
@@ -953,7 +953,7 @@ export default function LandingPage() {
                 <span className="bg-gradient-to-r from-emerald-300 to-teal-200 bg-clip-text text-transparent">vos clients ?</span>
               </h2>
               <p className="mt-6 text-white/50 text-lg max-w-xl mx-auto">
-                Essayez Cartelle gratuitement pendant 14 jours. Sans carte bancaire.
+                Essayez Qualee gratuitement pendant 14 jours. Sans carte bancaire.
               </p>
 
               {/* Benefits list */}
@@ -984,7 +984,7 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-5 sm:px-8 py-16">
           <div className="flex flex-col md:flex-row items-start justify-between gap-10">
             <div>
-              <img src="/logo-cartelle-white.png" alt="Cartelle" className="h-9 w-auto" />
+              <img src="/Logo Qualee wht.png" alt="Qualee" className="h-9 w-auto" />
               <p className="mt-4 text-white/40 text-sm max-w-xs leading-relaxed">
                 La plateforme de fidélisation et gamification pour les commerces africains.
               </p>
@@ -1008,7 +1008,7 @@ export default function LandingPage() {
                 <h4 className="text-white/30 text-xs font-semibold uppercase tracking-widest mb-4">Support</h4>
                 <ul className="space-y-2.5">
                   <li><Link href="/contact" className="text-white/60 text-sm hover:text-white transition-colors">Contact</Link></li>
-                  <li><a href="mailto:contact@cartelle.app" className="text-white/60 text-sm hover:text-white transition-colors">contact@cartelle.app</a></li>
+                  <li><a href="mailto:contact@qualee.fr" className="text-white/60 text-sm hover:text-white transition-colors">contact@qualee.fr</a></li>
                 </ul>
               </div>
               <div>
@@ -1021,7 +1021,7 @@ export default function LandingPage() {
             </div>
           </div>
           <div className="mt-14 pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-white/30 text-xs">&copy; 2026 Cartelle. Tous droits réservés.</p>
+            <p className="text-white/30 text-xs">&copy; {new Date().getFullYear()} Qualee. Tous droits réservés.</p>
             <div className="flex items-center gap-4">
               <span className="flex items-center gap-1.5 text-white/20 text-xs">
                 <Shield className="w-3.5 h-3.5" /> SSL sécurisé

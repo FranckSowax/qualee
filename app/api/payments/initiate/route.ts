@@ -57,8 +57,8 @@ export async function POST(request: NextRequest) {
     const externalReference = generateExternalReference();
     const phone = formatPhoneNumber(merchant?.phone);
     const email = tokenData.email || merchant?.email || '';
-    const payerName = tokenData.business_name || merchant?.business_name || 'Marchand Cartelle';
-    const description = `Abonnement Cartelle ${plan.name}`;
+    const payerName = tokenData.business_name || merchant?.business_name || 'Marchand Qualee';
+    const description = `Abonnement Qualee ${plan.name}`;
 
     console.log('[PAYMENT] Initiating:', { tier, amount: plan.price_xaf, phone, externalReference });
 

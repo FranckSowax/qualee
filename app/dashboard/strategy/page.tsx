@@ -656,7 +656,7 @@ export default function StrategyPage() {
                         <div className="bg-white border border-amber-200 rounded-lg p-3 space-y-1.5">
                           <p className="font-semibold text-amber-900 text-xs flex items-center gap-2">
                             <span className="w-5 h-5 rounded-full bg-amber-600 text-white flex items-center justify-center text-[10px]">4</span>
-                            {isFr ? 'Coller le lien dans Cartelle' : 'Paste the link in Cartelle'}
+                            {isFr ? 'Coller le lien dans Qualee' : 'Paste the link in Qualee'}
                           </p>
                           <p className="text-xs text-gray-700 ml-1">
                             {isFr

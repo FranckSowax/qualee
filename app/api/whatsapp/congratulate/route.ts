@@ -166,7 +166,7 @@ export async function POST(request: NextRequest) {
     }
 
     // 8. Generate coupon URL with language
-    const baseUrl = process.env.APP_URL || process.env.NEXT_PUBLIC_APP_URL || 'https://cartelle-production.up.railway.app';
+    const baseUrl = process.env.APP_URL || process.env.NEXT_PUBLIC_APP_URL || 'https://qualee.app';
     const couponUrl = `${baseUrl}/coupon/${merchantId}?code=${couponCode}&lang=${language}`;
 
     // 9. Get congratulation message based on language
@@ -177,7 +177,7 @@ export async function POST(request: NextRequest) {
     const formattedPhone = phoneNumber.replace(/^\+/, '');
 
     // 11. Build business name for header
-    const businessName = merchant.business_name || 'Cartelle';
+    const businessName = merchant.business_name || 'Qualee';
 
     // 12. Call Whapi API with interactive URL button (correct format per Whapi docs)
     const btnId = `prize_${Date.now()}`;

@@ -18,10 +18,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'https://cartelle.app'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'https://qualee.app'),
   title: {
-    default: 'Cartelle - Boostez vos avis Google avec la gamification',
-    template: '%s | Cartelle',
+    default: 'Qualee - Boostez vos avis Google avec la gamification',
+    template: '%s | Qualee',
   },
   description:
     'Transformez vos clients satisfaits en ambassadeurs avec notre roue de la fortune gamifiée. Augmentez vos avis Google et TripAdvisor facilement.',
@@ -30,16 +30,13 @@ export const metadata: Metadata = {
     'gamification',
     'roue de la fortune',
     'fidélisation client',
-    'restaurant marketing',
     'QR code',
     'avis clients',
     'réputation en ligne',
-    'FCFA',
-    'Afrique',
   ],
-  authors: [{ name: 'Cartelle' }],
-  creator: 'Cartelle',
-  publisher: 'Cartelle',
+  authors: [{ name: 'Qualee' }],
+  creator: 'Qualee',
+  publisher: 'Qualee',
   robots: {
     index: true,
     follow: true,
@@ -48,8 +45,8 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'fr_FR',
     url: process.env.NEXT_PUBLIC_APP_URL,
-    siteName: 'Cartelle',
-    title: 'Cartelle - Boostez vos avis Google avec la gamification',
+    siteName: 'Qualee',
+    title: 'Qualee - Boostez vos avis Google avec la gamification',
     description:
       'Transformez vos clients satisfaits en ambassadeurs avec notre roue de la fortune gamifiée.',
     images: [
@@ -57,20 +54,20 @@ export const metadata: Metadata = {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Cartelle - Boostez vos avis clients',
+        alt: 'Qualee - Boostez vos avis clients',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Cartelle - Boostez vos avis Google',
+    title: 'Qualee - Boostez vos avis Google',
     description: 'La roue gamifiée qui booste vos avis Google et TripAdvisor.',
     images: ['/og-image.png'],
   },
   manifest: '/manifest.json',
   icons: {
-    icon: '/favicon-cartelle.png',
-    apple: '/favicon-cartelle.png',
+    icon: '/favicon-qualee.png',
+    apple: '/favicon-qualee.png',
   },
 };
 

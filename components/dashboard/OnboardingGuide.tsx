@@ -83,7 +83,7 @@ const STEPS = [
     icon: QrCode,
     title: 'Imprimez votre QR Code',
     subtitle: 'C\'est parti !',
-    description: 'Dernière étape ! Imprimez votre QR code et placez-le dans votre commerce. Vos clients n\'ont plus qu\'à scanner pour vivre l\'expérience Cartelle !',
+    description: 'Dernière étape ! Imprimez votre QR code et placez-le dans votre commerce. Vos clients n\'ont plus qu\'à scanner pour vivre l\'expérience Qualee !',
     tips: [
       'Imprimez en grand format pour la caisse ou les tables',
       'Plastifiez-le pour qu\'il dure',

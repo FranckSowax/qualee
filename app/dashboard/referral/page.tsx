@@ -58,7 +58,7 @@ export default function ReferralPage() {
 
   const shareWhatsApp = () => {
     const signupUrl = `${window.location.origin}/auth/signup?ref=${referralCode}`;
-    const message = `Rejoins Cartelle avec mon code de parrainage ${referralCode} et reçois 50 crédits offerts ! Inscris-toi ici : ${signupUrl}`;
+    const message = `Rejoins Qualee avec mon code de parrainage ${referralCode} et reçois 50 crédits offerts ! Inscris-toi ici : ${signupUrl}`;
     window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
   };
 

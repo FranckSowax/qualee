@@ -10,7 +10,7 @@ const supabaseAdmin = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 );
 
-const APP_URL = process.env.APP_URL || process.env.NEXT_PUBLIC_APP_URL || 'https://cartelle-production.up.railway.app';
+const APP_URL = process.env.APP_URL || process.env.NEXT_PUBLIC_APP_URL || 'https://qualee.app';
 
 /**
  * CRON: Send WhatsApp messages to merchants after 13 days of free trial.
@@ -73,11 +73,11 @@ export async function GET(request: NextRequest) {
 
         const result = await sendInteractiveMessage(config, {
           to: phone,
-          header: { text: 'Votre essai gratuit Cartelle se termine', type: 'text' },
+          header: { text: 'Votre essai gratuit Qualee se termine', type: 'text' },
           body: {
-            text: `Bonjour ${name} !\n\nVotre période d'essai gratuit de 13 jours arrive à sa fin.\n\nPour continuer à utiliser Cartelle et fidéliser vos clients, choisissez votre abonnement dès maintenant.\n\nPrix à partir de 9 000 XAF/mois.`,
+            text: `Bonjour ${name} !\n\nVotre période d'essai gratuit de 13 jours arrive à sa fin.\n\nPour continuer à utiliser Qualee et fidéliser vos clients, choisissez votre abonnement dès maintenant.\n\nPrix à partir de 9 000 XAF/mois.`,
           },
-          footer: { text: 'Cartelle - Fidélisation client' },
+          footer: { text: 'Qualee - Fidélisation client' },
           buttons: [{ type: 'url', title: 'Choisir mon plan', url: subscribeUrl }],
         });
 

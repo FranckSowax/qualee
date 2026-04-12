@@ -1,5 +1,5 @@
 /**
- * Security utilities for Cartelle
+ * Security utilities for Qualee
  * Includes rate limiting and request validation
  */
 
