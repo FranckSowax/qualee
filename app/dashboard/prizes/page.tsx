@@ -123,7 +123,6 @@ export default function PrizesPage() {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string>('');
   const [uploading, setUploading] = useState(false);
-  const [migrationNeeded, setMigrationNeeded] = useState(false);
   const [segmentColors, setSegmentColors] = useState(DEFAULT_SEGMENT_COLORS);
   const [selectedTheme, setSelectedTheme] = useState<number | null>(null);
 
@@ -370,12 +369,8 @@ export default function PrizesPage() {
         .eq('id', user.id);
 
       if (error) throw error;
-      setMigrationNeeded(false);
     } catch (error: unknown) {
-      const err = error as { code?: string; message?: string };
-      if (err.code === 'PGRST204' || err.message?.includes('quantity')) {
-        setMigrationNeeded(true);
-      }
+      console.error('Save error:', error);
     }
   };
 
@@ -414,23 +409,6 @@ export default function PrizesPage() {
   return (
     <DashboardLayout merchant={merchant}>
       <div className="space-y-6 max-w-5xl">
-        {/* Migration Warning */}
-        {migrationNeeded && (
-          <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 flex items-start gap-3">
-            <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
-            <div>
-              <h3 className="font-semibold text-amber-800">{isFr ? 'Mise \u00E0 jour de la base de donn\u00E9es requise' : 'Database update required'}</h3>
-              <p className="text-sm text-amber-700 mt-1">
-                {isFr ? 'Les colonnes pour les probabilit\u00E9s sp\u00E9ciales manquent dans la base de donn\u00E9es.' : 'The columns for special probabilities are missing from the database.'}
-              </p>
-              <pre className="mt-2 bg-amber-100 p-2 rounded text-xs overflow-x-auto text-amber-900 border border-amber-200">
-                ALTER TABLE merchants ADD COLUMN IF NOT EXISTS unlucky_probability INTEGER DEFAULT 20;{'\n'}
-                ALTER TABLE merchants ADD COLUMN IF NOT EXISTS retry_probability INTEGER DEFAULT 10;
-              </pre>
-            </div>
-          </div>
-        )}
-
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start gap-3">
           <div>
