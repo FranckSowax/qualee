@@ -7,7 +7,6 @@ import {
   Check,
   Mail,
   MessageCircle,
-  Phone,
   MapPin,
   Send,
   Sparkles,
@@ -191,7 +190,7 @@ export default function ContactPage() {
                         type="tel"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        placeholder="+241 XX XX XX XX"
+                        placeholder="+33 6 XX XX XX XX"
                         className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50/50 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500/20 focus:border-pink-500 focus:bg-white transition-all"
                       />
                     </div>
@@ -285,22 +284,13 @@ export default function ContactPage() {
                       <p className="text-sm font-medium text-gray-700">contact@qualee.fr</p>
                     </div>
                   </a>
-                  <a href="https://wa.me/24177000000" className="flex items-center gap-3 text-gray-500 hover:text-green-600 transition-colors group">
-                    <div className="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center group-hover:bg-green-100 transition-colors">
-                      <Phone className="w-5 h-5 text-green-600" />
-                    </div>
-                    <div>
-                      <p className="text-xs text-gray-400">WhatsApp</p>
-                      <p className="text-sm font-medium text-gray-700">+241 77 00 00 00</p>
-                    </div>
-                  </a>
                   <div className="flex items-center gap-3 text-gray-500">
                     <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center">
                       <MapPin className="w-5 h-5 text-gray-400" />
                     </div>
                     <div>
                       <p className="text-xs text-gray-400">Adresse</p>
-                      <p className="text-sm font-medium text-gray-700">Libreville, Gabon</p>
+                      <p className="text-sm font-medium text-gray-700">9 rue de Condé, 33000 Bordeaux</p>
                     </div>
                   </div>
                 </div>

@@ -34,7 +34,7 @@ export default function SettingsPage() {
   const [emailNotifications, setEmailNotifications] = useState(true);
   const [newReviewAlert, setNewReviewAlert] = useState(true);
   const [weeklySummary, setWeeklySummary] = useState(false);
-  const [timezone, setTimezone] = useState('Africa/Libreville');
+  const [timezone, setTimezone] = useState('Europe/Paris');
 
   // Links settings
   const [googleReviewLink, setGoogleReviewLink] = useState('');
@@ -217,13 +217,13 @@ export default function SettingsPage() {
                       onChange={(e) => setTimezone(e.target.value)}
                       className="w-full px-3 py-2.5 border border-gray-300 rounded-lg bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500/20 focus:border-pink-500 focus:bg-pink-50/30 transition-all duration-200"
                     >
-                      <option value="Africa/Libreville">Africa/Libreville (UTC+1)</option>
-                      <option value="Africa/Lagos">Africa/Lagos (UTC+1)</option>
-                      <option value="Africa/Douala">Africa/Douala (UTC+1)</option>
-                      <option value="Africa/Kinshasa">Africa/Kinshasa (UTC+1)</option>
-                      <option value="Africa/Brazzaville">Africa/Brazzaville (UTC+1)</option>
-                      <option value="Africa/Abidjan">Africa/Abidjan (UTC+0)</option>
-                      <option value="Africa/Dakar">Africa/Dakar (UTC+0)</option>
+                      <option value="Europe/Paris">Europe/Paris (UTC+1)</option>
+                      <option value="Europe/Brussels">Europe/Bruxelles (UTC+1)</option>
+                      <option value="Europe/Zurich">Europe/Zurich (UTC+1)</option>
+                      <option value="Europe/London">Europe/Londres (UTC+0)</option>
+                      <option value="Europe/Berlin">Europe/Berlin (UTC+1)</option>
+                      <option value="Europe/Madrid">Europe/Madrid (UTC+1)</option>
+                      <option value="Europe/Rome">Europe/Rome (UTC+1)</option>
                       <option value="Europe/Paris">Europe/Paris (UTC+1/+2)</option>
                     </select>
                   </div>

@@ -11,17 +11,17 @@ interface Country {
 }
 
 const countries: Country[] = [
-  { code: 'GA', name: 'Gabon', dialCode: '+241', flag: '🇬🇦' },
-  { code: 'CM', name: 'Cameroun', dialCode: '+237', flag: '🇨🇲' },
-  { code: 'CI', name: 'Côte d\'Ivoire', dialCode: '+225', flag: '🇨🇮' },
-  { code: 'SN', name: 'Sénégal', dialCode: '+221', flag: '🇸🇳' },
-  { code: 'CG', name: 'Congo', dialCode: '+242', flag: '🇨🇬' },
-  { code: 'CD', name: 'RD Congo', dialCode: '+243', flag: '🇨🇩' },
   { code: 'FR', name: 'France', dialCode: '+33', flag: '🇫🇷' },
-  { code: 'US', name: 'États-Unis', dialCode: '+1', flag: '🇺🇸' },
-  { code: 'GB', name: 'Royaume-Uni', dialCode: '+44', flag: '🇬🇧' },
+  { code: 'BE', name: 'Belgique', dialCode: '+32', flag: '🇧🇪' },
+  { code: 'CH', name: 'Suisse', dialCode: '+41', flag: '🇨🇭' },
+  { code: 'LU', name: 'Luxembourg', dialCode: '+352', flag: '🇱🇺' },
   { code: 'DE', name: 'Allemagne', dialCode: '+49', flag: '🇩🇪' },
   { code: 'ES', name: 'Espagne', dialCode: '+34', flag: '🇪🇸' },
+  { code: 'IT', name: 'Italie', dialCode: '+39', flag: '🇮🇹' },
+  { code: 'PT', name: 'Portugal', dialCode: '+351', flag: '🇵🇹' },
+  { code: 'GB', name: 'Royaume-Uni', dialCode: '+44', flag: '🇬🇧' },
+  { code: 'US', name: 'États-Unis', dialCode: '+1', flag: '🇺🇸' },
+  { code: 'CA', name: 'Canada', dialCode: '+1', flag: '🇨🇦' },
   { code: 'IT', name: 'Italie', dialCode: '+39', flag: '🇮🇹' },
   { code: 'PT', name: 'Portugal', dialCode: '+351', flag: '🇵🇹' },
   { code: 'BE', name: 'Belgique', dialCode: '+32', flag: '🇧🇪' },
@@ -99,7 +99,7 @@ export function PhoneInputWithCountry({
 }: PhoneInputWithCountryProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCountry, setSelectedCountry] = useState<Country>(countries[0]); // Gabon by default
+  const [selectedCountry, setSelectedCountry] = useState<Country>(countries[0]); // France by default
   const dropdownRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -153,8 +153,8 @@ export function PhoneInputWithCountry({
     // Auto-correct: remove leading 0 if present (common user mistake)
     // The country dial code already replaces the leading 0
     // e.g., for France: 0612345678 should become 612345678
-    // Exception: Gabon (+241) keeps the leading 0
-    if (newPhone.startsWith('0') && selectedCountry.dialCode !== '+241') {
+    // Remove leading 0 (common user mistake, e.g. 06... in France)
+    if (newPhone.startsWith('0')) {
       newPhone = newPhone.substring(1);
     }
 
