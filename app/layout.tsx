@@ -4,7 +4,6 @@ import "./globals.css";
 import { I18nProvider } from "@/components/providers/I18nProvider";
 import { QueryProvider } from "@/components/providers/QueryProvider";
 import { ErrorBoundary } from "@/components/providers/ErrorBoundary";
-import InstallPrompt from "@/components/pwa/InstallPrompt";
 import CookieConsent from "@/components/rgpd/CookieConsent";
 
 const geistSans = Geist({
@@ -89,7 +88,6 @@ export default function RootLayout({
           <QueryProvider>
             <I18nProvider>
               {children}
-              <InstallPrompt />
               <CookieConsent />
             </I18nProvider>
           </QueryProvider>
