@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { validatePaymentToken, markTokenUsed } from '@/lib/payments/tokens';
 import { checkPaymentStatus } from '@/lib/payments/ebilling';
+import { getPlanMonthlyCredits } from '@/lib/payments/plans';
 
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -63,20 +64,31 @@ export async function GET(request: NextRequest) {
         .update({ status: 'completed', paid_at: now })
         .eq('id', payment.id);
 
-      // Update merchant subscription
+      // Get monthly credits for the plan + current balance
+      const monthlyCredits = getPlanMonthlyCredits(payment.tier);
+      const { data: currentMerchant } = await supabaseAdmin
+        .from('merchants')
+        .select('campaign_credits')
+        .eq('id', payment.merchant_id)
+        .single();
+
+      const currentCredits = currentMerchant?.campaign_credits || 0;
+
+      // Update merchant subscription + add monthly credits
       await supabaseAdmin
         .from('merchants')
         .update({
           subscription_tier: payment.tier,
           subscription_started_at: now,
           subscription_expires_at: expiresAt,
+          campaign_credits: currentCredits + monthlyCredits,
         })
         .eq('id', payment.merchant_id);
 
       // Mark token as used
       await markTokenUsed(token);
 
-      return NextResponse.json({ success: true, status: 'completed' });
+      return NextResponse.json({ success: true, status: 'completed', credits_added: monthlyCredits });
     }
 
     // Update payment status if changed
