@@ -186,10 +186,8 @@ export default function RatingPage() {
           }
           router.push(redirectUrl);
         } else {
-          alert(t('feedback.thankYou'));
-          setRating(null);
-          setFeedback('');
-          setPhone('');
+          // Redirect to thank-you page for negative ratings
+          router.push(`/rate/${shopId}/thank-you?lang=${currentLang}`);
         }
       }
     } else {
@@ -259,10 +257,8 @@ export default function RatingPage() {
           // Redirect to intermediate page for positive ratings
           router.push(`/redirect/${shopId}?lang=${currentLang}`);
         } else {
-          alert(t('feedback.thankYou'));
-          setRating(null);
-          setFeedback('');
-          setEmail('');
+          // Redirect to thank-you page for negative ratings
+          router.push(`/rate/${shopId}/thank-you?lang=${currentLang}`);
         }
       }
     }
